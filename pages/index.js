@@ -1,31 +1,18 @@
-import { Auth, ThemeSupa } from '@supabase/auth-ui-react'
-import { useSession, useSupabaseClient } from '@supabase/auth-helpers-react'
-// import Account from '../components/Account'
-// import Footer from '../components/Footer'
+import { SupabaseClient, useSession, useSupabaseClient } from '@supabase/auth-helpers-react'
+import { useRouter } from "next/navigation";
+import { Auth } from "@supabase/auth-ui-react";
 
 const Home = () => {
-  const session = useSession()
   const supabase = useSupabaseClient()
-
+  const router = useRouter()
+  
+  const CerrarSesion = async () => {
+    await supabase.auth.signOut()
+    router.push("/login")
+  } 
   return (
-    <div className="container" style={{ padding: '50px 0 100px 0' }}>
-      {!session ? (
-        <div className="row">
-          <div className="col-6">
-            <h1 className="header">ACIA</h1>
-            <p className="">
-              Experience our Auth and Storage through a simple profile management example. Create a
-              user profile and upload an avatar image. Fast, simple, secure.
-            </p>
-          </div>
-          <div className="col-6 auth-widget">
-          </div>
-        </div>
-      ) : (
-        <>
-          <h3>Account</h3>
-        </>
-      )}
+    <div>
+      <h1 onClick={CerrarSesion}>ACIA</h1>
     </div>
   )
 }
