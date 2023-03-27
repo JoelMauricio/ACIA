@@ -45,7 +45,7 @@ const FormLogIn = () => {
             }}
           />
         ) : (
-          <p>Account page will go here.</p>
+          <p>Redirecting...</p>
         )}
       </div>
     </div>

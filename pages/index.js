@@ -7,9 +7,9 @@ import Navbar from '@/components/Navbar';
 const Home = () => {
   const session = useSession();
 
-  if (!session) {
-    return <Login />
-  }
+  // if (!session) {
+  //   return <Login />
+  // }
   return (
     <div className='flex flex-row'>
       <Navbar />

@@ -13,6 +13,11 @@ module.exports = {
       colors: {
         'main-blue': '#2A2A72',
         'snd-blue': '#A9ADE5'
+      },
+      fontSize: {
+        'hidden': {
+          'display': 'none'
+        }
       }
     },
   },
