@@ -1,10 +1,9 @@
 import { SupabaseClient, useSession, useSupabaseClient } from '@supabase/auth-helpers-react'
-import { useRouter } from "next/navigation";
 import { createClient } from '@supabase/supabase-js'
-import { Auth } from "@supabase/auth-ui-react";
 import Login from './login';
 import Navbar from '@/components/Navbar';
-import { data } from 'autoprefixer';
+import ProfileBT from '@/components/Profile_bt';
+import Main from '@/components/MainPage';
 
 const Home = () => {
   const session = useSession();
@@ -14,10 +13,11 @@ const Home = () => {
     return <Login />
   }
   return (
-    <div className='flex flex-row'>
+    <div className='flex w-screen h-screen'>
       <Navbar />
-      <div className='grid content-center justify-center w-full h-screen'>
-        <div>pending... {session.user.id} </div>
+      <div className='grid w-full h-screen'>
+        <ProfileBT />
+        <Main />
       </div>
     </div>
   )

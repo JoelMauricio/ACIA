@@ -8,7 +8,7 @@ const FormLogIn = () => {
   const supabase = useSupabaseClient()
 
   return (
-    <div className='bg-white align-middle rounded-2xl flex flex-col gap-5 items-center justify-center' style={{ width: 400, height: 525 }}>
+    <div className='bg-boneWhite align-middle rounded-2xl flex flex-col gap-5 items-center justify-center' style={{ width: 400, height: 525 }}>
       <div>
         <Logo style={{ width: 100, height: 100 }} />
       </div>

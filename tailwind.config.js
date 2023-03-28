@@ -13,6 +13,7 @@ module.exports = {
       colors: {
         blue: '#2A2A72',
         clearBlue: '#A9ADE5',
+        purBlue: '#7D80DA',
         lightBlue: '#EAF6FF',
         mainBlack: '#232528',
         boneWhite: '#FFFDFA',
@@ -21,7 +22,12 @@ module.exports = {
         grid: '#EFF0F0'
       },
       fontSize: {
-        md: '18px'
+        md: '16px'
+      },
+      spacing: {
+        '3r': '3rem',
+        '4r': '4rem',
+        '5r': '5rem'
       }
     },
   },

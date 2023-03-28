@@ -2,16 +2,16 @@ import { useSupabaseClient } from '@supabase/auth-helpers-react';
 import { useState } from 'react';
 import { Logo, Icon_Home, Icon_light, Icon_dark, Icon_logout, Icon_history, Icon_selection, Icon_help } from '../public/navbar_icons'
 
-var button_format = "text-left my-1 p-2 group";
+var button_format = "text-justify my-1 p-2 group";
 var text_format
-const bt_icon_format = "flex gap-4 items-center justify-start group-hover:text-clearBlue";
-const icon_format = "justify-center self-center w-6 h-6 fill-current text-boneWhite group-hover:text-clearBlue";
+var bt_icon_format = "flex gap-4 w-fit items-center justify-start group-hover:text-clearBlue";
+var icon_format = "self-center min-w-[24px] max-w-[24px] h-fit fill-current text-boneWhite group-hover:text-clearBlue";
 
 const Navbar = () => {
     const supabase = useSupabaseClient();
     const [themeState, changeTheme] = useState(true);
     const [navMinimized, changeNavState] = useState(false);
-    var userRol = 'Profesor';
+    var userRol = 'Estudiante';
 
     function logout() {
         supabase.auth.signOut();
@@ -27,24 +27,26 @@ const Navbar = () => {
         if (navMinimized === false) {
             button_format = "text-left my-1 p-2 group ";
             text_format = {};
+            bt_icon_format = "flex gap-4 items-center justify-start group-hover:text-clearBlue";
         }
         else {
             button_format = " my-1 p-2 group";
             text_format = { display: 'none' }
+            bt_icon_format = "flex items-center justify-center group-hover:text-clearBlue";
         }
     }
 
-    function Icon_Theme({ state, format, spanFormat }) {
+    function Icon_Theme({ state, format, spanformat }) {
         if (state) {
             return (
-                <span className={spanFormat}>
+                <span className={spanformat}>
                     <Icon_dark className={format} />
                     <p style={text_format}>Oscuro</p>
                 </span>)
         }
         else {
             return (
-                <span className={spanFormat}>
+                <span className={spanformat}>
                     <Icon_light className={format} />
                     <p style={text_format}>Claro</p>
                 </span>)
@@ -96,10 +98,10 @@ const Navbar = () => {
         }
     }
 
-    return <div className="grid grid-flow-row grid-rows content-between min-h-screen w-fit px-2 bg-mainBlack text-boneWhite text-md">
-        <div className='flex flex-col w-fit' onClick={navbarHandleClick}>
-            <button className='justify-center self-center'>
-                <Logo className='my-4' style={{ width: '3rem', height: '3rem' }}
+    return <div className="grid grid-flow-row grid-rows content-between min-h-screen w-fit px-2 bg-mainBlack text-boneWhite text-md ">
+        <div className='flex flex-col w-fit'>
+            <button className='justify-center self-center' onClick={navbarHandleClick}>
+                <Logo className='my-4 w-3r h-3r'
                 />
             </button>
             <button className={button_format}>
@@ -118,11 +120,11 @@ const Navbar = () => {
         </div>
         <div className='flex flex-col'>
             <button className={button_format} onClick={themeHandleClick}>
-                <Icon_Theme state={themeState} format={icon_format} spanFormat={bt_icon_format} />
+                <Icon_Theme state={themeState} format={icon_format} spanformat={bt_icon_format} />
             </button>
             <button className={button_format} onClick={logout}>
                 <span className={bt_icon_format}>
-                    <Icon_logout className={icon_format} spanFormat={bt_icon_format} />
+                    <Icon_logout className={icon_format} spanformat={bt_icon_format} />
                     <p style={text_format}>Salir</p>
                 </span>
             </button>
