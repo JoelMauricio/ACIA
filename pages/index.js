@@ -5,6 +5,7 @@ import Navbar from '@/components/Navbar';
 import ProfileBT from '@/components/Profile_bt';
 import Main from '@/components/MainPage';
 
+
 const Home = () => {
   const session = useSession();
   const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY)

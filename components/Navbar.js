@@ -1,6 +1,6 @@
-import { useSupabaseClient } from '@supabase/auth-helpers-react';
-import { useState } from 'react';
+import { useSupabaseClient, useSession } from '@supabase/auth-helpers-react';
 import { Logo, Icon_Home, Icon_light, Icon_dark, Icon_logout, Icon_history, Icon_selection, Icon_help } from '../public/navbar_icons'
+import { useEffect, useState } from "react";
 
 var button_format = "text-justify my-1 p-2 group";
 var text_format
@@ -11,7 +11,21 @@ const Navbar = () => {
     const supabase = useSupabaseClient();
     const [themeState, changeTheme] = useState(true);
     const [navMinimized, changeNavState] = useState(false);
-    var userRol = 'Estudiante';
+    const [profile, setProfile] = useState(null)
+    const session = useSession();
+    useEffect(() => {
+        supabase.from('Persona')
+            .select()
+            .eq('auth_id', session.user.id)
+            .then(result => {
+                if (result.data.length > 0) {
+                    setProfile(result.data[0])
+                    console.log(result)
+                }
+            })
+    }, []);
+
+    var userRol = profile?.id_rol
 
     function logout() {
         supabase.auth.signOut();
@@ -36,17 +50,17 @@ const Navbar = () => {
         }
     }
 
-    function Icon_Theme({ state, format, spanformat }) {
+    function Icon_Theme({ state, format, spanFormat }) {
         if (state) {
             return (
-                <span className={spanformat}>
+                <span className={spanFormat}>
                     <Icon_dark className={format} />
                     <p style={text_format}>Oscuro</p>
                 </span>)
         }
         else {
             return (
-                <span className={spanformat}>
+                <span className={spanFormat}>
                     <Icon_light className={format} />
                     <p style={text_format}>Claro</p>
                 </span>)
@@ -54,7 +68,7 @@ const Navbar = () => {
     }
 
     function DelimetedFuntionalities({ rol, bt_format, bt_ic_format, span_format, icn_format, txt_format }) {
-        if (rol === 'Admin') {
+        if (rol === 1) {
             return (<>
                 <button className={bt_format}>
                     <span className={bt_ic_format}>
@@ -70,7 +84,7 @@ const Navbar = () => {
                 </button>
             </>)
         }
-        else if (rol === 'Profesor') {
+        else if (rol === 3) {
             return (<>
                 <button className={bt_format}>
                     <span className={bt_ic_format}>
@@ -80,7 +94,7 @@ const Navbar = () => {
                 </button>
             </>)
         }
-        else if (rol === 'Estudiante') {
+        else if (rol === 2) {
             return (<>
                 <button className={bt_format}>
                     <span className={bt_ic_format}>
@@ -120,11 +134,11 @@ const Navbar = () => {
         </div>
         <div className='flex flex-col'>
             <button className={button_format} onClick={themeHandleClick}>
-                <Icon_Theme state={themeState} format={icon_format} spanformat={bt_icon_format} />
+                <Icon_Theme state={themeState} format={icon_format} spanFormat={bt_icon_format} />
             </button>
             <button className={button_format} onClick={logout}>
                 <span className={bt_icon_format}>
-                    <Icon_logout className={icon_format} spanformat={bt_icon_format} />
+                    <Icon_logout className={icon_format} spanFormat={bt_icon_format} />
                     <p style={text_format}>Salir</p>
                 </span>
             </button>

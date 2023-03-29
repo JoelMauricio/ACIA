@@ -1,6 +1,7 @@
 import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
 import { useEffect, useState } from "react";
 import Event_Card from "./EventCard";
+import Radial from "./Radial";
 
 const Main = () => {
     const [profile, setProfile] = useState(null)
@@ -23,7 +24,12 @@ const Main = () => {
     return <>
         <div className='h-auto m-6 bg-transparent flex flex-col gap-1'>
             <h2 className="text-[1.5rem] font-bold">Bienvenido de vuelta <span className="text-purBlue">{profile?.nombre ? (profile?.nombre) : ('Nombre Usuario')}</span></h2>
-            <div className={section_format}>test</div>
+            <div className={section_format}>
+                <div className="flex flex-wrap h-full">
+                    <Radial current={3.98} texto='Indice Trimestral' />
+                    <Radial current={3.98} texto='Indice General' />
+                </div>
+            </div>
             <div className={section_format}>
                 <span className="font-semibold text-[18px]">Proximos Eventos...</span>
                 <div className="flex flex-wrap ">
