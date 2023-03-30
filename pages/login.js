@@ -4,6 +4,7 @@ import Home from '.';
 import { useRouter } from 'next/router';
 import { useSession } from '@supabase/auth-helpers-react';
 
+
 const Login = () => {
   const session = useSession();
   const router = useRouter();

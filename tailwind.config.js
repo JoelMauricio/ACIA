@@ -11,13 +11,23 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'main-blue': '#2A2A72',
-        'snd-blue': '#A9ADE5'
+        blue: '#2A2A72',
+        clearBlue: '#A9ADE5',
+        purBlue: '#7D80DA',
+        lightBlue: '#EAF6FF',
+        mainBlack: '#232528',
+        boneWhite: '#FFFDFA',
+        gray: '#8F8F8F',
+        red: '#E22239',
+        grid: '#EFF0F0'
       },
       fontSize: {
-        'hidden': {
-          'display': 'none'
-        }
+        md: '16px'
+      },
+      spacing: {
+        '3r': '3rem',
+        '4r': '4rem',
+        '5r': '5rem'
       }
     },
   },
