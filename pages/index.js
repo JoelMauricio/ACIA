@@ -14,6 +14,7 @@ const Home = () => {
   const session = useSession();
   const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY)
   useProfile(session?.user.id)
+  
   if (!session) {
     return <Login />
   }
@@ -22,7 +23,7 @@ const Home = () => {
       <Navbar />
       <div className='grid w-full h-screen'>
         <ProfileBT />
-        {/* <Main /> */}
+        {<Main /> }
         {/* <AcademicHistory /> */}
         <MyProfile />
       </div>
