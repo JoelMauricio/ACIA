@@ -11,18 +11,9 @@ const Navbar = () => {
     const supabase = useSupabaseClient();
     const [themeState, changeTheme] = useState(true);
     const [navMinimized, changeNavState] = useState(false);
-    const [profile, setProfile] = useState(null)
     const session = useSession();
-    useEffect(() => {
-        supabase.from('Persona')
-            .select()
-            .eq('auth_id', session.user.id)
-            .then(result => {
-                if (result.data.length > 0) {
-                    setProfile(result.data[0])
-                }
-            })
-    }, []);
+
+    const profile = JSON.parse(localStorage.getItem("profile"));
 
     var userRol = profile?.id_rol
 
