@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import ProfileBT from '@/components/Profile_bt';
 import { useState } from 'react';
 import FaqItem from '@/components/FaqItem';
+import Image from 'next/image';
 
 const Ayuda = () => {
     const [faqs, setFaqs] = useState([
@@ -40,27 +41,25 @@ const Ayuda = () => {
 
     return (
         <>
-            <div className='flex w-screen h-screen bg-boneWhite'>
+            <div className='pl-[260px] flex w-full h-screen bg-boneWhite'>
             <Navbar />
             <ProfileBT />
 
-                <h1 className=' m-4 text-lg font-bold '>Ayuda</h1>
-                <div className='flex flex-col mt-4 w-full h-screen items-center'>
-
-                    <div className="flex flex-col shadow-lg rounded-[15px] m-4 mt-[80px] p-2 w-full max-w-[930px]">
+                    <div className="flex flex-col p-[40px] w-full">
+                    <h1 className=' m-4 text-lg font-bold '>Ayuda</h1>
                         {faqs.map((faq, index) => (
                             <FaqItem key={index} question={faq.question} answer={faq.answer} />
                         ))}
-                        <a className="my-4 bg-blue-500 text-white p-3 mx-8 bg-purBlue rounded-md self-start"
+                        <a className="flex items-center gap-4 my-4 bg-blue-500 text-white p-3 bg-purBlue rounded-[8px] self-start"
                             href="https://wa.link/09dlxa"
                             target="_blank">
+                            <Image src={'whatsappLogo.svg'} width={30} height={40}/>
                             Contactar al servicio al cliente
                         </a>
                     </div>
 
 
                 </div>
-            </div>
         </>
     )
 }

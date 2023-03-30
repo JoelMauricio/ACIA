@@ -19,13 +19,13 @@ const Home = () => {
     return <Login />
   }
   return (
-    <div className='flex w-screen h-screen bg-boneWhite'>
+    <div className='ml-[260px] flex w-screen h-screen bg-boneWhite'>
       <Navbar />
       <div className='grid w-full h-screen'>
-        <ProfileBT />
-        {/*<Main /> */}
+        {<ProfileBT />}
+        {<Main />}
         {/* <AcademicHistory /> */}
-        <MyProfile />
+        {/*<MyProfile />*/}
       </div>
     </div>
   )
