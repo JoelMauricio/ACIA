@@ -1,13 +1,16 @@
 import { useSupabaseClient, useSession } from '@supabase/auth-helpers-react';
 import { Logo, Icon_Home, Icon_light, Icon_dark, Icon_logout, Icon_history, Icon_selection, Icon_help } from '../public/navbar_icons'
 import { useEffect, useState } from "react";
+import { useRouter } from 'next/router';
 
-var button_format = "text-justify my-1 p-2 group";
-var text_format
-var bt_icon_format = "flex gap-4 w-fit items-center justify-start group-hover:text-clearBlue";
-var icon_format = "self-center min-w-[24px] max-w-[24px] h-fit fill-current text-boneWhite group-hover:text-clearBlue";
+import Link from 'next/link';
 
 const Navbar = () => {
+    const router = useRouter();
+    var button_format = "text-justify my-1 p-2 group";
+    var text_format
+    var bt_icon_format = `flex gap-4 w-fit items-center justify-start  group-hover:text-clearBlue`;
+    var icon_format = "self-center min-w-[24px] max-w-[24px] h-fit fill-current text-boneWhite group-hover:text-clearBlue";
     const supabase = useSupabaseClient();
     const [themeState, changeTheme] = useState(true);
     const [navMinimized, changeNavState] = useState(false);
@@ -59,67 +62,67 @@ const Navbar = () => {
     function DelimetedFuntionalities({ rol, bt_format, bt_ic_format, span_format, icn_format, txt_format }) {
         if (rol === 1) {
             return (<>
-                <button className={bt_format}>
+                <Link href={'/'} className={bt_format}>
                     <span className={bt_ic_format}>
                         <Icon_history className={icn_format} />
                         <p style={txt_format}>Administrar Usuarios</p>
                     </span>
-                </button>
-                <button className={bt_format}>
+                </Link>
+                <Link href={'/'} className={bt_format}>
                     <span className={bt_ic_format}>
                         <Icon_history className={icn_format} />
                         <p style={txt_format}>Administrar Asignatura</p>
                     </span>
-                </button>
+                </Link>
             </>)
         }
         else if (rol === 3) {
             return (<>
-                <button className={bt_format}>
+                <Link href={'/'} className={bt_format}>
                     <span className={bt_ic_format}>
                         <Icon_selection className={icn_format} />
                         <p style={txt_format}>Gestión de Calificaciones</p>
                     </span>
-                </button>
+                </Link>
             </>)
         }
         else if (rol === 2) {
             return (<>
-                <button className={bt_format}>
+                <Link href={'/'} className={bt_format}>
                     <span className={bt_ic_format}>
                         <Icon_selection className={icn_format} />
                         <p style={txt_format}>Seleccionar Asignatura</p>
                     </span>
-                </button>
-                <button className={bt_format}>
+                </Link>
+                <Link href={'/'} className={bt_format}>
                     <span className={bt_ic_format}>
                         <Icon_history className={icn_format} />
                         <p style={txt_format}>Historial Academico</p>
                     </span>
-                </button>
+                </Link>
             </>)
         }
     }
 
     return <div className="grid grid-flow-row grid-rows content-between min-h-screen w-fit px-2 bg-mainBlack text-boneWhite text-md ">
         <div className='flex flex-col w-fit'>
-            <button className='justify-center self-center' onClick={navbarHandleClick}>
+            <Link href={'/'} className='justify-center self-center' onClick={navbarHandleClick}>
                 <Logo className='my-4 w-3r h-3r'
                 />
-            </button>
-            <button className={button_format}>
+            </Link>
+            <Link href={'/'} className={button_format}>
                 <span className={bt_icon_format}>
                     <Icon_Home className={icon_format} />
                     <p style={text_format}>Home</p>
                 </span>
-            </button>
+            </Link>
             <DelimetedFuntionalities rol={userRol} bt_format={button_format} bt_ic_format={bt_icon_format} icn_format={icon_format} txt_format={text_format} />
-            <button className={button_format}>
+            <Link className={button_format} href={'/ayuda'}>
                 <span className={bt_icon_format}>
                     <Icon_help className={icon_format} />
                     <p style={text_format}>Ayuda</p>
                 </span>
-            </button>
+            </Link>
         </div>
         <div className='flex flex-col'>
             <button className={button_format} onClick={themeHandleClick}>
