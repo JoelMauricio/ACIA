@@ -7,6 +7,7 @@ const Main = () => {
     const supabase = useSupabaseClient();
     const session = useSession();
     const section_format = '"bg-boneWhite shadow-md w-full rounded-sm h-1/2 max-h-1/2 p-4 overflow-hidden'
+
     const profile = JSON.parse(localStorage.getItem("profile"));
 
     return <>

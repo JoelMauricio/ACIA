@@ -23,7 +23,7 @@ const Home = () => {
       <Navbar />
       <div className='grid w-full h-screen'>
         <ProfileBT />
-        {<Main /> }
+        {/*<Main /> */}
         {/* <AcademicHistory /> */}
         <MyProfile />
       </div>
