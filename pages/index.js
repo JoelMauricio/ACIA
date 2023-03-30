@@ -32,11 +32,10 @@ const Home = () => {
             {/* <Main /> */}
             {/* <AcademicHistory /> */}
             {/*<MyProfile />*/}
-            {/* <MyProfile /> */}
-            <SelectionPage />
           </div>
         </div>
-        )
+      </div>
+    </div>)
 }
 
-        export default Home
+export default Home
