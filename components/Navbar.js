@@ -11,7 +11,6 @@ const Navbar = () => {
     const supabase = useSupabaseClient();
     const [themeState, changeTheme] = useState(true);
     const [navMinimized, changeNavState] = useState(false);
-    const session = useSession();
 
     const profile = JSON.parse(localStorage.getItem("profile"));
 
