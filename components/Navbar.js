@@ -1,6 +1,7 @@
 import { useSupabaseClient, useSession } from '@supabase/auth-helpers-react';
 import { Logo, Icon_Home, Icon_light, Icon_dark, Icon_logout, Icon_history, Icon_selection, Icon_help } from '../public/navbar_icons'
 import { useEffect, useState } from "react";
+import { Navigate } from 'react-router-dom';
 
 var button_format = "text-justify my-1 p-2 group";
 var text_format
@@ -50,17 +51,17 @@ const Navbar = () => {
         }
     }
 
-    function Icon_Theme({ state, format, spanFormat }) {
+    function Icon_Theme({ state, format, span_format }) {
         if (state) {
             return (
-                <span className={spanFormat}>
+                <span className={span_format}>
                     <Icon_dark className={format} />
                     <p style={text_format}>Oscuro</p>
                 </span>)
         }
         else {
             return (
-                <span className={spanFormat}>
+                <span className={span_format}>
                     <Icon_light className={format} />
                     <p style={text_format}>Claro</p>
                 </span>)
@@ -134,11 +135,11 @@ const Navbar = () => {
         </div>
         <div className='flex flex-col'>
             <button className={button_format} onClick={themeHandleClick}>
-                <Icon_Theme state={themeState} format={icon_format} spanFormat={bt_icon_format} />
+                <Icon_Theme state={themeState} format={icon_format} span_format={bt_icon_format} />
             </button>
             <button className={button_format} onClick={logout}>
                 <span className={bt_icon_format}>
-                    <Icon_logout className={icon_format} spanFormat={bt_icon_format} />
+                    <Icon_logout className={icon_format} span_format={bt_icon_format} />
                     <p style={text_format}>Salir</p>
                 </span>
             </button>

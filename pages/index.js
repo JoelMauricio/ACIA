@@ -4,7 +4,8 @@ import Login from './login';
 import Navbar from '@/components/Navbar';
 import ProfileBT from '@/components/Profile_bt';
 import Main from '@/components/MainPage';
-
+import AcademicHistory from '@/components/StudentHistory'
+import MyProfile from '@/components/ProfilePage';
 
 const Home = () => {
   const session = useSession();
@@ -14,11 +15,13 @@ const Home = () => {
     return <Login />
   }
   return (
-    <div className='flex w-screen h-screen'>
+    <div className='flex w-screen h-screen bg-boneWhite'>
       <Navbar />
       <div className='grid w-full h-screen'>
         <ProfileBT />
-        <Main />
+        {/* <Main /> */}
+        {/* <AcademicHistory /> */}
+        <MyProfile />
       </div>
     </div>
   )
