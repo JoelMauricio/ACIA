@@ -12,8 +12,8 @@ const AcademicHistory = () => {
             <div className="w-full rounded-sm h-1/2 max-h-1/2 py-4 overflow-hidden">
                 <div className="flex h-full gap-x-4 ">
                     <div className="h-full basis-1/2 shadow-md dark:bg-[#323232]"></div>
-                    <Radial className='basis-1/4 ' current={'4.00'} texto={"Indice Trimestral"} />
-                    <Radial className='basis-1/4 ' current={'4.00'} texto={"Indice General"} />
+                    <Radial current={2} texto={"Indice Trimestral"} />
+                    <Radial current={3.5} texto={"Indice General"} />
                 </div>
             </div>
             <div className={section_format}>

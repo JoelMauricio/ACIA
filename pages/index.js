@@ -20,17 +20,23 @@ const Home = () => {
     return <Login />
   }
   return (
-    <div className='flex w-screen h-screen bg-boneWhite'>
-      <Navbar className="h-full" />
-      <div className='grid w-full h-screen overflow-y-auto'>
-        {/* <ProfileBT /> */}
-        {/* <Main /> */}
-        {/* <AcademicHistory /> */}
-        {/* <MyProfile /> */}
-        <SelectionPage />
-      </div>
-    </div>
-  )
+    <div className='ml-[260px] flex w-screen h-screen bg-boneWhite'>
+      <Navbar />
+      <div className='grid w-full h-screen'>
+        {<ProfileBT />}
+        {<Main />}
+        <div className='flex w-screen h-screen bg-boneWhite'>
+          <Navbar className="h-full" />
+          <div className='grid w-full h-screen overflow-y-auto'>
+            {/* <ProfileBT /> */}
+            {/* <Main /> */}
+            {/* <AcademicHistory /> */}
+            {/*<MyProfile />*/}
+            {/* <MyProfile /> */}
+            <SelectionPage />
+          </div>
+        </div>
+        )
 }
 
-export default Home
+        export default Home
