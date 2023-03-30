@@ -6,11 +6,14 @@ import ProfileBT from '@/components/Profile_bt';
 import Main from '@/components/MainPage';
 import AcademicHistory from '@/components/StudentHistory'
 import MyProfile from '@/components/ProfilePage';
+import { useProfile } from '@/components/hooks/loginData';
+
+
 
 const Home = () => {
   const session = useSession();
   const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY)
-
+  useProfile(session?.user.id)
   if (!session) {
     return <Login />
   }

@@ -13,6 +13,7 @@ function App({
   Component,
   pageProps,
 }) {
+
   const [supabaseClient] = useState(() => createBrowserSupabaseClient())
 
   return (

@@ -1,7 +1,6 @@
 import { useSupabaseClient, useSession } from '@supabase/auth-helpers-react';
 import { Logo, Icon_Home, Icon_light, Icon_dark, Icon_logout, Icon_history, Icon_selection, Icon_help } from '../public/navbar_icons'
 import { useEffect, useState } from "react";
-import { Navigate } from 'react-router-dom';
 
 var button_format = "text-justify my-1 p-2 group";
 var text_format
@@ -21,7 +20,6 @@ const Navbar = () => {
             .then(result => {
                 if (result.data.length > 0) {
                     setProfile(result.data[0])
-                    console.log(result)
                 }
             })
     }, []);
