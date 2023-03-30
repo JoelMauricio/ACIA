@@ -106,10 +106,10 @@ const Navbar = () => {
 
     return <div className="grid grid-flow-row grid-rows content-between min-h-screen w-fit px-2 bg-mainBlack text-boneWhite text-md ">
         <div className='flex flex-col w-fit'>
-            <Link href={'/'} className='justify-center self-center' onClick={navbarHandleClick}>
+            <button className='justify-center self-center' onClick={navbarHandleClick}>
                 <Logo className='my-4 w-3r h-3r'
                 />
-            </Link>
+            </button>
             <Link href={'/'} className={button_format}>
                 <span className={bt_icon_format}>
                     <Icon_Home className={icon_format} />

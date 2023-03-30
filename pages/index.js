@@ -7,6 +7,7 @@ import Main from '@/components/MainPage';
 import AcademicHistory from '@/components/StudentHistory'
 import MyProfile from '@/components/ProfilePage';
 import { useProfile } from '@/components/hooks/loginData';
+import SelectionPage from '@/components/CourseSelection';
 
 
 
@@ -14,18 +15,19 @@ const Home = () => {
   const session = useSession();
   const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY)
   useProfile(session?.user.id)
-   
+
   if (!session) {
     return <Login />
   }
   return (
     <div className='flex w-screen h-screen bg-boneWhite'>
-      <Navbar />
-      <div className='grid w-full h-screen'>
-        <ProfileBT />
-        {/*<Main /> */}
+      <Navbar className="h-full" />
+      <div className='grid w-full h-screen overflow-y-auto'>
+        {/* <ProfileBT /> */}
+        {/* <Main /> */}
         {/* <AcademicHistory /> */}
-        <MyProfile />
+        {/* <MyProfile /> */}
+        <SelectionPage />
       </div>
     </div>
   )
