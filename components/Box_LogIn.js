@@ -2,11 +2,14 @@ import { Auth } from '@supabase/auth-ui-react'
 import { ThemeSupa } from '@supabase/auth-ui-shared'
 import { useSession, useSupabaseClient } from '@supabase/auth-helpers-react'
 import Logo from '../public/logo.svg'
+import { useProfile } from './hooks/loginData'
+
 
 const FormLogIn = () => {
+  
   const session = useSession()
   const supabase = useSupabaseClient()
-
+ 
   return (
     <div className='bg-boneWhite align-middle rounded-2xl flex flex-col gap-5 items-center justify-center' style={{ width: 400, height: 525 }}>
       <div>

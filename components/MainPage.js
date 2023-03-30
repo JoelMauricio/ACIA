@@ -4,23 +4,11 @@ import Event_Card from "./EventCard";
 import Radial from "./Radial";
 
 const Main = () => {
-    const [profile, setProfile] = useState(null)
     const supabase = useSupabaseClient();
     const session = useSession();
-
-
     const section_format = '"bg-boneWhite shadow-md w-full rounded-sm h-1/2 max-h-1/2 p-4 overflow-hidden'
-    useEffect(() => {
-        supabase.from('Persona')
-            .select()
-            .eq('auth_id', session.user.id)
-            .then(result => {
-                if (result.data.length > 0) {
-                    setProfile(result.data[0])
-                }
-            })
-            .catch(console.error)
-    }, []);
+
+    const profile = JSON.parse(localStorage.getItem("profile"));
 
     return <>
         <div className='h-auto m-6 bg-transparent flex flex-col gap-1'>
