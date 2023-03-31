@@ -2,11 +2,12 @@ import Event_Card from "./EventCard";
 import Avatar from "./ProfileAvatar";
 import Radial from "./Radial";
 import UserCard from "./User_Card";
+import { useAuth } from "./hooks/loginData";
 
 const MyProfile = () => {
 
     const section_format = '"bg-boneWhite last:shadow-lg w-full rounded-sm h-1/2 max-h-1/2 p-4 overflow-hidden'
-    const profile = JSON.parse(localStorage.getItem("profile"));
+    const profile = useAuth().useProfileData()
 
     return <>
         <div className='m-6 bg-transparent flex flex-col gap-1 overflow-hidden'>

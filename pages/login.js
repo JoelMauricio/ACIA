@@ -1,16 +1,17 @@
 import LogIn_bg from '../public/LogIn_bg.svg'
-import FormLogIn from '@/components/box_LogIn'
+import FormLogIn from '@/components/Box_LogIn';
 import Home from '.';
 import { useRouter } from 'next/router';
 import { useSession } from '@supabase/auth-helpers-react';
+import { useAuth } from '@/components/hooks/loginData';
 
 const Login = () => {
   const session = useSession();
   const router = useRouter();
+  const {useCheckAuth} = useAuth();
 
-  if (session) {
-    router.push('/#')
-  }
+  useCheckAuth();
+  
   return (
     <>
       <div className='absolute h-screen w-screen overflow-hidden -z-10'>
