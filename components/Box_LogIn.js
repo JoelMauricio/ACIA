@@ -3,13 +3,19 @@ import { ThemeSupa } from '@supabase/auth-ui-shared'
 import { useSession, useSupabaseClient } from '@supabase/auth-helpers-react'
 import Logo from '../public/logo.svg'
 import { useProfile } from './hooks/loginData'
+import { redirect } from 'next/dist/server/api-utils'
+import { useRouter } from 'next/router'
 
 
 const FormLogIn = () => {
-  
+  const router = useRouter()
   const session = useSession()
   const supabase = useSupabaseClient()
- 
+
+  const redirect =  () =>{
+    router.push('/')
+  }
+  
   return (
     <div className='bg-boneWhite align-middle rounded-2xl flex flex-col gap-5 items-center justify-center' style={{ width: 400, height: 525 }}>
       <div>
@@ -67,7 +73,7 @@ const FormLogIn = () => {
             }}
           />
         ) : (
-          <p>Redirecting...</p>
+          <p onLoad={()=>redirect()}>Redirecting...</p>
         )}
       </div>
     </div>

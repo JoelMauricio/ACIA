@@ -3,10 +3,12 @@ import { Logo, Icon_Home, Icon_light, Icon_dark, Icon_logout, Icon_history, Icon
 import { useEffect, useState } from "react";
 import { useRouter } from 'next/router';
 import { useAuth } from './hooks/loginData';
+import Router from 'next/router';
 
 import Link from 'next/link';
 
 const Navbar = () => {
+    const router = useRouter();
     var button_format = "text-justify my-1 p-2 group";
     var text_format
     var bt_icon_format = `flex gap-4 w-fit items-center justify-start  group-hover:text-clearBlue`;
@@ -22,7 +24,9 @@ const Navbar = () => {
     var userRol = profile?.id_rol
 
     function logout() {
-        supabase.auth.signOut();
+        supabase.auth.signOut().then(()=>{
+            router.push('/login')
+        })
     }
 
     function themeHandleClick() {

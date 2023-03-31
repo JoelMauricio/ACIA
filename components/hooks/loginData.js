@@ -13,7 +13,7 @@ export const useAuth = () => {
 
 
         useEffect(() => {
-            if (token && !localStorage.getItem("profile")) {
+            if (token) {
 
                 const fetchData = async () => {
                     const { data: profileData, error } = await supabase
