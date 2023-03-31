@@ -2,6 +2,7 @@ import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
 import { useEffect, useState } from "react";
 import Event_Card from "./EventCard";
 import Radial from "./Radial";
+import { useAuth } from "./hooks/loginData";
 
 const Main = () => {
     const supabase = useSupabaseClient();
@@ -33,9 +34,10 @@ const Main = () => {
         }
     ]);
 
+    const { useProfileData } = useAuth()
     const section_format = '"bg-boneWhite shadow-md w-full rounded-sm h-1/2 max-h-1/2 p-4 overflow-hidden'
 
-    const profile = JSON.parse(localStorage.getItem("profile"));
+    const profile = useProfileData();
 
     return <>
         <div className='h-auto m-6 bg-transparent flex flex-col gap-1'>

@@ -2,20 +2,22 @@ import { useSupabaseClient, useSession } from '@supabase/auth-helpers-react';
 import { Logo, Icon_Home, Icon_light, Icon_dark, Icon_logout, Icon_history, Icon_selection, Icon_help } from '../public/navbar_icons'
 import { useEffect, useState } from "react";
 import { useRouter } from 'next/router';
+import { useAuth } from './hooks/loginData';
 
 import Link from 'next/link';
 
 const Navbar = () => {
-    const router = useRouter();
     var button_format = "text-justify my-1 p-2 group";
     var text_format
     var bt_icon_format = `flex gap-4 w-fit items-center justify-start  group-hover:text-clearBlue`;
     var icon_format = "self-center min-w-[24px] max-w-[24px] h-fit fill-current text-boneWhite group-hover:text-clearBlue";
+
+    const { useProfileData} = useAuth()
+
     const supabase = useSupabaseClient();
+    const profile = useProfileData();
     const [themeState, changeTheme] = useState(true);
     const [navMinimized, changeNavState] = useState(false);
-
-    const profile = JSON.parse(localStorage.getItem("profile"));
 
     var userRol = profile?.id_rol
 
@@ -128,12 +130,12 @@ const Navbar = () => {
             <button className={button_format} onClick={themeHandleClick}>
                 <Icon_Theme state={themeState} format={icon_format} span_format={bt_icon_format} />
             </button>
-            <button className={button_format} onClick={logout}>
+            <Link className={button_format} onClick={logout} href={'/login'}>
                 <span className={bt_icon_format}>
                     <Icon_logout className={icon_format} span_format={bt_icon_format} />
                     <p style={text_format}>Salir</p>
                 </span>
-            </button>
+            </Link>
         </div>
     </div>
 }
