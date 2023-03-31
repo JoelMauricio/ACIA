@@ -18,7 +18,9 @@ const AcademicHistory = () => {
             </div>
             <div className={section_format}>
                 <span className="font-semibold text-[18px]">Reporte</span>
-                <div className="flex w-full h-5/6 bg-grid mt-2">
+                <div className="h-full overflow-hidden overflow-y-auto px-2">
+                    <div className="flex w-full h-full bg-grid mt-2">
+                    </div>
                 </div>
             </div>
         </div>
