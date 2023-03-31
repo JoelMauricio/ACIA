@@ -10,27 +10,27 @@ const Main = () => {
     const [events, setEvents] = useState([
         {
             "title": "Se acerca la fecha de pago",
-            "desciption": 'La fecha del pago es ' + new Date().toLocaleString() + ', recuerda pagar a tiempo.'
+            "desciption": 'La fecha del pago es *fecha*, recuerda pagar a tiempo.'
         },
         {
             "title": "Se acerca la fecha de pago",
-            "desciption": 'La fecha del pago es ' + new Date().toLocaleString() + ', recuerda pagar a tiempo.'
+            "desciption": 'La fecha del pago es *fecha*, recuerda pagar a tiempo.'
         },
         {
             "title": "Se acerca la fecha de pago",
-            "desciption": 'La fecha del pago es ' + new Date().toLocaleString() + ', recuerda pagar a tiempo.'
+            "desciption": 'La fecha del pago es *fecha*, recuerda pagar a tiempo.'
         },
         {
             "title": "Se acerca la fecha de pago",
-            "desciption": 'La fecha del pago es ' + new Date().toLocaleString() + ', recuerda pagar a tiempo.'
+            "desciption": 'La fecha del pago es *fecha*, recuerda pagar a tiempo.'
         },
         {
             "title": "Se acerca la fecha de pago",
-            "desciption": 'La fecha del pago es ' + new Date().toLocaleString() + ', recuerda pagar a tiempo.'
+            "desciption": 'La fecha del pago es *fecha*, recuerda pagar a tiempo.'
         },
         {
             "title": "Se acerca la fecha de pago",
-            "desciption": 'La fecha del pago es ' + new Date().toLocaleString() + ', recuerda pagar a tiempo.'
+            "desciption": 'La fecha del pago es *fecha*, recuerda pagar a tiempo.'
         }
     ]);
 
