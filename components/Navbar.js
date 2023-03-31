@@ -64,13 +64,13 @@ const Navbar = () => {
     function DelimetedFuntionalities({ rol, bt_format, bt_ic_format, span_format, icn_format, txt_format }) {
         if (rol === 1) {
             return (<>
-                <Link href={'/'} className={bt_format}>
+                <Link href={'/administrarUsuarios'} className={bt_format}>
                     <span className={bt_ic_format}>
                         <Icon_history className={icn_format} />
                         <p style={txt_format}>Administrar Usuarios</p>
                     </span>
                 </Link>
-                <Link href={'/'} className={bt_format}>
+                <Link href={'/administrarAsignaturas'} className={bt_format}>
                     <span className={bt_ic_format}>
                         <Icon_history className={icn_format} />
                         <p style={txt_format}>Administrar Asignatura</p>

@@ -1,6 +1,6 @@
 import Event_Card from "./EventCard";
 import Avatar from "./ProfileAvatar";
-import UserCard from "./User_Card";
+import CourseCard from "./Course_Card";
 import { useAuth } from "./hooks/loginData";
 import { useState } from "react";
 import { useRouter } from 'next/router';
@@ -76,7 +76,7 @@ const MyProfile = () => {
                     <span className="font-semibold text-[18px]">Mis asignaturas</span>
                     <div className="flex flex-wrap gap-2 ">
                         {courses.map((course, index) => (
-                            <UserCard key={index} name={course.name} area={course.academic_area} />
+                            <CourseCard key={index} name={course.name} area={course.academic_area} />
                         ))}
                     </div>
                 </div>) : (<></>)}
