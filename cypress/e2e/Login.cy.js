@@ -1,4 +1,4 @@
-describe('LoginTest', () => {
+describe('basic flow test', () => {
   it('fill login form', () => {
     cy.visit('/login')
     cy.get('#email').type('  test@gmail.com')
