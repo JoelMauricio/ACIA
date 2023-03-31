@@ -88,7 +88,7 @@ const Navbar = () => {
         }
         else if (rol === 2) {
             return (<>
-                <Link href={'/'} className={bt_format}>
+                <Link href={'/seleccion'} className={bt_format}>
                     <span className={bt_ic_format}>
                         <Icon_selection className={icn_format} />
                         <p style={txt_format}>Seleccionar Asignatura</p>

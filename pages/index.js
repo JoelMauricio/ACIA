@@ -24,16 +24,7 @@ const Home = () => {
       <Navbar />
       <div className='grid w-full h-screen'>
         {<ProfileBT />}
-        {<Main />}
-        <div className='flex w-screen h-screen bg-boneWhite'>
-          <Navbar className="h-full" />
-          <div className='grid w-full h-screen overflow-y-auto'>
-            {/* <ProfileBT /> */}
-            {/* <Main /> */}
-            {/* <AcademicHistory /> */}
-            {/*<MyProfile />*/}
-          </div>
-        </div>
+        {<MyProfile />}
       </div>
     </div>)
 }
