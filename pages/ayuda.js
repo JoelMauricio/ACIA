@@ -42,24 +42,23 @@ const Ayuda = () => {
     return (
         <>
             <div className='pl-[260px] flex w-full h-screen bg-boneWhite'>
-            <Navbar />
-            <ProfileBT />
-
-                    <div className="flex flex-col p-[40px] w-full">
-                    <h1 className=' m-4 text-lg font-bold '>Ayuda</h1>
-                        {faqs.map((faq, index) => (
-                            <FaqItem key={index} question={faq.question} answer={faq.answer} />
-                        ))}
-                        <a className="flex items-center gap-4 my-4 bg-blue-500 text-white p-3 bg-purBlue rounded-[8px] self-start"
-                            href="https://wa.link/09dlxa"
-                            target="_blank">
-                            <Image src={'whatsappLogo.svg'} width={30} height={40}/>
-                            Contactar al servicio al cliente
-                        </a>
-                    </div>
-
-
+                <Navbar />
+                <ProfileBT />
+                <div className="flex flex-col px-[40px] py-2 w-full">
+                    <h1 className=' my-4 text-[24px] font-bold '>Ayuda</h1>
+                    {faqs.map((faq, index) => (
+                        <FaqItem key={index} question={faq.question} answer={faq.answer} />
+                    ))}
+                    <a className="flex items-center gap-4 my-4 bg-blue-500 text-white p-3 bg-purBlue rounded-[8px] self-start"
+                        href="https://wa.link/09dlxa"
+                        target="_blank">
+                        <Image src={'whatsappLogo.svg'} width={30} height={40} />
+                        Contactar al servicio al cliente
+                    </a>
                 </div>
+
+
+            </div>
         </>
     )
 }

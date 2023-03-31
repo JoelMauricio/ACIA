@@ -3,12 +3,10 @@ import Navbar from '@/components/Navbar';
 import { useAuth } from '@/components/hooks/loginData';
 import MyProfile from '@/components/ProfilePage';
 
-
-
 const Profile = () => {
   const session = useSession();
-  const { useCheckAuth} = useAuth()
-   
+  const { useCheckAuth } = useAuth()
+
   useCheckAuth();
 
   return (
