@@ -57,7 +57,6 @@ export const useAuth = () => {
         useEffect(()=>{
             if (!token) {
                 router.push("/login");
-                document.body.style.paddingLeft = "0px"
               }
           
               // Si el token existe y estamos en la página de inicio de sesión, redirigir a la página de inicio

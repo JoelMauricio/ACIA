@@ -1,13 +1,11 @@
 import LogIn_bg from '../public/LogIn_bg.svg'
 import FormLogIn from '@/components/Box_LogIn';
 import Home from '.';
-import { useRouter } from 'next/router';
-import { useSession } from '@supabase/auth-helpers-react';
+
 import { useAuth } from '@/components/hooks/loginData';
 
 const Login = () => {
-  const session = useSession();
-  const router = useRouter();
+
   const {useCheckAuth} = useAuth();
 
   useCheckAuth();

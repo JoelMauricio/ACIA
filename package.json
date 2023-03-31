@@ -6,13 +6,16 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run"
   },
   "dependencies": {
     "@supabase/auth-helpers-nextjs": "^0.5.6",
     "@supabase/auth-helpers-react": "^0.3.1",
     "@supabase/auth-ui-react": "^0.3.5",
     "@supabase/supabase-js": "^2.12.0",
+    "cypress": "^12.9.0",
     "eslint": "8.36.0",
     "eslint-config-next": "13.2.4",
     "js-cookie": "^3.0.1",
