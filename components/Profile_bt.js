@@ -15,7 +15,7 @@ const ProfileBT = ({ url }) => {
     url = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgIUF7SE6CROioPfFm3jxwN5cPMxD_MobRdw&usqp=CAU';
     return (
         <>
-            <Link href={'/profile'} className="flex absolute top-0 right-0 items-center m-21">
+            <Link href={'/profile'} id="profile" className="flex absolute top-0 right-0 items-center m-21">
                 <div className=' flex justify-self-end m-2 z-1 rounded-full border border-purBlue p-1 w-4r h-4r content-center justify-items-center'>
                     <img src={url} alt='' className='w-fit h-fit rounded-full' />
                 </div>

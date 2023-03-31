@@ -49,12 +49,12 @@ const Ayuda = () => {
                     {faqs.map((faq, index) => (
                         <FaqItem key={index} question={faq.question} answer={faq.answer} />
                     ))}
-                    <a className="flex items-center gap-4 my-4 bg-blue-500 text-white p-3 bg-purBlue rounded-[8px] self-start"
+                    {/*} <a className="flex items-center gap-4 my-4 bg-blue-500 text-white p-3 bg-purBlue rounded-[8px] self-start"
                         href="https://wa.link/09dlxa"
                         target="_blank">
                         <Image src={'whatsappLogo.svg'} width={30} height={40} />
                         Contactar al servicio al cliente
-                    </a>
+                    </a> */}
                 </div>
 
 
