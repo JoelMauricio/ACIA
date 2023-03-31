@@ -8,7 +8,7 @@ import { useRouter } from 'next/router';
 
 const MyProfile = () => {
 
-    const section_format = '"bg-boneWhite last:shadow-lg w-full rounded-sm h-1/2 max-h-1/2 p-4 overflow-hidden'
+    const section_format = '"bg-boneWhite last:shadow-lg w-full rounded-sm h-1/2 max-h-1/2 p-4 '
     const profile = useAuth().useProfileData()
     const router = useRouter()
 
@@ -74,13 +74,16 @@ const MyProfile = () => {
             {profile?.id_rol === 2 ? (
                 <div className={section_format}>
                     <span className="font-semibold text-[18px]">Mis asignaturas</span>
-                    <div className="flex flex-wrap gap-2 ">
-                        {courses.map((course, index) => (
-                            <CourseCard key={index} name={course.name} area={course.academic_area} />
-                        ))}
+                    <div className="h-full overflow-hidden overflow-y-auto">
+                        <div className="flex flex-wrap gap-2 p-2">
+                            {courses.map((course, index) => (
+                                <CourseCard key={index} name={course.name} area={course.academic_area} />
+                            ))}
+                            <div className="w-full" />
+                        </div>
                     </div>
                 </div>) : (<></>)}
-        </div>
+        </div >
     </>
 }
 
