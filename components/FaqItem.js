@@ -12,12 +12,12 @@ const FaqItem = ({ question, answer }) => {
 
       <button
         onClick={toggleExpanded}
-        className="text-lg text-left py-2 px-2 rounded-md hover:bg-gray-300 w-full"
+        className="text-lg text-left py-2 px-2 rounded-md hover:bg-gray-300 w-full font-medium hover:text-purBlue"
       >
         {"- " + question}
       </button>
       {expanded && (
-        <div className="bg-gray-100 text-[#4e4e4e] pb-4 px-4 rounded-md">{answer}</div>
+        <div className="bg-gray-100 text-[#4e4e4e] text-justify pt-1 pb-4 px-4 rounded-md">{answer}</div>
       )}
     </div>
   );
