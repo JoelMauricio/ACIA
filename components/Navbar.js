@@ -90,7 +90,7 @@ const Navbar = () => {
         }
         else if (rol === 2) {
             return (<>
-                <Link href={'/'} className={bt_format}>
+                <Link href={'/seleccion'} className={bt_format}>
                     <span className={bt_ic_format}>
                         <Icon_selection className={icn_format} />
                         <p style={txt_format}>Seleccionar Asignatura</p>
@@ -108,10 +108,10 @@ const Navbar = () => {
 
     return <div className="fixed top-0 left-0 grid grid-flow-row grid-rows content-between min-h-screen w-[260px] px-2 bg-mainBlack text-boneWhite text-md ">
         <div className='flex flex-col w-fit'>
-            <Link href={'/'} className='justify-center self-center' onClick={navbarHandleClick}>
+            <button className='justify-center self-center' onClick={navbarHandleClick}>
                 <Logo className='my-4 w-3r h-3r'
                 />
-            </Link>
+            </button>
             <Link href={'/'} className={button_format}>
                 <span className={bt_icon_format}>
                     <Icon_Home className={icon_format} />
