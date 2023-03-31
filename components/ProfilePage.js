@@ -1,14 +1,17 @@
 import Event_Card from "./EventCard";
 import Avatar from "./ProfileAvatar";
-import Radial from "./Radial";
 import UserCard from "./User_Card";
 import { useAuth } from "./hooks/loginData";
 import { useState } from "react";
+import { useRouter } from 'next/router';
+
 
 const MyProfile = () => {
 
     const section_format = '"bg-boneWhite last:shadow-lg w-full rounded-sm h-1/2 max-h-1/2 p-4 overflow-hidden'
     const profile = useAuth().useProfileData()
+    const router = useRouter()
+
     const [courses, setCourses] = useState([
         {
             "name": "Asignatura",
@@ -38,7 +41,10 @@ const MyProfile = () => {
 
     return <>
         <div className='m-6 bg-transparent flex flex-col gap-1 overflow-hidden'>
-            <h2 className="text-[1.5rem] font-bold grow-0">Perfil</h2>
+            <div className="flex justify-between">
+                <h2 className="text-[1.5rem] font-bold grow-0">Perfil</h2>
+                <button className='items-center text-[18px] font-semibold text-gray mx-4' onClick={() => router.back()}>Volver</button>
+            </div>
             <div className={section_format}>
                 <div className="flex h-full">
                     <div className="w-1/4 grid justify-center content-center">
