@@ -15,7 +15,7 @@ const Login = () => {
   return (
     <>
       <div className='absolute h-screen w-screen -z-10'>
-        <Image src={bg} alt='' layout='fill' objectFit='cover' placeholder='blur' />
+        <Image src={bg} alt='' layout='fill' objectFit='cover' placeholder='blur' loading='eager' />
 
       </div>
       <div className='grid justify-center w-screen h-screen items-center'>
