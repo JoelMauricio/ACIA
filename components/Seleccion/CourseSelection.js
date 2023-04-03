@@ -17,6 +17,7 @@ const SelectionPage = () => {
                     </div>
                     <div className="h-full overflow-hidden overflow-y-auto px-2">
                         <div className="flex  flex-col w-full h-full bg-grid overflow-y-auto">
+                            {/* Agregar data grid view para los datos de la selección */}
                         </div>
                         <div className="h-12 w-full bg-transparent" /> {/* just to get the space */}
                     </div>
@@ -28,6 +29,7 @@ const SelectionPage = () => {
                     </div>
                     <div className="h-full overflow-hidden overflow-y-auto px-2">
                         <div className="flex w-full h-full bg-grid">
+                            {/* Agregar data grid view para los datos de las asignaturas */}
                         </div>
                         <div className="h-12 w-full bg-transparent" /> {/* just to get the space */}
                     </div>

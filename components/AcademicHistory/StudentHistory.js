@@ -11,8 +11,8 @@ const AcademicHistory = () => {
             <h2 className="text-[1.5rem] font-bold text-mainBlack">Historial Académico </h2>
             <div className="flex flex-col w-full h-full gap-4">
                 <div className="w-full rounded-sm h-fit py-4 overflow-hidden">
-                    <div className="flex h-[350px] gap-x-4 ">
-                        <div className="grid h-full basis-1/2 shadow-md justify-center content-center gap-2">
+                    <div className="flex w-full h-[250px] gap-x-4 ">
+                        <div className="grid h-full basis-1/2 shadow-md justify-center content-center gap-2 rounded-md">
                             <h2 className="font-semibold">Reporte del Historial Académico</h2>
                             <input type="text" className="border-mainBlack border-2 rounded-sm"></input>
                             <button className="bg-blue text-boneWhite rounded-sm">Generar Reporte</button>
