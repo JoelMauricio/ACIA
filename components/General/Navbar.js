@@ -1,8 +1,8 @@
 import { useSupabaseClient, useSession } from '@supabase/auth-helpers-react';
-import { Logo, Icon_Home, Icon_light, Icon_dark, Icon_logout, Icon_history, Icon_selection, Icon_help } from '../public/navbar_icons'
+import { Logo, Icon_Home, Icon_light, Icon_dark, Icon_logout, Icon_history, Icon_selection, Icon_help } from '../../public/navbar_icons'
 import { useEffect, useState } from "react";
 import { useRouter } from 'next/router';
-import { useAuth } from './hooks/loginData';
+import { useAuth } from '../hooks/loginData';
 import Router from 'next/router';
 
 import Link from 'next/link';
@@ -14,7 +14,7 @@ const Navbar = () => {
     var bt_icon_format = `flex gap-4 w-fit items-center justify-start  group-hover:text-clearBlue`;
     var icon_format = "self-center min-w-[24px] max-w-[24px] h-fit fill-current text-boneWhite group-hover:text-clearBlue";
 
-    const { useProfileData} = useAuth()
+    const { useProfileData } = useAuth()
 
     const supabase = useSupabaseClient();
     const profile = useProfileData();
@@ -24,7 +24,7 @@ const Navbar = () => {
     var userRol = profile?.id_rol
 
     function logout() {
-        supabase.auth.signOut().then(()=>{
+        supabase.auth.signOut().then(() => {
             router.push('/login')
         })
     }

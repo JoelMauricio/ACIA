@@ -1,11 +1,11 @@
-import Box_CourseInfo from './Box_CourseInfo'
-import Edit_icon from '../public/edit_icon.svg'
+import Box_CourseInfo from '../Box_CourseInfo'
+import Edit_icon from '../../public/edit_icon.svg'
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 
 //Agregar función para recuper la data del usuario
 
-const CourseCard = ({name, area}) => {
+const CourseCard = ({ name, area }) => {
     return <>
         <div className="rounded-md grid grid-flow-col justify-between min-h-[45px] h-fit w-full shadow-md">
             <div className="flex w-fit gap-4 text-[18px] items-center px-4">
@@ -15,11 +15,11 @@ const CourseCard = ({name, area}) => {
             </div>
             <div className="flex w-fit gap-4 text-[18px] items-center px-4">
                 <div className="w-[2px] h-[30px] bg-slate-300" />
-                <Popup 
-					trigger={<button className="w-[30px] h-[30px]"> <Edit_icon className="h-full w-full fill-red" /></button>} 
-					closeOnDocumentClick={false}  modal>
-						<Box_CourseInfo/>
-                  </Popup>        
+                <Popup
+                    trigger={<button className="w-[30px] h-[30px]"> <Edit_icon className="h-full w-full fill-red" /></button>}
+                    closeOnDocumentClick={false} modal>
+                    <Box_CourseInfo />
+                </Popup>
             </div>
         </div>
     </>

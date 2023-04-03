@@ -1,7 +1,7 @@
 import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
 import { useEffect, useState } from "react";
-import Event_Card from "./EventCard";
-import Radial from "./Radial";
+import Event_Card from "../Main/EventCard";
+import Radial from "../AcademicHistory/Radial";
 
 const SelectionPage = () => {
     const section_format = 'bg-boneWhite shadow-md w-full rounded-sm h-1/2 px-4 py-2 overflow-hidden'
