@@ -1,7 +1,7 @@
 import { SupabaseClient, useSession, useSupabaseClient } from '@supabase/auth-helpers-react'
-import Navbar from '@/components/Navbar';
+import Navbar from '@/components/General/Navbar';
 import { useAuth } from '@/components/hooks/loginData';
-import ProfileBT from '@/components/Profile_bt';
+import ProfileBT from '@/components/Profile/Profile_bt';
 import UserList from '@/components/UserList'
 
 const AdministrarUsuarios = () => {
@@ -15,7 +15,7 @@ const AdministrarUsuarios = () => {
       <Navbar />
       <ProfileBT />
       <div className='grid w-full h-screen'>
-        {<UserList/>}
+        {<UserList />}
       </div>
     </div>
   )

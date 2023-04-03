@@ -1,8 +1,8 @@
 import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
 import { useContext } from "react";
-import { UserContext } from "../contexts/UserContext";
-import { useProfileData } from "./hooks/loginData";
-import { useAuth } from "./hooks/loginData";
+import { UserContext } from "../../contexts/UserContext";
+import { useProfileData } from "../hooks/loginData";
+import { useAuth } from "../hooks/loginData";
 import Link from "next/link";
 
 const ProfileBT = ({ url }) => {

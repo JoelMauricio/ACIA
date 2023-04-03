@@ -1,9 +1,9 @@
 import { SupabaseClient, useSession, useSupabaseClient } from '@supabase/auth-helpers-react'
-import Navbar from '@/components/Navbar';
+import Navbar from '@/components/General/Navbar';
 import { useRouter } from 'next/router';
-import ProfileBT from '@/components/Profile_bt';
+import ProfileBT from '@/components/Profile/Profile_bt';
 import { useState } from 'react';
-import FaqItem from '@/components/FaqItem';
+import FaqItem from '@/components/Help/FaqItem';
 import Image from 'next/image';
 
 const Ayuda = () => {
@@ -41,7 +41,7 @@ const Ayuda = () => {
 
     return (
         <>
-        <script id="respondio__widget" src="https://cdn.respond.io/webchat/widget/widget.js?cId=b372bc8534673525c6917a1bd692bf421769338e675836b955a08bc7f5a307c6"></script>
+            <script id="respondio__widget" src="https://cdn.respond.io/webchat/widget/widget.js?cId=b372bc8534673525c6917a1bd692bf421769338e675836b955a08bc7f5a307c6"></script>
             <div className='pl-[260px] flex w-full h-screen bg-boneWhite'>
                 <Navbar />
                 <ProfileBT />

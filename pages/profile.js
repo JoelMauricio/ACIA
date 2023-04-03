@@ -1,7 +1,7 @@
 import { SupabaseClient, useSession, useSupabaseClient } from '@supabase/auth-helpers-react'
-import Navbar from '@/components/Navbar';
+import Navbar from '@/components/General/Navbar';
 import { useAuth } from '@/components/hooks/loginData';
-import MyProfile from '@/components/ProfilePage';
+import MyProfile from '@/components/Profile/ProfilePage';
 
 const Profile = () => {
   const session = useSession();

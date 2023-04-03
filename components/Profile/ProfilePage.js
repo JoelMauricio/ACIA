@@ -1,7 +1,7 @@
-import Event_Card from "./EventCard";
+import Event_Card from "../Main/EventCard";
 import Avatar from "./ProfileAvatar";
 import CourseCard from "./Course_Card";
-import { useAuth } from "./hooks/loginData";
+import { useAuth } from "../hooks/loginData";
 import { useState } from "react";
 import { useRouter } from 'next/router';
 
