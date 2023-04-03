@@ -5,6 +5,7 @@ import Logo from '../public/logo.svg'
 import { useProfile } from './hooks/loginData'
 import { redirect } from 'next/dist/server/api-utils'
 import { useRouter } from 'next/router'
+import { Navigate } from 'react-router-dom'
 
 
 const FormLogIn = () => {
@@ -12,10 +13,10 @@ const FormLogIn = () => {
   const session = useSession()
   const supabase = useSupabaseClient()
 
-  const redirect =  () =>{
-    router.push('/')
+  const redirect = () => {
+    return 0
   }
-  
+
   return (
     <div className='bg-boneWhite align-middle rounded-2xl flex flex-col gap-5 items-center justify-center' style={{ width: 400, height: 525 }}>
       <div>
@@ -73,7 +74,9 @@ const FormLogIn = () => {
             }}
           />
         ) : (
-          <p onLoad={()=>redirect()}>Redirecting...</p>
+          <p onLoad={redirect}>Redirecting...
+          </p>
+
         )}
       </div>
     </div>
