@@ -16,7 +16,7 @@ const CourseCard = ({ name, area }) => {
             <div className="flex w-fit gap-4 text-[18px] items-center px-4">
                 <div className="w-[2px] h-[30px] bg-slate-300" />
                 <Popup
-                    trigger={<button className="w-[30px] h-[30px]"> <Edit_icon className="h-full w-full fill-red" /></button>}
+                    trigger={<button className="w-[30px] h-[30px]"> <Edit_icon className="h-full w-full stroke-red" /></button>}
                     closeOnDocumentClick={false} modal>
                     <Box_CourseInfo />
                 </Popup>
