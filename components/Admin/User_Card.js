@@ -1,4 +1,4 @@
-import Edit_icon from '../public/edit_icon.svg'
+
 import Box_UserInfo from './Box_UserInfo'
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
@@ -16,7 +16,7 @@ const UserCard = ({name, email}) => {
             <div className="flex w-fit gap-4 text-[18px] items-center px-4">
                 <div className="w-[2px] h-[30px] bg-slate-300" />
                 <Popup 
-					trigger={<button className="w-[30px] h-[30px]"> <Edit_icon className="h-full w-full fill-red" /></button>} 
+					trigger={<button className="w-[30px] h-[30px]"> ED</button>} 
 					closeOnDocumentClick={false}  modal>
 						<Box_UserInfo/>
                   </Popup>        

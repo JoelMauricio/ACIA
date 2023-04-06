@@ -1,6 +1,5 @@
-import Edit_icon from '../public/edit_icon.svg'
 import Box_UserInfo from './Box_UserInfo';
-import SearchBar from './SearchBar';
+import SearchBar from '../General/SearchBar';
 import UserCard from './User_Card';
 import { useState } from "react";
 import Popup from 'reactjs-popup';
