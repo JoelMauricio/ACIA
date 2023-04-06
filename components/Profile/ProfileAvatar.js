@@ -36,10 +36,10 @@ const Avatar = ({ url }) => {
     }
 
     const foto = loader()
-    return <div className='rounded-full bg-purBlue w-[220px] h-[220px] grid content-center justify-items-center'>
-        <label className="">
-            <input type="file" className="hidden w-fit h-fit rounded-full" onChange={addPhotos} />
-            <img src={foto} alt='' className='w-fit h-fit rounded-full' />
+    return <div className='rounded-full bg-purBlue w-[220px] h-[220px] grid content-center justify-items-center dark:bg-transparent'>
+        <label className="w-full h-fit">
+            <input type="file" className="hidden w-full h-full rounded-full" onChange={addPhotos} />
+            <img src={foto} alt='' className='w-full h-[220px] rounded-full' />
         </label>
     </div>
 

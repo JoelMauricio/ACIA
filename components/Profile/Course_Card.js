@@ -7,7 +7,7 @@ import 'reactjs-popup/dist/index.css';
 
 const CourseCard = ({ name, area }) => {
     return <>
-        <div className="rounded-md grid grid-flow-col justify-between min-h-[45px] h-fit w-full shadow-md">
+        <div className="rounded-md grid grid-flow-col justify-between min-h-[45px] h-fit w-full shadow-md dark:bg-darkGrid">
             <div className="flex w-fit gap-4 text-[18px] items-center px-4">
                 <span className="text-purBlue">{name}</span>
                 <div className="w-[2px] h-[30px] bg-slate-300" />
