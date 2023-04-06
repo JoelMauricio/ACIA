@@ -35,7 +35,7 @@ const Main = () => {
     ]);
 
     const { useProfileData } = useAuth()
-    const section_format = '"bg-boneWhite shadow-md w-full rounded-sm h-1/2 max-h-1/2 p-4 overflow-hidden first:h-fit'
+    const section_format = '"bg-boneWhite shadow-md w-full rounded-sm h-1/2 max-h-1/2 p-4 overflow-hidden first:h-fit dark:bg-darkBD2'
 
     const profile = useProfileData();
 
@@ -43,8 +43,8 @@ const Main = () => {
         <div className='h-auto m-6 bg-transparent flex flex-col gap-4'>
             <h2 className="text-[1.5rem] font-bold">Bienvenido de vuelta <span className="text-purBlue">{profile?.nombre ? (profile?.nombre) : ('Nombre Usuario')}</span></h2>
             <div className="flex flex-col w-full h-full gap-4">
-                <div className="flex w-full h-[250px] gap-x-4 ">
-                    <div className="grid h-full basis-1/2 shadow-md justify-center content-center gap-2 rounded-md">
+                <div className="flex w-full h-[250px] gap-x-4">
+                    <div className="grid h-full basis-1/2 shadow-md justify-center content-center gap-2 rounded-md dark:bg-darkBD2">
                     </div>
                     <Radial current={3.8} texto={"Indice Trimestral"} />
                     <Radial current={3.5} texto={"Indice General"} />

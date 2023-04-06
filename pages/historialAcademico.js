@@ -4,7 +4,7 @@ import ProfileBT from "@/components/Profile/Profile_bt"
 const HistorialAcademico = () => {
 
     return (
-        <div className='pl-[260px] grid w-screen h-screen bg-boneWhite'>
+        <div className='pl-[260px] grid w-screen h-screen bg-boneWhite dark:bg-darkBG'>
             <Navbar />
             <ProfileBT />
             <AcademicHistory />

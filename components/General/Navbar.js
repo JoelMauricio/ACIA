@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from 'next/router';
 import { useAuth } from '../hooks/loginData';
 import Router from 'next/router';
+import { useTheme } from 'next-themes';
 
 import Link from 'next/link';
 
@@ -19,6 +20,7 @@ const Navbar = () => {
     const supabase = useSupabaseClient();
     const profile = useProfileData();
     const [themeState, changeTheme] = useState(true);
+    const { theme, setTheme } = useTheme();
     const [navMinimized, changeNavState] = useState(false);
 
     var userRol = profile?.id_rol
@@ -31,6 +33,7 @@ const Navbar = () => {
 
     function themeHandleClick() {
         changeTheme((currentState) => !currentState);
+        theme === 'dark' ? setTheme('light') : setTheme('dark');
     }
 
     function navbarHandleClick() {
