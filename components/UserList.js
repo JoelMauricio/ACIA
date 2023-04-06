@@ -11,7 +11,7 @@ import 'reactjs-popup/dist/index.css';
 
 const UserList = ({ name, email }) => {
 
-    const section_format = '"bg-boneWhite w-full rounded-sm h-1/2 max-h-1/2  overflow-hidden'
+    const section_format = '"bg-boneWhite w-full rounded-sm h-3/4 overflow-hidden overflow-y-scroll'
 
     const [users, setUsers] = useState([
         {
@@ -41,32 +41,28 @@ const UserList = ({ name, email }) => {
     ]);
 
 
-    return<>
-            <div className='m-6 bg-transparent flex flex-col gap-5 overflow-hidden'>
-
-                <h2 className="text-[1.5rem] font-bold grow-0">Administrar Usuarios</h2> 
-
+    return <>
+        <div className='m-6 bg-transparent flex flex-col gap-5 overflow-hidden'>
+            <h2 className="text-[1.5rem] font-bold grow-0">Administrar Usuarios</h2>
+            <div className='flex flex-col gap-5'>
                 <div className='space-x-3'>
-                    <span className = "text-black font-bold">Buscar Usuario </span>
-                    <SearchBar/>
-                    <span/>
+                    <span className="text-mainBlack font-bold dark:text-boneWhite">Buscar Usuario </span>
+                    <SearchBar />
+                    <span />
                     <Popup trigger={<button className="bg-purBlue text-white font-bold py-2 px-4 rounded">Crear Usuario</button>} closeOnDocumentClick={false} modal>
-                        <Box_UserInfo/>
-                  </Popup>                
+                        <Box_UserInfo />
+                    </Popup>
                 </div>
-
                 <div className={section_format}>
-                    <div className="flex flex-wrap gap-2 ">
+                    <div className="flex flex-wrap gap-2 overflow-hidden overflow-y-scroll">
                         {users.map((user, index) => (
                             <UserCard key={index} name={user.name} email={user.email} />
                         ))}
                     </div>
                 </div>
-
             </div>
-     </>
-
-    
+        </div>
+    </>
 }
 
 export default UserList
