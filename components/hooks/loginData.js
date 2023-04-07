@@ -11,7 +11,6 @@ export const useAuth = () => {
 
     const useProfile = (userId) => {
 
-
         useEffect(() => {
             if (token) {
 

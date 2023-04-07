@@ -3,8 +3,35 @@ import { useEffect, useState } from "react";
 import Event_Card from "../Main/EventCard";
 import Radial from "./Radial";
 import SearchBar from "../SearchBar";
+import { useAuth } from "../hooks/loginData";
+import { fetchAll } from "../hooks/fetchFile";
 
 const AcademicHistory = () => {
+
+    const { fetchGeneralIndex, fetchStudentPeriod } = fetchAll();
+    const [generalIndex, setGeneralIndex] = useState()
+    const [periodIndex, setPeriodIndex] = useState()
+
+    useEffect(() => {
+        fetchGeneralIndex().then((data) => {
+            var indice = 0
+            data?.map((item, index) => {
+                indice = item.calificacion + indice
+            })
+            setGeneralIndex((indice / data?.length) / 25)
+        })
+    }, [generalIndex])
+
+    useEffect(()=>{
+        fetchStudentPeriod().then((data) => {
+            var indice = 0
+            data?.map((item, index) => {
+                indice = item.calificacion + indice
+            })
+            setPeriodIndex((indice / data?.length) / 25)
+        })
+    },[periodIndex])
+
     const section_format = 'bg-boneWhite shadow-md w-full rounded-sm h-1/2 px-4 py-2 overflow-hidden dark:bg-darkBD2'
 
     return <>
@@ -18,8 +45,8 @@ const AcademicHistory = () => {
                             <SearchBar text={''} icon={false} />
                             <button className="bg-blue text-boneWhite rounded-md h-min-[45px] h-10">Generar Reporte</button>
                         </div>
-                        <Radial current={3.8} texto={"Indice Trimestral"} />
-                        <Radial current={3.5} texto={"Indice General"} />
+                        <Radial current={periodIndex} texto={"Indice Trimestral"} />
+                        <Radial current={generalIndex} texto={"Indice General"} />
                     </div>
                 </div>
                 <div className={section_format}>

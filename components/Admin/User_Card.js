@@ -1,3 +1,4 @@
+import Edit_icon from '@/public/edit_icon.svg'
 import Edit_icon from '../../public/edit_icon.svg'
 import Box_UserInfo from './Box_UserInfo'
 import Popup from 'reactjs-popup';

@@ -26,17 +26,17 @@ const CourseList = ({ }) => {
         }
     };
 
-    const FilterData = (e) => { //Filtrar por nombre o codigo de asignatura
+    const FilterData = (e) => { //Filtrar por nombre o codigo de asignatura 
         const keyword = e.target.value.trimStart();
         if (keyword !== '') {
+            const normalizedKeyword = keyword.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
             const results = courses.filter((data) => {
-                const r1 = data.nombre.toLowerCase().startsWith(keyword.toLowerCase())
-                const r2 = data.codigo_asignatura.toLowerCase().startsWith(keyword.toLowerCase())
-                if (r1 || r2) { return true; }
+                const normalizedDataName = data.nombre.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+                const normalizedDataCode = data.codigo_asignatura.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+                return normalizedDataName.startsWith(normalizedKeyword.toLowerCase()) || normalizedDataCode.startsWith(normalizedKeyword.toLowerCase());
             });
             setFilteredCourses(results);
-        }
-        else {
+        } else {
             setFilteredCourses(courses);
         }
         setSearch(keyword);
