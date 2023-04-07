@@ -1,6 +1,6 @@
-import Edit_icon from '../public/edit_icon.svg'
+import Edit_icon from '../../public/edit_icon.svg'
 import Box_UserInfo from './Box_UserInfo';
-import SearchBar from './SearchBar';
+import SearchBar from '../SearchBar';
 import UserCard from './User_Card';
 import { useState } from "react";
 import Popup from 'reactjs-popup';
@@ -45,11 +45,9 @@ const UserList = ({ name, email }) => {
         <div className='m-6 bg-transparent flex flex-col gap-5 overflow-hidden'>
             <h2 className="text-[1.5rem] font-bold grow-0">Administrar Usuarios</h2>
             <div className='flex flex-col gap-5'>
-                <div className='space-x-3'>
-                    <span className="text-mainBlack font-bold dark:text-boneWhite">Buscar Usuario </span>
-                    <SearchBar text={"Introduzca un término..."} />
-                    <span />
-                    <Popup trigger={<button className="bg-purBlue text-white font-bold py-2 px-4 rounded">Crear Usuario</button>} closeOnDocumentClick={false} modal>
+                <div className='grid grid-flow-col justify-between'>
+                    <SearchBar text={"Buscar Usuario"} />
+                    <Popup trigger={<button className="bg-purBlue text-white font-bold w-[15rem] py-2 px-4 rounded">Crear Usuario</button>} closeOnDocumentClick={false} modal>
                         <Box_UserInfo />
                     </Popup>
                 </div>
