@@ -19,8 +19,14 @@ const Navbar = () => {
 
     const supabase = useSupabaseClient();
     const profile = useProfileData();
+
+    const [mounted, setMounted] = useState(false)
     const { theme, setTheme } = useTheme();
     const [navMinimized, changeNavState] = useState(false);
+
+    useEffect(() => {
+        setMounted(true)
+    }, [])
 
     var userRol = profile?.id_rol
 
@@ -50,7 +56,7 @@ const Navbar = () => {
     }
 
     function Icon_Theme({ state, format, span_format }) {
-        if (state === 'light') {
+        if (mounted && state === 'light') {
             return (
                 <span className={span_format}>
                     <Icon_dark className={format} />
