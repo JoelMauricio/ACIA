@@ -1,7 +1,6 @@
 import Edit_icon from '../../public/edit_icon.svg'
 import Box_UserInfo from './Box_UserInfo';
 import SearchBar from '../SearchBar';
-import SearchBar from '../SearchBar';
 import UserCard from './User_Card';
 import { useEffect, useState } from "react";
 import Popup from 'reactjs-popup';
@@ -55,11 +54,12 @@ const UserList = ({ name, email }) => {
         <div className='m-6 bg-transparent flex flex-col gap-5 overflow-hidden'>
             <h2 className="text-[1.5rem] font-bold grow-0">Administrar Usuarios</h2>
             <div className='flex flex-col gap-5'>
-                <div className='flex  flex-col gap-2 w-full max-w-[330px] space-x-3'>
-                    <span className="text-mainBlack font-bold dark:text-boneWhite">Buscar Usuario </span>
-                    <input className="input mr-8 shadow appearance-none border-2 border-mainBlack rounded-md w-[20rem] py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="search" value={search} onChange={handleSearch} placeholder="Nombre o correo electrónico..." />
-                    <span />
-                    <Popup trigger={<button className="bg-purBlue text-white font-bold py-2 px-4 rounded">Crear Usuario</button>} closeOnDocumentClick={false} modal>
+                <div className='grid grid-flow-col justify-between w-full '>
+                    <div className='flex flex-col gap-2'>
+                        <span className="text-mainBlack font-bold dark:text-boneWhite">Buscar Usuario </span>
+                        <input className="input mr-8 shadow appearance-none border-2 border-mainBlack rounded-md w-[20rem] py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="search" value={search} onChange={handleSearch} placeholder="Nombre o correo electrónico..." />
+                    </div>
+                    <Popup trigger={<button className="bg-purBlue self-end text-white font-bold py-2 px-4  w-[20rem] max-w-[20rem] max-h-[45px] rounded">Crear Usuario</button>} closeOnDocumentClick={false} modal>
                         <Box_UserInfo />
                     </Popup>
                 </div>
