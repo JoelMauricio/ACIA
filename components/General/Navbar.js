@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from 'next/router';
 import { useAuth } from '../hooks/loginData';
 import Router from 'next/router';
+import { useTheme } from 'next-themes';
 
 import Link from 'next/link';
 
@@ -18,8 +19,14 @@ const Navbar = () => {
 
     const supabase = useSupabaseClient();
     const profile = useProfileData();
-    const [themeState, changeTheme] = useState(true);
+
+    const [mounted, setMounted] = useState(false)
+    const { theme, setTheme } = useTheme();
     const [navMinimized, changeNavState] = useState(false);
+
+    useEffect(() => {
+        setMounted(true)
+    }, [])
 
     var userRol = profile?.id_rol
 
@@ -30,7 +37,7 @@ const Navbar = () => {
     }
 
     function themeHandleClick() {
-        changeTheme((currentState) => !currentState);
+        theme === 'dark' ? setTheme('light') : setTheme('dark');
     }
 
     function navbarHandleClick() {
@@ -49,7 +56,7 @@ const Navbar = () => {
     }
 
     function Icon_Theme({ state, format, span_format }) {
-        if (state) {
+        if (mounted && state === 'light') {
             return (
                 <span className={span_format}>
                     <Icon_dark className={format} />
@@ -84,7 +91,7 @@ const Navbar = () => {
         }
         else if (rol === 3) {
             return (<>
-                <Link href={'/'} className={bt_format}>
+                <Link href={'/gestionCalificaciones'} className={bt_format}>
                     <span className={bt_ic_format}>
                         <Icon_selection className={icn_format} />
                         <p style={txt_format}>Gestión de Calificaciones</p>
@@ -132,7 +139,7 @@ const Navbar = () => {
         </div>
         <div className='flex flex-col'>
             <button className={button_format} onClick={themeHandleClick}>
-                <Icon_Theme state={themeState} format={icon_format} span_format={bt_icon_format} />
+                <Icon_Theme state={theme} format={icon_format} span_format={bt_icon_format} />
             </button>
             <Link className={button_format} onClick={logout} href={'/login'}>
                 <span className={bt_icon_format}>

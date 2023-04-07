@@ -41,8 +41,8 @@ const Ayuda = () => {
 
     return (
         <>
-            <script id="respondio__widget" src="https://cdn.respond.io/webchat/widget/widget.js?cId=b372bc8534673525c6917a1bd692bf421769338e675836b955a08bc7f5a307c6"></script>
-            <div className='pl-[260px] flex w-full h-screen bg-boneWhite'>
+            <script className='bg-transparent' id="respondio__widget" src="https://cdn.respond.io/webchat/widget/widget.js?cId=b372bc8534673525c6917a1bd692bf421769338e675836b955a08bc7f5a307c6"></script>
+            <div className='pl-[260px] flex w-full h-screen bg-boneWhite dark:bg-darkBG'>
                 <Navbar />
                 <ProfileBT />
                 <div className="flex flex-col px-[40px] py-2 w-full">

@@ -4,6 +4,8 @@ import { SessionContextProvider, Session } from '@supabase/auth-helpers-react'
 import "../styles/globals.css";
 import { Baloo_2 } from 'next/font/google'
 import { useRouter } from 'next/router';
+import { ThemeProvider } from 'next-themes';
+
 
 const Baloo = Baloo_2({
   weight: '500',
@@ -18,17 +20,19 @@ function App({
   const [supabaseClient] = useState(() => createBrowserSupabaseClient())
 
   return (
-    <SessionContextProvider
-      supabaseClient={supabaseClient}
-      initialSession={pageProps.initialSession}
-    >
-      <style jsx global>{`
+    <ThemeProvider attribute="class">
+      <SessionContextProvider
+        supabaseClient={supabaseClient}
+        initialSession={pageProps.initialSession}
+      >
+        <style jsx global>{`
         html {
           font-family: ${Baloo.style.fontFamily};
         }
       `}</style>
-      <Component {...pageProps} />
-    </SessionContextProvider>
+        <Component {...pageProps} />
+      </SessionContextProvider>
+    </ThemeProvider>
   )
 }
 

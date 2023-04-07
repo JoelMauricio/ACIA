@@ -1,11 +1,9 @@
-import { SupabaseClient, useSession, useSupabaseClient } from '@supabase/auth-helpers-react'
 import Navbar from '@/components/General/Navbar';
 import { useAuth } from '@/components/hooks/loginData';
-import SelectionPage from '@/components/Seleccion/CourseSelection';
 import ProfileBT from '@/components/Profile/Profile_bt';
+import GradePage from '@/components/Profesor/gradePage';
 
-const Profile = () => {
-    const session = useSession();
+const GradesManagement = () => {
     const { useCheckAuth } = useAuth()
 
     useCheckAuth();
@@ -13,13 +11,12 @@ const Profile = () => {
     return (
         <div className='pl-[260px] flex w-screen h-screen bg-boneWhite dark:bg-darkBG'>
             <Navbar />
+            <ProfileBT />
             <div className='grid w-full h-screen'>
-                {<ProfileBT />}
-
-                {<SelectionPage />}
+                {<GradePage />}
             </div>
         </div>
     )
 }
 
-export default Profile
+export default GradesManagement

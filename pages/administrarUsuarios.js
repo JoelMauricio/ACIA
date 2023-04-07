@@ -11,7 +11,7 @@ const AdministrarUsuarios = () => {
   useCheckAuth();
 
   return (
-    <div className='pl-[260px] flex w-screen h-screen bg-boneWhite'>
+    <div className='pl-[260px] flex w-screen h-screen bg-boneWhite dark:bg-darkBG'>
       <Navbar />
       <ProfileBT />
       <div className='grid w-full h-screen'>

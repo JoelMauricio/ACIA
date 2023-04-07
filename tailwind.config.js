@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: 'class',
   content: [
     "./app/**/*.{js,ts,jsx,tsx}",
     "./pages/**/*.{js,ts,jsx,tsx}",
@@ -19,7 +20,10 @@ module.exports = {
         boneWhite: '#FFFDFA',
         gray: '#8F8F8F',
         red: '#E22239',
-        grid: '#EFF0F0'
+        grid: '#EFF0F0',
+        darkBG: '#1D1D1D',
+        darkBD2: '#323232',
+        darkGrid: '#4B4A4A'
       },
       fontSize: {
         md: '16px'
