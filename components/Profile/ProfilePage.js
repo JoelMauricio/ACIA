@@ -61,11 +61,11 @@ const MyProfile = () => {
                         </div>
                         <div className="flex flex-col basis-1/2 content-center p-2">
                             <span>País</span>
-                            <span className="text-purBlue">{profile?.id_pais ? (profile?.id_pais) : ('País')}</span>
+                            <span className="text-purBlue">{profile?.id_pais ? (profile?.Pais.nombre) : ('País')}</span>
                         </div>
                         <div className="flex flex-col basis-1/2 content-center p-2">
                             <span>Ciudad</span>
-                            <span className="text-purBlue">{profile?.id_ciudad ? (profile?.id_ciudad) : ('Ciudad')}</span>
+                            <span className="text-purBlue">{profile?.id_ciudad ? (profile?.Ciudad?.nombre) : ('Ciudad')}</span>
                         </div>
                     </div>
                 </div>
