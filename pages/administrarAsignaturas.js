@@ -2,7 +2,7 @@ import { SupabaseClient, useSession, useSupabaseClient } from '@supabase/auth-he
 import Navbar from '@/components/General/Navbar';
 import { useAuth } from '@/components/hooks/loginData';
 import ProfileBT from '@/components/Profile/Profile_bt';
-import CourseList from '@/components/CourseList';
+import CourseList from '@/components/Admin/CourseList';
 
 const AdministrarAsignaturas = () => {
   const session = useSession();
@@ -13,9 +13,9 @@ const AdministrarAsignaturas = () => {
   return (
     <div className='pl-[260px] flex w-screen h-screen bg-boneWhite dark:bg-darkBG'>
       <Navbar />
-      <ProfileBT />
+      {<ProfileBT />}
       <div className='grid w-full h-screen'>
-        {<CourseList />}
+        <CourseList/>
       </div>
     </div>
   )

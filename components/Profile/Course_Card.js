@@ -1,4 +1,3 @@
-import Box_CourseInfo from '../Box_CourseInfo'
 import Edit_icon from '../../public/edit_icon.svg'
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
@@ -18,7 +17,6 @@ const CourseCard = ({ name, area }) => {
                 <Popup
                     trigger={<button className="w-[30px] h-[30px]"> <Edit_icon className="h-full w-full stroke-red" /></button>}
                     closeOnDocumentClick={false} modal>
-                    <Box_CourseInfo />
                 </Popup>
             </div>
         </div>
