@@ -44,7 +44,7 @@ const UserList = ({ name, email }) => {
             <div className="flex flex-col gap-5">
                 <div className='space-x-3'>
                     <span className="text-mainBlack font-bold dark:text-boneWhite">Buscar Asignatura </span>
-                    <SearchBar />
+                    <SearchBar text={"Introduzca un término..."} />
                     <span />
                     <Popup trigger={<button className="bg-purBlue text-white font-bold py-2 px-4 rounded">Crear Asignatura</button>} closeOnDocumentClick={false} modal>
                         <Box_CourseInfo />

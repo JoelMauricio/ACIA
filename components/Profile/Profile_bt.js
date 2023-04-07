@@ -12,7 +12,6 @@ const ProfileBT = () => {
 
     function loader() {
         const path = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/user.profile.fotos/avatars/${profile?.auth_id}`;
-        console.log(path)
         return path
     }
 
