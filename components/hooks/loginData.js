@@ -18,7 +18,7 @@ export const useAuth = () => {
                 const fetchData = async () => {
                     const { data: profileData, error } = await supabase
                         .from('Persona')
-                        .select()
+                        .select("*")
                         .eq('auth_id', userId);
 
                     if (error) {
