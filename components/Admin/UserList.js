@@ -1,5 +1,4 @@
 import Box_UserInfo from './Box_UserInfo';
-import SearchBar from '../General/SearchBar';
 import UserCard from './User_Card';
 import { useState } from "react";
 import Popup from 'reactjs-popup';
@@ -10,7 +9,7 @@ import 'reactjs-popup/dist/index.css';
 
 const UserList = ({ name, email }) => {
 
-    const section_format = '"bg-boneWhite w-full rounded-sm h-1/2 max-h-1/2  overflow-hidden'
+    const section_format = 'bg-boneWhite w-full rounded-sm h-1/2 max-h-1/2  overflow-hidden'
 
     const [users, setUsers] = useState([
         {
