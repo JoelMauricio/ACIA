@@ -5,13 +5,19 @@ import UserCard from '../User_Card';
 import { useState } from "react";
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
+import Dropdown from '../General/Dropdown';
 
 
 //Agregar función para recuper la data del usuario.
 
 const GradePage = ({ name, email }) => {
-
+    const options = ['Option 1', 'Option 2', 'Option 3', 'Option 4', 'Option 5', 'Option 6'];
+    const [selectedOption, setSelectedOption] = useState('Seleccionar Asignatura');
     const section_format = '"bg-boneWhite w-full rounded-sm h-2/3 overflow-hidden'
+
+    function handleOptionSelect(option) {
+        setSelectedOption(option);
+    }
 
     const [users, setUsers] = useState([
         {
@@ -99,12 +105,16 @@ const GradePage = ({ name, email }) => {
                     <div className="grid grid-flow-col h-full w-full justify-between content-center">
                         <div className="flex flex-col text-mainBlack text-[16px] font-semibold gap-4 h-full content-center dark:text-boneWhite">
                             <div className="flex gap-4 items-center flex-wrap">
-                                <SearchBar text={"Seleccionar Asignatura"} />
-                                <SearchBar text={"Introduzca un término..."} />
+                                <Dropdown
+                                    options={options}
+                                    selectedOption={selectedOption}
+                                    onOptionSelect={handleOptionSelect}
+                                />
+                                <SearchBar text={"Buscar una Asignatura"} />
                             </div>
                         </div>
                         <div className='flex gap-4 items-center flex-wrap'>
-                            <Popup trigger={<button className="bg-purBlue text-white font-bold py-2 px-4 rounded w-[200px] h-fit">Guardar</button>} closeOnDocumentClick={false} modal>
+                            <Popup trigger={<button className="bg-blue text-white font-bold py-2 px-4 rounded w-[200px] h-fit">Guardar</button>} closeOnDocumentClick={false} modal>
                                 <Box_UserInfo />
                             </Popup>
                             <Popup trigger={<button className="bg-red text-white font-bold py-2 px-4 rounded w-[200px] h-fit">Cancelar</button>} closeOnDocumentClick={false} modal>
@@ -116,7 +126,6 @@ const GradePage = ({ name, email }) => {
                 </div>
             </div>
             <div className={section_format}>
-                <span className="font-semibold text-[18px]">Mis asignaturas</span>
                 <div className="h-full overflow-hidden overflow-y-auto">
                     <div className="flex flex-wrap gap-2 p-2">
                         {users.map((user, index) => (

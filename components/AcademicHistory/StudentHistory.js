@@ -2,6 +2,7 @@ import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
 import { useEffect, useState } from "react";
 import Event_Card from "../Main/EventCard";
 import Radial from "./Radial";
+import SearchBar from "../SearchBar";
 
 const AcademicHistory = () => {
     const section_format = 'bg-boneWhite shadow-md w-full rounded-sm h-1/2 px-4 py-2 overflow-hidden dark:bg-darkBD2'
@@ -14,8 +15,8 @@ const AcademicHistory = () => {
                     <div className="flex w-full h-[250px] gap-x-4 ">
                         <div className="grid h-full basis-1/2 shadow-md justify-center content-center gap-2 rounded-md dark:bg-darkBD2">
                             <h2 className="font-semibold">Reporte del Historial Académico</h2>
-                            <input type="text" className="border-mainBlack border-2 rounded-sm dark:bg-darkGrid:border-darkBG"></input>
-                            <button className="bg-blue text-boneWhite rounded-sm">Generar Reporte</button>
+                            <SearchBar text={''} icon={false} />
+                            <button className="bg-blue text-boneWhite rounded-md h-min-[45px] h-10">Generar Reporte</button>
                         </div>
                         <Radial current={3.8} texto={"Indice Trimestral"} />
                         <Radial current={3.5} texto={"Indice General"} />
