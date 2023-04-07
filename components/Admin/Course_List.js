@@ -1,5 +1,5 @@
-import CreateCourse from './CreateCourse';
-import CourseCard from './CourseCard';
+import AddCourse from './Course_AddCourse';
+import CourseCard from './Course_Card';
 import { useState, useEffect } from "react";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import Popup from 'reactjs-popup';
@@ -54,7 +54,7 @@ const CourseList = ({}) => {
                 {close => (
                     <div className="modal">
                         <button className="bg-red text-white font-bold px-4 mx-1 mb-2 rounded" onClick={close}>&times;</button>
-                        <CreateCourse/>
+                        <AddCourse/>
                     </div>
                 )}
                 </Popup>

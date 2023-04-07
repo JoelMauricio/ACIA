@@ -2,7 +2,7 @@ import { Formik, Field, Form} from 'formik';
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import * as yup from 'yup';
 
-const CreateCourse = ({}) => {
+const AddCourse = ({}) => {
   const supabase = useSupabaseClient()
   const label_format = "block tracking-wide text-gray-700 text-sm font-bold mb-2"
   const field_format = "appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -101,4 +101,4 @@ const validateSchema = yup.object().shape({
   courseArea : yup.string().required('Seleccione una opción.'),
 });
 
-export default CreateCourse;
+export default AddCourse;

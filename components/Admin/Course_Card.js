@@ -1,7 +1,7 @@
 import Edit_iconv2 from '../../public/edit_iconv2.svg'
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
-import EditCourse from './EditCourse';
+import EditCourse from './Course_EditCourse';
 
 const CourseCard = ({course_id, name, area, area_id, code, credits}) => {
     return <>
