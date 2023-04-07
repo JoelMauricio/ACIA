@@ -19,14 +19,9 @@ const Navbar = () => {
 
     const supabase = useSupabaseClient();
     const profile = useProfileData();
-
-    const [mounted, setMounted] = useState(false)
+    const [themeState, changeTheme] = useState(true);
     const { theme, setTheme } = useTheme();
     const [navMinimized, changeNavState] = useState(false);
-
-    useEffect(() => {
-        setMounted(true)
-    }, [])
 
     var userRol = profile?.id_rol
 
@@ -37,6 +32,7 @@ const Navbar = () => {
     }
 
     function themeHandleClick() {
+        changeTheme((currentState) => !currentState);
         theme === 'dark' ? setTheme('light') : setTheme('dark');
     }
 
@@ -56,7 +52,7 @@ const Navbar = () => {
     }
 
     function Icon_Theme({ state, format, span_format }) {
-        if (mounted && state === 'light') {
+        if (state) {
             return (
                 <span className={span_format}>
                     <Icon_dark className={format} />
@@ -91,7 +87,7 @@ const Navbar = () => {
         }
         else if (rol === 3) {
             return (<>
-                <Link href={'/gestionCalificaciones'} className={bt_format}>
+                <Link href={'/'} className={bt_format}>
                     <span className={bt_ic_format}>
                         <Icon_selection className={icn_format} />
                         <p style={txt_format}>Gestión de Calificaciones</p>
@@ -139,7 +135,7 @@ const Navbar = () => {
         </div>
         <div className='flex flex-col'>
             <button className={button_format} onClick={themeHandleClick}>
-                <Icon_Theme state={theme} format={icon_format} span_format={bt_icon_format} />
+                <Icon_Theme state={themeState} format={icon_format} span_format={bt_icon_format} />
             </button>
             <Link className={button_format} onClick={logout} href={'/login'}>
                 <span className={bt_icon_format}>
