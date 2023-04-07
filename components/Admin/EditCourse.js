@@ -8,10 +8,8 @@ const EditCourse = ({course_id, name, code, credits, area}) => {
   const field_format = "appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
   const error_format = "mt-0.5 font-semibold text-xs text-red"
   const section_format = "flex flex-wrap md:w-1/2 mb-2 px-2"
-  console.log(course_id);
-  console.log(name);
+
   return(
-    
     <Formik
       initialValues={{
         courseName: name,
@@ -26,9 +24,9 @@ const EditCourse = ({course_id, name, code, credits, area}) => {
         try
         {
          const {error} = await supabase
-         .from('Asig_Test')
-         .update({nombre: values.courseName, codigo_asignatura: values.courseCode, creditos: values.courseCredits, id_area: values.courseArea})
-         .eq('id', course_id)
+         .from('Asignatura')
+         .update({nombre: values.courseName, codigo_asignatura: values.courseCode.toUpperCase(), creditos: values.courseCredits, id_area: values.courseArea})
+         .eq('id_asignatura', course_id)
         
          if (error) throw error;
          window.location.reload(false);
@@ -80,8 +78,8 @@ const EditCourse = ({course_id, name, code, credits, area}) => {
             <label className={label_format} htmlFor="courseArea">Area Académica</label>
               <Field className={field_format} id="courseArea" name="courseArea"as="select">
               <option value=""></option>
-              <option value="1">Ingenierías</option>
-              <option value="2">Economía y negocios</option>
+              <option value="1">Ingeniería</option>
+              <option value="2">Economía y Negocios</option>
               <option value="3">Ciencias de la Salud</option>
               <option value="4">Ciencias Basicas y Ambientales</option>
               <option value="5">Ciencias Sociales y Humanidades</option>
@@ -97,7 +95,7 @@ const EditCourse = ({course_id, name, code, credits, area}) => {
 
 //Validacion de entradas
 const validateSchema = yup.object().shape({
-  courseName: yup.string().trim().matches(/^[A-Za-z0-9ÁÉÍÓÚáéíóúñÑ()\- ]+$/, 'Introduzca un nombre utilizando letras y guiones (-).').required('¡Campo requerido!'),
+  courseName: yup.string().trim().matches(/^[A-Za-z0-9ÁÉÍÓÚáéíóúñÑü()\- ]+$/, 'Introduzca un nombre utilizando letras y guiones (-).').required('¡Campo requerido!'),
   courseCode : yup.string().length(6,'¡Introduzca un codigo de seis digitos!').matches(/^[a-zA-Z]{3}[0-9]{3}$/, '¡Codigo incorrecto!').required('!Campo requerido!'),
   courseCredits : yup.string().required('Seleccione una opción.'),
   courseArea : yup.string().required('Seleccione una opción.'),

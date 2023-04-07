@@ -9,7 +9,6 @@ const CourseList = ({}) => {
     const [courses, setCourses] = useState([]);
     const [filteredCourses, setFilteredCourses] = useState([]);
     const [search, setSearch] = useState('');
-    const BarStyle = {width:"20rem",background:"#F0F0F0", border:"none", padding:"0.5rem"};
     const supabase = useSupabaseClient();
     useEffect(() => {fetchCourses();}, []); 
 
@@ -17,8 +16,8 @@ const CourseList = ({}) => {
         try 
         {
        const { data, error } = await supabase
-            .from('Asig_Test')
-            .select('id, nombre, codigo_asignatura, creditos, id_area, Area_Academica(nombre)').order('codigo_asignatura');
+            .from('Asignatura')
+            .select('id_asignatura, nombre, codigo_asignatura, creditos, id_area, Area_Academica(nombre)').order('codigo_asignatura');
         if (error) throw error;
         setCourses(data); 
         setFilteredCourses(data);
@@ -32,14 +31,15 @@ const CourseList = ({}) => {
     const FilterData = (e) =>{ //Filtrar por nombre o codigo de asignatura
         const keyword = e.target.value.trimStart();
         if (keyword !== '') {
-          const results = courses.filter((data) => {
-            const r1 = data.nombre.toLowerCase().startsWith(keyword.toLowerCase()) 
-            const r2 = data.codigo_asignatura.toLowerCase().startsWith(keyword.toLowerCase()) 
-            if (r1 || r2){return true;}
+            const results = courses.filter((data) => {
+                const r1 = data.nombre.toLowerCase().startsWith(keyword.toLowerCase()) 
+                const r2 = data.codigo_asignatura.toLowerCase().startsWith(keyword.toLowerCase()) 
+                if (r1 || r2){return true;}
             });
-          setFilteredCourses(results);
-        } else {
-        setFilteredCourses(courses);
+            setFilteredCourses(results);
+        } 
+        else {
+            setFilteredCourses(courses);
         }
         setSearch(keyword);
       };
@@ -49,7 +49,7 @@ const CourseList = ({}) => {
             <h1 className="text-[1.5rem] font-bold grow-0">Administrar Asignaturas</h1>
             <div>
                 <h2 className="px-1 text-italics text-sm font-bold ">Buscar asignatura</h2>
-                <input style = {BarStyle} type="search" value={search} onChange={FilterData} className="input mr-8" placeholder="Nombre o código de asignatura..." />
+                <input className="input mr-8 shadow appearance-none border-2 border-mainBlack rounded-md w-[20rem] py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="search" value={search} onChange={FilterData} placeholder="Nombre o código de asignatura..." />
                 <Popup trigger={<button className="bg-purBlue text-white font-bold py-2 px-4 rounded ">Crear Asignatura</button>} closeOnDocumentClick={false} modal>
                 {close => (
                     <div className="modal">
@@ -60,10 +60,10 @@ const CourseList = ({}) => {
                 </Popup>
             </div>
             
-            <div className="bg-boneWhite w-full rounded-sm h-1/2 max-h-1/2  overflow-hidden">
+            <div className="bg-boneWhite w-full rounded-sm max-h-fit overflow-auto">
                 <div className="flex flex-wrap gap-2 max-h-full">
                     {filteredCourses.map((course) => ( //Crear tarjetas de las asignaturas obtenidas
-                        <CourseCard key = {course.id} course_id={course.id} name={course.nombre} code={course.codigo_asignatura} area={course.Area_Academica.nombre} area_id={course.id_area} credits={course.creditos} />
+                        <CourseCard key = {course.id_asignatura} course_id={course.id_asignatura} name={course.nombre} code={course.codigo_asignatura} area={course.Area_Academica.nombre} area_id={course.id_area} credits={course.creditos} />
                     ))}
                 </div>
             </div>

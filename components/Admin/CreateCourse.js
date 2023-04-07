@@ -24,9 +24,9 @@ const CreateCourse = ({}) => {
         try
         {
          const {error} = await supabase
-         .from('Asig_Test')
+         .from('Asignatura')
          .insert([
-         {nombre: values.courseName, codigo_asignatura: values.courseCode, creditos: values.courseCredits, id_area: values.courseArea }])
+         {nombre: values.courseName, codigo_asignatura: values.courseCode.toUpperCase(), creditos: values.courseCredits, id_area: values.courseArea }])
        
          if (error) throw error;
          window.location.reload(false);
@@ -78,8 +78,8 @@ const CreateCourse = ({}) => {
             <label className={label_format} htmlFor="courseArea">Area Académica</label>
               <Field className={field_format} id="courseArea" name="courseArea"as="select">
               <option value=""></option>
-              <option value="1">Ingenierías</option>
-              <option value="2">Economía y negocios</option>
+              <option value="1">Ingeniería</option>
+              <option value="2">Economía y Negocios</option>
               <option value="3">Ciencias de la Salud</option>
               <option value="4">Ciencias Basicas y Ambientales</option>
               <option value="5">Ciencias Sociales y Humanidades</option>
@@ -95,7 +95,7 @@ const CreateCourse = ({}) => {
 
 //Validacion de entradas
 const validateSchema = yup.object().shape({
-  courseName: yup.string().trim().matches(/^[A-Za-zÁÉÍÓÚáéíóúñÑ()\- ]+$/, 'Introduzca un nombre utilizando letras y guiones (-).').required('¡Campo requerido!'),
+  courseName: yup.string().trim().matches(/^[A-Za-zÁÉÍÓÚáéíóúüñÑ()\- ]+$/, 'Introduzca un nombre utilizando letras y guiones (-).').required('¡Campo requerido!'),
   courseCode : yup.string().length(6,'¡Introduzca un codigo de seis digitos!').matches(/^[a-zA-Z]{3}[0-9]{3}$/, '¡Codigo incorrecto!').required('!Campo requerido!'),
   courseCredits : yup.string().required('Seleccione una opción.'),
   courseArea : yup.string().required('Seleccione una opción.'),
