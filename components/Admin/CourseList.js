@@ -32,7 +32,7 @@ const CourseList = ({}) => {
         const keyword = e.target.value.trimStart();
         if (keyword !== '') {
             const results = courses.filter((data) => {
-                const r1 = data.nombre.toLowerCase().startsWith(keyword.toLowerCase()) 
+                const r1 = data.nombre.toLowerCase().includes(keyword.toLowerCase()) 
                 const r2 = data.codigo_asignatura.toLowerCase().startsWith(keyword.toLowerCase()) 
                 if (r1 || r2){return true;}
             });

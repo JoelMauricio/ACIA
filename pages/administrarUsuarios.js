@@ -15,7 +15,7 @@ const AdministrarUsuarios = () => {
       <Navbar />
       <ProfileBT />
       <div className='grid w-full h-screen'>
-        <UserList />
+        {/*<UserList />*/}
       </div>
     </div>
   )
