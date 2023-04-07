@@ -53,8 +53,8 @@ const CourseList = ({}) => {
                 <Popup trigger={<button className="bg-purBlue text-white font-bold py-2 px-4 rounded ">Crear Asignatura</button>} closeOnDocumentClick={false} modal>
                 {close => (
                     <div className="modal">
-                        <CreateCourse/>
                         <button className="bg-red text-white font-bold px-4 mx-1 mb-2 rounded" onClick={close}>&times;</button>
+                        <CreateCourse/>
                     </div>
                 )}
                 </Popup>
