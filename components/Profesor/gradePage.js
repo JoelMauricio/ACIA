@@ -1,7 +1,7 @@
 import Edit_icon from '../../public/edit_icon.svg';
-import Box_UserInfo from '../Box_UserInfo';
+import Box_UserInfo from '../Admin/Box_UserInfo';
 import SearchBar from '../SearchBar';
-import UserCard from '../User_Card';
+import UserCard from '../Admin/User_Card';
 import { useState } from "react";
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
@@ -20,34 +20,6 @@ const GradePage = ({ name, email }) => {
     }
 
     const [users, setUsers] = useState([
-        {
-            "name": "Usuario",
-            "email": "persona@gmail.com",
-        },
-        {
-            "name": "Usuario",
-            "email": "persona@gmail.com",
-        },
-        {
-            "name": "Usuario",
-            "email": "persona@gmail.com",
-        },
-        {
-            "name": "Usuario",
-            "email": "persona@gmail.com",
-        },
-        {
-            "name": "Usuario",
-            "email": "persona@gmail.com",
-        },
-        {
-            "name": "Usuario",
-            "email": "persona@gmail.com",
-        },
-        {
-            "name": "Usuario",
-            "email": "persona@gmail.com",
-        },
         {
             "name": "Usuario",
             "email": "persona@gmail.com",
@@ -114,7 +86,7 @@ const GradePage = ({ name, email }) => {
                             </div>
                         </div>
                         <div className='flex gap-4 items-center flex-wrap'>
-                            <Popup trigger={<button className="bg-blue text-white font-bold py-2 px-4 rounded w-[200px] h-fit">Guardar</button>} closeOnDocumentClick={false} modal>
+                            <Popup trigger={<button className="bg-purBlue text-white font-bold py-2 px-4 rounded w-[200px] h-fit">Guardar</button>} closeOnDocumentClick={false} modal>
                                 <Box_UserInfo />
                             </Popup>
                             <Popup trigger={<button className="bg-red text-white font-bold py-2 px-4 rounded w-[200px] h-fit">Cancelar</button>} closeOnDocumentClick={false} modal>
@@ -140,22 +112,3 @@ const GradePage = ({ name, email }) => {
 }
 
 export default GradePage
-
-// <>
-//         <div className='m-6 bg-transparent flex flex-col gap-5 overflow-hidden'>
-//             <h2 className="text-[1.5rem] font-bold grow-0">Gestionar Calificaciónes</h2>
-//             <div className='flex flex-col gap-5 w-full'>
-//                 <div className='grid grid-flow-col content-between w-full'>
-//                     <div className=''>
-
-//                     </div>
-
-//                 </div>
-//                 <div className={section_format}>
-//                     <div className="flex flex-wrap gap-2 overflow-hidden overflow-y-scroll">
-
-//                     </div>
-//                 </div>
-//             </div>
-//         </div>
-//     </>
