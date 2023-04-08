@@ -2,20 +2,20 @@ import { Auth } from '@supabase/auth-ui-react'
 import { ThemeSupa } from '@supabase/auth-ui-shared'
 import { useSession, useSupabaseClient } from '@supabase/auth-helpers-react'
 import Logo from '../public/logo.svg'
-import { useProfile } from './hooks/loginData'
-import { redirect } from 'next/dist/server/api-utils'
 import { useRouter } from 'next/router'
-import { Navigate } from 'react-router-dom'
-
+import { useEffect } from 'react'
 
 const FormLogIn = () => {
   const router = useRouter()
   const session = useSession()
   const supabase = useSupabaseClient()
 
-  const redirect = () => {
-    return 0
-  }
+  useEffect(() => {
+    // Redirect to home page after login
+    if (session) {
+      router.push('/')
+    }
+  }, [session, router])
 
   return (
     <div className='bg-boneWhite align-middle rounded-2xl flex flex-col gap-5 items-center justify-center' style={{ width: 400, height: 525 }}>
@@ -73,13 +73,10 @@ const FormLogIn = () => {
               }
             }}
           />
-        ) : (
-          <p onLoad={redirect}>Redirecting...
-          </p>
-
+        ) : (<span className='text-mainBlack'>Redireccionando</span>
         )}
       </div>
-    </div>
+    </div >
   )
 }
 
