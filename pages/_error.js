@@ -3,19 +3,6 @@ import Error from '../public/Error.svg';
 
 function NotFoundPage() {
     return (
-        // <div className="h-screen flex items-center justify-center ">
-        //     <div className="w-2/5 mx-auto flex flex-col md:flex-row h-full bg-blue text-boneWhite items-center justify-center">
-        //         <Error />
-        //     </div>
-        //     <div className="w-3/5 mx-auto h-full flex flex-col md:flex-row bg-boneWhite text-blue items-center justify-center gap-8">
-        //         <div className="text-center md:text-left">
-        //             <h1 className="text-5xl font-bold tracking-tight mb-4">Oops! Página no encontrada</h1>
-        //             <p className="text-3xl mb-8">
-        //                 No pudimos encontrar la página que estabas buscando. Por favor, revisa la URL e inténtalo de nuevo.
-        //             </p>
-        //         </div>
-        //     </div>
-        // </div>
         <div className="h-screen flex flex-col md:flex-row">
             <div className="w-full md:w-2/5 bg-blue text-boneWhite h-screen flex items-center justify-center">
                 <div className="flex flex-col items-center justify-center">
