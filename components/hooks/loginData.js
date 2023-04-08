@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useSupabaseClient, useSession } from '@supabase/auth-helpers-react';
 import { useRouter } from 'next/router';
 import Cookies from 'js-cookie'
+import { REALTIME_SUBSCRIBE_STATES } from '@supabase/supabase-js';
 
 export const useAuth = () => {
     const supabase = useSupabaseClient();
