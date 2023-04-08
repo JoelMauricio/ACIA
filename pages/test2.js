@@ -6,8 +6,6 @@ import SubmitButton from '@/components/SubmitButton';
 import CreateCourse from '@/components/Admin/Course_AddCourse';
 import Box_UserInfo from '@/components/Admin/Box_UserInfo';
 import AddUser from '@/components/Admin/User_AddUser';
-import { DropdownTest } from '@/components/DDTest';
-import Dropdown from '@/components/General/Dropdown';
 
 const Profile = () => {
   const session = useSession();
@@ -16,7 +14,7 @@ const Profile = () => {
   useCheckAuth();
 
   return (
-    <Dropdown/>
+    <AddUser/>
   )
 }
 
