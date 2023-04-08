@@ -1,5 +1,5 @@
-import CreateCourse from './CreateCourse';
-import CourseCard from './CourseCard';
+import AddCourse from './Course_AddCourse';
+import CourseCard from './Course_Card';
 import { useState, useEffect } from "react";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import Popup from 'reactjs-popup';
@@ -31,9 +31,9 @@ const CourseList = ({ }) => {
         if (keyword !== '') {
             const normalizedKeyword = keyword.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
             const results = courses.filter((data) => {
-                const normalizedDataName = data.nombre.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
-                const normalizedDataCode = data.codigo_asignatura.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
-                return normalizedDataName.startsWith(normalizedKeyword.toLowerCase()) || normalizedDataCode.startsWith(normalizedKeyword.toLowerCase());
+                const r1 = data.nombre.toLowerCase().includes(keyword.toLowerCase()) 
+                const r2 = data.codigo_asignatura.toLowerCase().startsWith(keyword.toLowerCase()) 
+                if (r1 || r2){return true;}
             });
             setFilteredCourses(results);
         } else {
@@ -51,7 +51,7 @@ const CourseList = ({ }) => {
                 <Popup trigger={<button className="bg-purBlue text-white font-bold py-2 px-4 rounded ">Crear Asignatura</button>} closeOnDocumentClick={false} modal>
                     {close => (
                         <div className="modal">
-                            <CreateCourse />
+                            <AddCourse/>
                             <button className="bg-red text-white font-bold px-4 mx-1 mb-2 rounded" onClick={close}>&times;</button>
                         </div>
                     )}

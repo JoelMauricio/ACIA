@@ -2,7 +2,7 @@ import { SupabaseClient, useSession, useSupabaseClient } from '@supabase/auth-he
 import Navbar from '@/components/General/Navbar';
 import { useAuth } from '@/components/hooks/loginData';
 import ProfileBT from '@/components/Profile/Profile_bt';
-import CourseList from '@/components/Admin/CourseList';
+import CourseList from '@/components/Admin/Course_List';
 
 const AdministrarAsignaturas = () => {
   const session = useSession();

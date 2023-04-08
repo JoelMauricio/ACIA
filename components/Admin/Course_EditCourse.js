@@ -1,8 +1,8 @@
-import { Formik, Field, Form, FormikContext } from 'formik';
+import { Formik, Field, Form} from 'formik';
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import * as yup from 'yup';
 
-const CreateCourse = ({}) => {
+const EditCourse = ({course_id, name, code, credits, area}) => {
   const supabase = useSupabaseClient()
   const label_format = "block tracking-wide text-gray-700 text-sm font-bold mb-2"
   const field_format = "appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -12,25 +12,25 @@ const CreateCourse = ({}) => {
   return(
     <Formik
       initialValues={{
-        courseName: '',
-        courseCode: '',
-        courseCredits: '',
-        courseArea: '',
+        courseName: name,
+        courseCode: code,
+        courseCredits: credits,
+        courseArea: area,
       }}
       validationSchema ={validateSchema} //Esquema de validación
       onSubmit={async (values) => {
-      if(confirm('¿Desea guardar los cambios?')) //UPSERT en la base de
+      if(confirm('¿Desea guardar los cambios?')) //UPDATE en la base de datos
       { 
         try
         {
          const {error} = await supabase
          .from('Asignatura')
-         .insert([
-         {nombre: values.courseName, codigo_asignatura: values.courseCode.toUpperCase(), creditos: values.courseCredits, id_area: values.courseArea }])
-       
+         .update({nombre: values.courseName, codigo_asignatura: values.courseCode.toUpperCase(), creditos: values.courseCredits, id_area: values.courseArea})
+         .eq('id_asignatura', course_id)
+        
          if (error) throw error;
          window.location.reload(false);
-         alert("Asignatura creada exitosamente.");
+         alert("Asignatura modificada exitosamente.");
          console.log(JSON.stringify(values, null, 2));
         }
         catch (error) 
@@ -43,7 +43,7 @@ const CreateCourse = ({}) => {
       {({ errors, touched }) => (
         <Form className="max-w-xl" >
           <div className= " mb-4 font-bold px-2 ">
-            <h1 className="text-xl text-purBlue mb-3" >Crear Asignatura</h1>
+            <h1 className="text-xl text-purBlue mb-3" >Modificar Asignatura</h1>
             <h2 className = "text-base">Datos de la asignatura</h2>
           </div>
 
@@ -95,10 +95,10 @@ const CreateCourse = ({}) => {
 
 //Validacion de entradas
 const validateSchema = yup.object().shape({
-  courseName: yup.string().trim().matches(/^[A-Za-zÁÉÍÓÚáéíóúüñÑ()\- ]+$/, 'Introduzca un nombre utilizando letras y guiones (-).').required('¡Campo requerido!'),
+  courseName: yup.string().trim().matches(/^[A-Za-z0-9ÁÉÍÓÚáéíóúñÑü()\- ]+$/, 'Introduzca un nombre utilizando letras y guiones (-).').required('¡Campo requerido!'),
   courseCode : yup.string().length(6,'¡Introduzca un codigo de seis digitos!').matches(/^[a-zA-Z]{3}[0-9]{3}$/, '¡Codigo incorrecto!').required('!Campo requerido!'),
   courseCredits : yup.string().required('Seleccione una opción.'),
   courseArea : yup.string().required('Seleccione una opción.'),
 });
 
-export default CreateCourse;
+export default EditCourse;
