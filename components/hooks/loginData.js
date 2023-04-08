@@ -11,22 +11,20 @@ export const useAuth = () => {
 
     const useProfile = (userId) => {
 
-
         useEffect(() => {
             if (token) {
 
                 const fetchData = async () => {
                     const { data: profileData, error } = await supabase
                         .from('Persona')
-                        .select("*")
+                        .select("*, Pais(*), Ciudad(*)")
                         .eq('auth_id', userId);
-
                     if (error) {
                         console.error(error);
                         return;
                     }
 
-                    if (profileData && profileData.length > 0) {
+                    if (profileData.length > 0) {
                         localStorage.setItem('profile', JSON.stringify(profileData[0]));
                     }
                 };
@@ -54,17 +52,17 @@ export const useAuth = () => {
     };
 
     const useCheckAuth = () => {
-        useEffect(()=>{
+        useEffect(() => {
             if (!token) {
                 router.push("/login");
-              }
-          
-              // Si el token existe y estamos en la página de inicio de sesión, redirigir a la página de inicio
-              if (token && router.pathname === "/login") {
+            }
+
+            // Si el token existe y estamos en la página de inicio de sesión, redirigir a la página de inicio
+            if (token && router.pathname === "/login") {
                 router.push("/");
-              }
-        },[])
-        
+            }
+        }, [])
+
     }
 
     return { useProfile, useProfileData, useCheckAuth }

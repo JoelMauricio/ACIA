@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import Event_Card from "./EventCard";
 import Radial from "../AcademicHistory/Radial";
 import { useAuth } from "../hooks/loginData";
+import { fetchAll } from "../hooks/fetchFile";
+import { number } from "yup";
 
 const Main = () => {
     const supabase = useSupabaseClient();
@@ -33,6 +35,35 @@ const Main = () => {
             "desciption": 'La fecha del pago es *fecha*, recuerda pagar a tiempo.'
         }
     ]);
+    const { fetchGeneralIndex, fetchStudentPeriod } = fetchAll();
+    const [generalIndex, setGeneralIndex] = useState(0)
+    const [periodIndex, setPeriodIndex] = useState(0)
+
+    useEffect(() => {
+
+        fetchGeneralIndex().then((data) => {
+            var indice = 0
+            data?.map((item, index) => {
+                indice = item.calificacion + indice
+            })
+            setGeneralIndex((indice / data?.length) / 25)
+        })
+
+        fetchStudentPeriod().then((data) => {
+            var indice = 0
+            data?.map((item, index) => {
+                indice = item.calificacion + indice
+            })
+            setPeriodIndex((indice / data?.length) / 25)
+        })
+
+        if(generalIndex.isNaN || periodIndex.isNaN){
+            setGeneralIndex(0)
+            setPeriodIndex(0)
+        }
+
+    }, [generalIndex,periodIndex])
+
 
     const { useProfileData } = useAuth()
     const section_format = '"bg-boneWhite shadow-md w-full rounded-sm h-1/2 max-h-1/2 p-4 overflow-hidden first:h-fit dark:bg-darkBD2'
@@ -47,8 +78,8 @@ const Main = () => {
                     <div className="flex w-full h-[250px] gap-x-4">
                         <div className="grid h-full basis-1/2 shadow-md justify-center content-center gap-2 rounded-md dark:bg-darkBD2">
                         </div>
-                        <Radial current={3.8} texto={"Indice Trimestral"} />
-                        <Radial current={3.5} texto={"Indice General"} />
+                        <Radial current={periodIndex} texto={"Indice Trimestral"} />
+                        <Radial current={generalIndex} texto={"Indice General"} />
                     </div>
                 ) : (<></>)}
                 <div className={section_format}>

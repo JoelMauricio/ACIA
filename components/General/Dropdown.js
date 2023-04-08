@@ -2,10 +2,14 @@ import React, { useState } from 'react';
 
 function Dropdown({ options, selectedOption, onOptionSelect }) {
     const [isOpen, setIsOpen] = useState(false);
+    const [selected, setSelected] = useState(selectedOption);
 
     function handleOptionSelect(option) {
+        setSelected(option);
         onOptionSelect(option);
         setIsOpen(false);
+
+        console.log(selected);
     }
 
     return (
@@ -15,7 +19,7 @@ function Dropdown({ options, selectedOption, onOptionSelect }) {
                 onClick={() => setIsOpen(!isOpen)}
             >
                 <div className="flex justify-between items-center">
-                    <span>{selectedOption}</span>
+                    <span>{selected}</span>
                     <svg viewBox="0 0 22 18" xmlns="http://www.w3.org/2000/svg"
                         className={`h-4 w-4 transform ${isOpen ? 'rotate-180' : ''
                             } transition-transform duration-200 fill-mainBlack dark:fill-boneWhite stroke-2`}>
@@ -29,7 +33,7 @@ function Dropdown({ options, selectedOption, onOptionSelect }) {
                     {options.map((option) => (
                         <li
                             key={option}
-                            className={`py-1 cursor-pointer px-2 hover:bg-darkGrid ${option === selectedOption ? 'font-semibold text-mainBlack dark:text-purBlue' : 'font-medium text-mainBlack'
+                            className={`py-1 cursor-pointer px-2 hover:bg-darkGrid ${option === selected ? 'font-semibold text-mainBlack dark:text-purBlue' : 'font-medium text-mainBlack'
                                 }`}
                             onClick={() => handleOptionSelect(option)}
                         >
@@ -43,3 +47,5 @@ function Dropdown({ options, selectedOption, onOptionSelect }) {
 }
 
 export default Dropdown;
+
+

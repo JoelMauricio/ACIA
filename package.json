@@ -30,7 +30,8 @@
     "react-router-dom": "^6.9.0",
     "reactjs-popup": "^2.0.5",
     "webfontloader": "^1.6.28",
-    "yup": "^1.0.2"
+    "yup": "^1.0.2",
+    "zustand": "^4.3.7"
   },
   "devDependencies": {
     "@svgr/webpack": "^6.5.1",
