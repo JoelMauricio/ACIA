@@ -5,6 +5,7 @@ import CourseCard from "./Course_Card";
 import { useAuth } from "../hooks/loginData";
 import { useState } from "react";
 import { useRouter } from 'next/router';
+import { useEffect } from "react";
 
 
 const MyProfile = () => {
