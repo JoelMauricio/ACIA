@@ -35,7 +35,7 @@ const AcademicHistory = () => {
         getPeriods().then((data)=>{
             setOption(data)
         })
-    }, [])
+    }, [options])
 
     const handleSelectedOption = (e) =>{
         setSelectedOption(e.target.value)
