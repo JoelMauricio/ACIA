@@ -4,6 +4,7 @@ import Event_Card from "./EventCard";
 import Radial from "../AcademicHistory/Radial";
 import { useAuth } from "../hooks/loginData";
 import { fetchAll } from "../hooks/fetchFile";
+import { number } from "yup";
 
 const Main = () => {
     const supabase = useSupabaseClient();
@@ -35,10 +36,11 @@ const Main = () => {
         }
     ]);
     const { fetchGeneralIndex, fetchStudentPeriod } = fetchAll();
-    const [generalIndex, setGeneralIndex] = useState()
-    const [periodIndex, setPeriodIndex] = useState()
+    const [generalIndex, setGeneralIndex] = useState(0)
+    const [periodIndex, setPeriodIndex] = useState(0)
 
     useEffect(() => {
+
         fetchGeneralIndex().then((data) => {
             var indice = 0
             data?.map((item, index) => {
@@ -46,9 +48,7 @@ const Main = () => {
             })
             setGeneralIndex((indice / data?.length) / 25)
         })
-    }, [generalIndex])
 
-    useEffect(()=>{
         fetchStudentPeriod().then((data) => {
             var indice = 0
             data?.map((item, index) => {
@@ -56,7 +56,14 @@ const Main = () => {
             })
             setPeriodIndex((indice / data?.length) / 25)
         })
-    },[periodIndex])
+
+        if(generalIndex.isNaN || periodIndex.isNaN){
+            setGeneralIndex(0)
+            setPeriodIndex(0)
+        }
+
+    }, [generalIndex,periodIndex])
+
 
     const { useProfileData } = useAuth()
     const section_format = '"bg-boneWhite shadow-md w-full rounded-sm h-1/2 max-h-1/2 p-4 overflow-hidden first:h-fit dark:bg-darkBD2'

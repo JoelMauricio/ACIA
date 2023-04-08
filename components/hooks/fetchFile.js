@@ -19,7 +19,6 @@ export function fetchAll() {
                 .from('Selecciones')
                 .select('*')
                 .eq('id_estudiante', profile?.id_Persona)
-                console.log(data)
             return data
         }
         catch (error) {
@@ -36,23 +35,33 @@ export function fetchAll() {
                 .select('id_seleccion')
                 .order('id_seleccion', { ascending: false })
                 .limit(1);
-    
+
             const { data: users, error } = await supabase
                 .from('Selecciones')
                 .select('*')
                 .eq('id_estudiante', profile?.id_Persona)
                 .eq('id_seleccion', data[0]?.id_seleccion);
-    
-            console.log(users);
+                
             return users;
         } catch (error) {
             alert(error.message);
         }
     };
-    
 
+    const getPeriods = async () => {
+        try {
+            let {data} = await supabase
+            .from('Selecciones')
+            .select('id_estudiante, id_asignatura, Periodo(*)')
+            .eq('id_estudiante', profile?.id_Persona)
 
-    return { fetchGeneralIndex, fetchStudentPeriod }
+            return data;
+        } catch (error) {
+            alert(error.message);
+        }
+    }
+
+    return { fetchGeneralIndex, fetchStudentPeriod, getPeriods }
 
 }
 
