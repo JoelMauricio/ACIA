@@ -99,7 +99,7 @@ const AcademicHistory = () => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {reportData.map((dato, index) => (
+                                    {reportData?.map((dato, index) => (
                                         <tr key={index}>
                                             <td className={bodyClass}>{dato.Asignatura.codigo_asignatura}</td>
                                             <td className={bodyClass}>{dato.Asignatura.creditos}</td>
