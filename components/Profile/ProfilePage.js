@@ -5,7 +5,7 @@ import CourseCard from "./Course_Card";
 import { useAuth } from "../hooks/loginData";
 import { useState } from "react";
 import { useRouter } from 'next/router';
-import { useAuthState } from "../hooks/loginData";
+import { useEffect } from "react";
 
 const MyProfile = () => {
     const section_format = 'bg-boneWhite last:shadow-lg w-full rounded-sm h-1/2 max-h-1/2 p-4 dark:bg-darkBD2 overflow-hidden'
@@ -23,7 +23,7 @@ const MyProfile = () => {
 
     async function handlePasswordRecovery() {
         try {
-            const { error } = await supabase.auth.resetPasswordForEmail(profile?.correo)
+            const { error } = await supabase.auth.resetPasswordForEmail(profile?.correo, { redirectTo: 'http://localhost:3000/recovery' })
             if (error) throw error;
             alert('Se ha enviado un correo para recuperar la contraseña');
         } catch (error) {
@@ -43,20 +43,20 @@ const MyProfile = () => {
                         <div className="md:w-2/5 grid justify-center content-center">
                             <Avatar />
                         </div>
-                        <div class="flex flex-wrap text-mainBlack text-lg font-semibold w-full md:w-3/5 p-4 content-center dark:text-boneWhite">
-                            <div class="flex flex-col w-full md:w-1/2 content-center p-2">
+                        <div className="flex flex-wrap text-mainBlack text-lg font-semibold w-full md:w-3/5 p-4 content-center dark:text-boneWhite">
+                            <div className="flex flex-col w-full md:w-1/2 content-center p-2">
                                 <span>Nombre de Usuario</span>
                                 <span className="text-purBlue">{profile?.nombre ? (profile?.nombre) : ('Username')}</span>
                             </div>
-                            <div class="flex flex-col w-full md:w-1/2 content-center p-2">
+                            <div className="flex flex-col w-full md:w-1/2 content-center p-2">
                                 <span>Correo</span>
                                 <span className="text-purBlue">{profile?.correo ? (profile?.correo) : ('Mail')}</span>
                             </div>
-                            <div class="flex flex-col w-full md:w-1/2 content-center p-2">
+                            <div className="flex flex-col w-full md:w-1/2 content-center p-2">
                                 <span>País</span>
                                 <span className="text-purBlue">{profile?.id_pais ? (profile?.Pais.nombre) : ('País')}</span>
                             </div>
-                            <div class="flex flex-col w-full md:w-1/2 content-center p-2">
+                            <div className="flex flex-col w-full md:w-1/2 content-center p-2">
                                 <span>Ciudad</span>
                                 <span className="text-purBlue">{profile?.id_ciudad ? (profile?.Ciudad?.nombre) : ('Ciudad')}</span>
                             </div>

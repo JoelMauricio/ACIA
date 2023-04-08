@@ -2,27 +2,35 @@ import { useState } from 'react';
 import { useSupabaseClient } from '@supabase/auth-helpers-react';
 import { useRouter } from 'next/router';
 import Logo from '../public/logo.svg'
-import { useAuth } from "../components/hooks/loginData";
+import { useAuth, useAuthState } from "../components/hooks/loginData";
+import { useEffect } from 'react';
 
-export default function ChangePassword() {
+export default function ChangePassword({ state }) {
     const [password, setPassword] = useState('');
     const [repeated_password, setRepeatedPassword] = useState('');
     const profile = useAuth().useProfileData()
     const [error, setError] = useState(null);
     const router = useRouter();
     const supabase = useSupabaseClient();
+    const [recovery, setRecovery] = useState('')
 
     const obscureEmail = (email = 'e@a') => {
         const [name, domain] = email?.split('@');
         return `${name[0]}${new Array(name.length).join('*')}@${domain}`;
     };
 
-    function VerifyAuth() {
-        if (supabase.auth.onAuthStateChange !== 'PASSWORD_RECOVERY') {
-            // router.push('/')
-        }
-        console.log(supabase.auth.onAuthStateChange)
-    }
+    useEffect(() => {
+        const recovery = supabase.auth.onAuthStateChange(async (event, session) => {
+            console.log(event)
+            if (event == "PASSWORD_RECOVERY") {
+                setRecovery(true)
+            }
+            else { setRecovery(false) }
+
+        })
+        if (recovery === false) { router.push('/notfound') }
+
+    }, []);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -37,25 +45,26 @@ export default function ChangePassword() {
         } else if (password.length > 100) {
             setError('La contraseña no puede tener más de 100 caracteres');
             return;
-        } else if (password === repeated_password) {
-            const { error } = await supabase.auth.updateUser({ password });
+        } else if (password === repeated_password && recovery === true) {
+            const { data, error } = await supabase.auth
+                .updateUser({ password: password })
 
-            if (error) {
-                setError(error.message);
-            } else {
-                router.push('/');
+            if (data) {
+                alert("Password updated successfully!")
+                router.push('/profile')
+                setRecovery(false)
             }
+            if (error) alert("There was an error updating your password.")
         }
+        else { alert("No podemos validar su identidad") }
     };
-
-    VerifyAuth()
 
     if (error) {
         setError(error.message);
     }
 
     return (
-        <div className='opacity-80 h-screen w-screen grid content-center justify-center'>
+        <div className='opacity-80 h-screen w-screen grid content-center justify-center' >
             <div className='dark:bg-darkBD2 rounded-lg shadow-lg p-10 text-mainBlack dark:text-white2 flex flex-col h-auto md:h-[40rem] w-full md:w-[30rem] max-h-[550px]'>
                 <div className='grid grid-flow-row h-full '>
                     <div className='w-full h-fit flex justify-center'>
@@ -92,5 +101,4 @@ export default function ChangePassword() {
         </div>
     );
 }
-
 
