@@ -65,9 +65,11 @@ export function fetchSignatures() {
 
     };
 
-    const uploadSelectedSignatures = async (data) => {
-        try {
+    const uploadSelectedSignatures = async (data, toDelete) => {
 
+        console.log(toDelete.length)
+
+        if (data.length > 0) {
             const rows = data.filter((item) => item.check).map((item) => ({
                 id_estudiante: profile?.id_Persona,
                 id_asignatura: item.id_asignatura,
@@ -76,8 +78,6 @@ export function fetchSignatures() {
                 calificacion: 100,
                 estado: "seleccion",
             }));
-
-            console.log(rows)
 
             let { data: signatures } = await supabase
                 .from('Selecciones')
@@ -88,45 +88,27 @@ export function fetchSignatures() {
             const signaturesIds = new Set(signatures.map((signature) => `${signature.id_asignatura}-${signature.id_periodo}-${signature.id_seccion}`));
             const filteredRows = rows.filter((row) => !signaturesIds.has(`${row.id_asignatura}-${row.id_periodo}-${row.id_seccion}`));
 
-            console.log("filteredRows")
-            console.log(filteredRows)
-
-
             const { data: insertedData, error } = await supabase
                 .from("Selecciones")
                 .insert(filteredRows);
-
-            console.log(insertedData);
-            console.log(error);
-
-        } catch (error) {
-            alert(error.message);
         }
+
+        if (toDelete.length > 0) {
+
+            const { data, error } = await supabase
+                .from("Selecciones")
+                .delete()
+                .in("id_asignatura", toDelete.map((item) => item.id_asignatura))
+                .eq("id_estudiante", profile?.id_Persona)
+                .eq("estado", "seleccion")
+
+            console.log(error)
+            console.log(data)
+
+
+        }
+
     }
-
-    const fetchSelection = async () => { //GET Asignaturas
-
-        try {
-
-            const { data: seleccion } = await supabase
-                .from('Seleccion')
-                .select('*')
-                .eq('id_estudiante', profile?.id_Persona)
-                .eq('estado', 'seleccion')
-
-            console.log(seleccion)
-
-            console.log(newSeccion)
-
-            return newSeccion
-        }
-        catch (error) {
-            alert(error.message);
-        }
-
-
-
-    };
 
     return { fetchSelectionSignatures, uploadSelectedSignatures }
 
