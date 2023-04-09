@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import ProfileBT from '@/components/Profile/Profile_bt';
 import { useState } from 'react';
 import FaqItem from '@/components/Help/FaqItem';
-import Image from 'next/image';
+import Pregs from '../public/Ayuda.json'
 
 const Ayuda = () => {
     const [faqs, setFaqs] = useState([
@@ -47,7 +47,7 @@ const Ayuda = () => {
                 <ProfileBT />
                 <div className="flex flex-col px-[40px] py-2 w-full">
                     <h1 className=' my-4 text-[24px] font-bold '>Ayuda</h1>
-                    {faqs.map((faq, index) => (
+                    {Pregs.map((faq, index) => (
                         <FaqItem key={index} question={faq.question} answer={faq.answer} />
                     ))}
                     {/*} <a className="flex items-center gap-4 my-4 bg-blue-500 text-white p-3 bg-purBlue rounded-[8px] self-start"

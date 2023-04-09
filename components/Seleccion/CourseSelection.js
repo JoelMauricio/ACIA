@@ -5,7 +5,7 @@
 import SearchBar from "../SearchBar";
 
 const SelectionPage = () => {
-    const section_format = 'bg-white2 shadow-[rgba(0,_0,_0,_0.18)_0px_3px_8px] w-full rounded-sm h-1/2 px-4 py-2 overflow-hidden dark:bg-darkBD2'
+    const section_format = 'bg-white2 shadow-[rgba(0,0,0,0.22)_0px_3px_8px] w-full rounded-sm h-1/2 px-4 py-2 overflow-hidden dark:bg-darkBD2'
 
     return <>
         <div className='h-auto m-6 bg-transparent flex flex-col gap-1 '>
