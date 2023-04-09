@@ -17,7 +17,6 @@ const CourseCard = ({ course_id, name, area, area_id, code, credits }) => {
                 <Popup trigger={<button className="w-[30px] h-[30px]"> <Edit_iconv2 className="h-full w-full fill-red fill-" /></button>} closeOnDocumentClick={false} modal contentStyle={{ background: 'transparent', border: 'none' }}>
                     {close => (
                         <div className="modal h-full w-full bg-white2 dark:bg-darkBD2 p-4 rounded-lg">
-                            {/*<button className="bg-red text-white font-bold px-4 mx-1 mb-2 rounded" onClick={close}>&times;</button>}*/}
                             <EditCourse course_id={course_id} name={name} area={area_id} code={code} credits={credits} close={close} />
                         </div>
                     )}

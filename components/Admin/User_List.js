@@ -20,7 +20,7 @@ const UserList = ({ }) => {
             if (error) throw error;
             setUsers(data);
             setFilteredUsers(data);
-            console.log(data);
+            // console.log(data);
         }
         catch (error) {
             alert(error.message);
@@ -58,8 +58,8 @@ const UserList = ({ }) => {
 
             <div className="bg-transparent w-full rounded-sm max-h-fit overflow-auto">
                 <div className="flex flex-wrap gap-2 max-h-full pr-2 overflow-y-auto overflow-hidden">
-                    {filteredUsers.map((user) => ( //Crear tarjetas de las asignaturas obtenidas
-                        <UserCard key={user.id_persona} name={user.nombre} email={user.correo} />
+                    {filteredUsers.map((user, key) => ( //Crear tarjetas de las asignaturas obtenidas
+                        <UserCard key={key} name={user.nombre} email={user.correo} />
                     ))}
                 </div>
             </div>
