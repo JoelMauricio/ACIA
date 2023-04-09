@@ -1,9 +1,9 @@
 import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
 import { useEffect, useState } from "react";
-import Event_Card from "./EventCard";
-import Radial from "../AcademicHistory/Radial";
-import { useAuth } from "../hooks/loginData";
-import { fetchAll } from "../hooks/fetchFile";
+import Event_Card from "@/components/Main/EventCard";
+import Radial from "@/components/AcademicHistory/Radial";
+import { useAuth } from "@/components/hooks/loginData";
+import { fetchAll } from "@/components/hooks/fetchFile";
 import { number } from "yup";
 
 const Main = () => {

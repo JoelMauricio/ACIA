@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useSupabaseClient, useSession } from '@supabase/auth-helpers-react';
 import { useRouter } from 'next/router';
 import Cookies from 'js-cookie'
-import { useAuth } from './loginData';
+import { useAuth } from '@/components/hooks/loginData';
 
 export function fetchAll() {
 
@@ -104,9 +104,9 @@ export function fetchAll() {
         }
     }
 
-    const fetchCourses = async () => { 
+    const fetchCourses = async () => {
         try {
-            let{ data, error } = await supabase
+            let { data, error } = await supabase
                 .from('Asignatura')
                 .select('id_asignatura, nombre, codigo_asignatura, creditos, id_area, Area_Academica(nombre)')
                 .order('codigo_asignatura');
@@ -118,7 +118,7 @@ export function fetchAll() {
         }
     }
 
-    const fetchAreas = async () => { 
+    const fetchAreas = async () => {
         try {
             let { data, error } = await supabase
                 .from('Area_Academica')
@@ -132,7 +132,7 @@ export function fetchAll() {
         }
     }
 
-    const fetchUsers = async () => { 
+    const fetchUsers = async () => {
         try {
             let { data, error } = await supabase
                 .from('Persona')
@@ -146,7 +146,7 @@ export function fetchAll() {
         }
     }
 
-    const fetchCountries = async () => { 
+    const fetchCountries = async () => {
         try {
             let { data, error } = await supabase
                 .from('Pais')
@@ -160,7 +160,7 @@ export function fetchAll() {
         }
     }
 
-    const fetchCities = async () => { 
+    const fetchCities = async () => {
         try {
             let { data, error } = await supabase
                 .from('Ciudad')

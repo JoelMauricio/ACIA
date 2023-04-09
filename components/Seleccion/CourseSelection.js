@@ -2,7 +2,7 @@
 // import { useEffect, useState } from "react";
 // import Event_Card from "../Main/EventCard";
 // import Radial from "../AcademicHistory/Radial";
-import SearchBar from "../SearchBar";
+import SearchBar from "@/components/SearchBar";
 
 const SelectionPage = () => {
     const section_format = 'bg-white2 shadow-[rgba(0,0,0,0.22)_0px_3px_8px] w-full rounded-sm h-1/2 px-4 py-2 overflow-hidden dark:bg-darkBD2'

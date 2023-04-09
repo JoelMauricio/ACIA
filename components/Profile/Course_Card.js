@@ -1,4 +1,4 @@
-import Edit_icon from '../../public/edit_icon.svg'
+import Edit_icon from '@/public/edit_icon.svg'
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 

@@ -1,7 +1,7 @@
 import { Auth } from '@supabase/auth-ui-react'
 import { ThemeSupa } from '@supabase/auth-ui-shared'
 import { useSession, useSupabaseClient } from '@supabase/auth-helpers-react'
-import Logo from '../public/logo.svg'
+import Logo from '@/public/logo.svg'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 

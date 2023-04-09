@@ -1,6 +1,6 @@
-import Box_UserInfo from './Box_UserInfo';
-import SearchBar from '../SearchBar';
-import UserCard from './User_Card';
+import Box_UserInfo from '@/components/Admin/Box_UserInfo';
+import SearchBar from '@/components/SearchBar';
+import UserCard from '@/components/Admin/User_Card';
 import { useEffect, useState } from "react";
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
