@@ -1,5 +1,5 @@
-import LogIn_bg from '../public/LogIn_bg.svg'
-import bg from '../public/bg.png'
+import LogIn_bg from '@/public/LogIn_bg.svg'
+import bg from '@/public/bg.png'
 import FormLogIn from '@/components/Box_LogIn';
 import Home from '.';
 

@@ -1,10 +1,10 @@
 import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
 import { useEffect, useState } from "react";
-import Event_Card from "../Main/EventCard";
-import Radial from "./Radial";
-import SearchBar from "../SearchBar";
-import { useAuth } from "../hooks/loginData";
-import { fetchAll } from "../hooks/fetchFile";
+import Event_Card from "@/components/Main/EventCard";
+import Radial from "@/components/AcademicHistory/Radial";
+import SearchBar from "@/components/SearchBar";
+import { useAuth } from "@/components/hooks/loginData";
+import { fetchAll } from "@/components/hooks/fetchFile";
 
 const AcademicHistory = () => {
 

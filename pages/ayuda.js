@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import ProfileBT from '@/components/Profile/Profile_bt';
 import { useState } from 'react';
 import FaqItem from '@/components/Help/FaqItem';
-import Pregs from '../public/Ayuda.json'
+import Pregs from '@/public/Ayuda.json'
 
 const Ayuda = () => {
     const [faqs, setFaqs] = useState([

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { createBrowserSupabaseClient } from '@supabase/auth-helpers-nextjs'
 import { SessionContextProvider, Session } from '@supabase/auth-helpers-react'
-import "../styles/globals.css";
+import "@/styles/globals.css";
 import { Baloo_2 } from 'next/font/google'
 import { useRouter } from 'next/router';
 import { ThemeProvider } from 'next-themes';

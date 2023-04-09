@@ -1,5 +1,5 @@
 import React from 'react';
-import Error from '../public/Error.svg';
+import Error from '@/public/Error.svg';
 
 function NotFoundPage() {
     return (
