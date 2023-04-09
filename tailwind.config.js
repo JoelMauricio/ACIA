@@ -33,6 +33,9 @@ module.exports = {
         '3r': '3rem',
         '4r': '4rem',
         '5r': '5rem'
+      },
+      boxShadow: {
+        'md': '0px 3px 8px rgba(0,0,0,0.20)',
       }
     },
   },

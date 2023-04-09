@@ -8,8 +8,8 @@ import { fetchAll } from "../hooks/fetchFile";
 
 const AcademicHistory = () => {
 
-    const headerClass = "px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider"
-    const bodyClass = "border text-center px-2 whitespace-nowrap"
+    const headerClass = "px-6 py-3 text-center text-xs font-semibold text-gray-500 uppercase tracking-wider"
+    const bodyClass = "border text-center px-2 whitespace-nowrap border-x-2 border-gray-200"
     const { fetchGeneralIndex, fetchStudentPeriod, getPeriods, fetchReport } = fetchAll();
     const [generalIndex, setGeneralIndex] = useState()
     const [periodIndex, setPeriodIndex] = useState()
@@ -67,7 +67,7 @@ const AcademicHistory = () => {
                     <div className="flex w-full h-[250px] gap-x-4 ">
                         <div className="grid h-full basis-1/2 shadow-md justify-center content-center gap-2 rounded-md dark:bg-darkBD2">
                             <h2 className="font-semibold">Reporte del Historial Académico</h2>
-                            <select className="p-2 rounded-[8px] m-2" onChange={(e) => handleSelectedOption(e)}>
+                            <select className="p-2 rounded-[8px] min-w-[200px] min-h-[45px] w-[20rem]" onChange={(e) => handleSelectedOption(e)}>
                                 <option value="">Seleccione un período</option>
                                 {options?.map((option, index) => (
                                     <option key={index} className="text-[14px] font-light from-inherit text-mainBlack dark:text-boneWhite" value={option.Periodo.id_periodo} >
@@ -75,10 +75,10 @@ const AcademicHistory = () => {
                                     </option>
                                 ))}
                             </select>
-                            <button className="bg-blue text-boneWhite rounded-md h-min-[45px] h-10" onClick={(e) => handelReport(e)}>Generar Reporte</button>
+                            <button className="bg-blue text-boneWhite rounded-md  w-[20rem] h-min-[45px] h-10" onClick={(e) => handelReport(e)}>Generar Reporte</button>
                         </div>
-                        <Radial current={periodIndex} texto={"Indice Trimestral"} />
-                        <Radial current={generalIndex} texto={"Indice General"} />
+                        <Radial max={4} current={periodIndex} texto={"Indice Trimestral"} />
+                        <Radial max={4} current={generalIndex} texto={"Indice General"} />
                     </div>
                 </div>
                 <div className={section_format}>
@@ -89,9 +89,9 @@ const AcademicHistory = () => {
                         <div className=" w-full h-full bg-grid dark:bg-darkGrid">
                             {/* Agregar data grid view para los datos del registro de historial académico */}
                             <table className="table-auto w-full">
-                                <thead>
+                                <thead className="bg-neutral-800 text-white" >
                                     <tr>
-                                        <th className={headerClass}>Codigo de Asignatura</th>
+                                        <th className={headerClass}>Código de Asignatura</th>
                                         <th className={headerClass}>Número de créditos</th>
                                         <th className={headerClass}>Nombre</th>
                                         <th className={headerClass}>Calificación</th>

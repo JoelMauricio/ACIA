@@ -1,0 +1,32 @@
+[
+    {
+        "question": "¿Cómo puedo modificar mi seleccion ya hecha fuera del tiempo impuesto ?",
+        "answer": "En ese caso debera de comunicarse con servico al cliente para solicitar la ayuda de un admisnitrador sobre su caso.",
+        "category": "Seleccion"
+    },
+    {
+        "question": "¿Cómo puedo gestionar mis calificaciones?",
+        "answer": "Si desea poder revisar el historico de calificaciones, solo debe clickar en el tercer apartado (llamado Historial Academico) del menu desplegable de su Home",
+        "category": "Calificaciones"
+    },
+    {
+        "question": "¿Donde puedo ver mi indice academico?",
+        "answer": "Para visualizar su indice, ya sea trimestral o general, es tan sencillo como iniciar sesion ya que esta en su apartado principal o Home",
+        "category": "Calificaciones"
+    },
+    {
+        "question": "¿Cómo puedo seleccionar mis asignaturas?",
+        "answer": "Si desea seleccionar asignaturas solo debe ingresar al segundo apartado del menu desplegable y sera dirigido al formulario de seleccion de asignatura",
+        "category": "Calificaciones"
+    },
+    {
+        "question": "¿Cómo puedo solicitar un cambio de contraseña en mi cuenta?",
+        "answer": "Si desea cambiar la contraseña asociada a su cuenta, solo debe acceder al segundo apartado el menu desplegable y clickar en el enlace con el nombre 'Solictar cambios en mi contraseña' que se encuentra en el apartado de Perfil ",
+        "category": "Calificaciones"
+    },
+    {
+        "question": "¿Cómo puedo cambiar el tema del sitio?",
+        "answer": "Si desea cambiar la apariencia del sitio solo debe clickar en el penultimo apartado con el nombre Oscuro de su menu desplegable",
+        "category": "Calificaciones"
+    }
+]
