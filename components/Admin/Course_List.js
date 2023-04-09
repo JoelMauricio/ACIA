@@ -4,6 +4,8 @@ import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import EditCourse from './Course_EditCourse';
 import Edit_iconv2 from '../../public/edit_iconv2.svg'
 import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
+
 // import 'reactjs-popup/dist/index.css';
 
 const CourseList = ({ }) => {
@@ -14,19 +16,19 @@ const CourseList = ({ }) => {
     useEffect(() => { fetchCourses(); }, []);
 
     const extractedAreas = courses.map(item => ({ id_area: item.id_area, nombre_area: item.Area_Academica.nombre, })) //Extraer, eliminar duplicados y ordenar las opciones
-    .filter((item, index, self) => index === self.findIndex(t => t.id_area === item.id_area))
-    .sort((a, b) => (a.nombre_area < b.nombre_area) ? -1 : 1);
+        .filter((item, index, self) => index === self.findIndex(t => t.id_area === item.id_area))
+        .sort((a, b) => (a.nombre_area < b.nombre_area) ? -1 : 1);
 
     const fetchCourses = async () => { //GET Asignaturas
         try {
             const { data, error } = await supabase
                 .from('Asignatura')
                 .select('id_asignatura, nombre, codigo_asignatura, creditos, id_area, Area_Academica(nombre)').order('codigo_asignatura');
-            if (error){throw error;}
-            else{
+            if (error) { throw error; }
+            else {
                 setCourses(data);
                 setFilteredCourses(data);
-            }  
+            }
         }
         catch (error) {
             alert(error.message);
@@ -57,9 +59,8 @@ const CourseList = ({ }) => {
                 <input className="input mr-8 shadow appearance-none border-2 border-mainBlack rounded-md w-[20rem] py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="search" value={search} onChange={FilterData} placeholder="Nombre o código de asignatura..." />
                 <Popup trigger={<button className="bg-purBlue text-white font-bold py-2 px-4 rounded ">Crear Asignatura</button>} closeOnDocumentClick={false} modal contentStyle={{ background: 'transparent', border: 'none' }} >
                     {close => (
-                        <div className="modal">
-                            <button className="bg-red text-white font-bold px-4 mx-1 mb-2 rounded" onClick={close}>&times;</button>
-                            <AddCourse optionsData={extractedAreas}/>
+                        <div className="modal h-full w-full bg-white2 dark:bg-darkBD2 p-4 rounded-lg">
+                            <AddCourse optionsData={extractedAreas} close={close} />
                         </div>
                     )}
                 </Popup>
@@ -68,26 +69,25 @@ const CourseList = ({ }) => {
             {/*Crear tarjetas de las asignaturas obtenidas*/}
             <div className="bg-transparent w-full rounded-sm max-h-fit overflow-auto pr-2 ">
                 <div className="flex flex-wrap gap-2 max-h-full">
-                    {filteredCourses.map((course) => ( 
-                        <div className="bg-white2 dark:bg-darkBD2 rounded-md grid grid-flow-col justify-between min-h-[45px] h-[90px] w-full shadow-[rgba(35,_37,_40,_0.18)_0px_3px_8px] py-2">
-                        <div className="flex w-fit gap-4 text-[18px] items-center px-4">
-                            <span className="ml-4 text-purBlue max-w-[100px] min-w-[100px]">{course.Area_Academica.nombre}</span>
-                            <div className="w-[2px] h-[60%] bg-slate-300 justify-end mx-2" />
-                            <span>{course.codigo_asignatura} - {course.nombre}</span>
+                    {filteredCourses.map((course, key) => (
+                        <div key={key} className="bg-white2 dark:bg-darkBD2 rounded-md grid grid-flow-col justify-between min-h-[45px] h-[90px] w-full shadow-[rgba(35,_37,_40,_0.18)_0px_3px_8px] py-2">
+                            <div className="flex w-fit gap-4 text-[18px] items-center px-4">
+                                <span className="ml-4 text-purBlue max-w-[100px] min-w-[100px]">{course.Area_Academica.nombre}</span>
+                                <div className="w-[2px] h-[60%] bg-slate-300 justify-end mx-2" />
+                                <span>{course.codigo_asignatura} - {course.nombre}</span>
+                            </div>
+
+                            <div className="flex w-fit gap-4 text-[18px] items-center px-4">
+                                <div className="w-[2px] h-[60%] bg-slate-300" />
+                                <Popup trigger={<button className="w-[30px] h-[30px]"> <Edit_iconv2 className="h-full w-full fill-red fill-" /></button>} closeOnDocumentClick={false} modal contentStyle={{ background: 'transparent', border: 'none' }}>
+                                    {close => (
+                                        <div className="modal h-full w-full bg-white2 dark:bg-darkBD2 p-4 rounded-lg">
+                                            <EditCourse key={course.id_asignatura} course_id={course.id_asignatura} name={course.nombre} area_id={course.id_area} code={course.codigo_asignatura} credits={course.creditos} optionsData={extractedAreas} close={close} />
+                                        </div>
+                                    )}
+                                </Popup>
+                            </div>
                         </div>
-                        
-                        <div className="flex w-fit gap-4 text-[18px] items-center px-4">
-                            <div className="w-[2px] h-[60%] bg-slate-300" />
-                            <Popup trigger={<button className="w-[30px] h-[30px]"> <Edit_iconv2 className="h-full w-full fill-red fill-" /></button>} closeOnDocumentClick={false} modal>
-                                {close => (
-                                    <div className="modal h-full w-full bg-white2 dark:bg-darkBD2 p-4 rounded-lg">
-                                        <button className="bg-red text-white font-bold px-4 mx-1 mb-2 rounded" onClick={close}>&times;</button>
-                                        <EditCourse key={course.id_asignatura} course_id={course.id_asignatura} name={course.nombre} area_id={course.id_area} code={course.codigo_asignatura} credits={course.creditos} optionsData={extractedAreas}/>
-                                    </div>
-                                )}
-                            </Popup>
-                        </div>
-                    </div>
                     ))}
                 </div>
             </div>
