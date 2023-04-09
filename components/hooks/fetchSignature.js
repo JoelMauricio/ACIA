@@ -14,45 +14,53 @@ export function fetchSignatures() {
 
     const fetchSelectionSignatures = async () => { //GET Asignaturas
 
-            try {
+        try {
 
-                const { data } = await supabase
+            const { data } = await supabase
                 .from('Seccion')
                 .select('id_periodo')
                 .order('id_periodo', { ascending: false })
                 .limit(1);
-    
-                let { data: Seccion, error } = await supabase
-                    .from('Seccion')
-                    .select('*, Periodo(*), Asignatura(*), Persona(*), Aula(*)')
-                    .eq('id_periodo', data[0].id_periodo)
 
-                    console.log(Seccion)
+            let { data: Seccion, error } = await supabase
+                .from('Seccion')
+                .select('*, Periodo(*), Asignatura(*), Persona(*), Aula(*)')
+                .eq('id_periodo', data[0].id_periodo)
 
-                    const newSeccion = Seccion.map(seccion => ({
-                        id_estudiante: profile?.id_Persona,
-                        id_seccion: seccion.id_seccion,
-                        id_periodo: seccion.id_periodo,
-                        id_asignatura: seccion.Asignatura.id_asignatura,
-                        codigo_asignatura: seccion.Asignatura.codigo_asignatura,
-                        creditos: seccion.Asignatura.creditos,
-                        nombre_asignatura: seccion.Asignatura.nombre,
-                        profesor: seccion.Persona.nombre,
-                        cupos: seccion.cupos,
-                        horario: seccion.horario,
-                        aula: seccion.Aula.nombre,
-                        check: false
+            const { data: seleccion } = await supabase
+                .from('Selecciones')
+                .select('*')
+                .eq('id_estudiante', 2)
+                .eq('estado', 'seleccion')
 
-                      }));
-    
-                    console.log(newSeccion)
-    
-                return newSeccion
-            }
-            catch (error) {
-                alert(error.message);
-            }
-     
+
+            console.log(seleccion)
+
+
+            const newSeccion = Seccion.map(seccion => ({
+                id_estudiante: profile?.id_Persona,
+                id_seccion: seccion.id_seccion,
+                id_periodo: seccion.id_periodo,
+                id_asignatura: seccion.Asignatura.id_asignatura,
+                codigo_asignatura: seccion.Asignatura.codigo_asignatura,
+                creditos: seccion.Asignatura.creditos,
+                nombre_asignatura: seccion.Asignatura.nombre,
+                profesor: seccion.Persona.nombre,
+                cupos: seccion.cupos,
+                horario: seccion.horario,
+                aula: seccion.Aula.nombre,
+                check: seleccion.some(item => item.id_asignatura === seccion.id_asignatura) ? true : false
+            }));
+
+            console.log("new")
+            console.log(newSeccion)
+
+            return newSeccion
+        }
+        catch (error) {
+            alert(error.message);
+        }
+
 
 
     };
@@ -72,31 +80,53 @@ export function fetchSignatures() {
             console.log(rows)
 
             let { data: signatures } = await supabase
-            .from('Selecciones')
-            .select('*')
-            .eq('id_estudiante', profile?.id_Persona)
-            .eq('estado', 'seleccion');
+                .from('Selecciones')
+                .select('*')
+                .eq('id_estudiante', profile?.id_Persona)
+                .eq('estado', 'seleccion');
 
-        const signaturesIds = new Set(signatures.map((signature) => `${signature.id_asignatura}-${signature.id_periodo}-${signature.id_seccion}`));
-        const filteredRows = rows.filter((row) => !signaturesIds.has(`${row.id_asignatura}-${row.id_periodo}-${row.id_seccion}`));
+            const signaturesIds = new Set(signatures.map((signature) => `${signature.id_asignatura}-${signature.id_periodo}-${signature.id_seccion}`));
+            const filteredRows = rows.filter((row) => !signaturesIds.has(`${row.id_asignatura}-${row.id_periodo}-${row.id_seccion}`));
 
-        console.log("filteredRows")
-        console.log(filteredRows)
+            console.log("filteredRows")
+            console.log(filteredRows)
 
 
-        const { data: insertedData, error } = await supabase
-            .from("Selecciones")
-            .insert(filteredRows);
+            const { data: insertedData, error } = await supabase
+                .from("Selecciones")
+                .insert(filteredRows);
 
-        console.log(insertedData);
-        console.log(error);
+            console.log(insertedData);
+            console.log(error);
 
-    } catch (error) {
-        alert(error.message);
+        } catch (error) {
+            alert(error.message);
+        }
     }
-}
+
+    const fetchSelection = async () => { //GET Asignaturas
+
+        try {
+
+            const { data: seleccion } = await supabase
+                .from('Seleccion')
+                .select('*')
+                .eq('id_estudiante', profile?.id_Persona)
+                .eq('estado', 'seleccion')
+
+            console.log(seleccion)
+
+            console.log(newSeccion)
+
+            return newSeccion
+        }
+        catch (error) {
+            alert(error.message);
+        }
 
 
+
+    };
 
     return { fetchSelectionSignatures, uploadSelectedSignatures }
 

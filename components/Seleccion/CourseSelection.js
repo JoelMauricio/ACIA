@@ -10,10 +10,12 @@ import Edit_icon from '@/public/edit_icon.svg'
 
 const SelectionPage = () => {
     const [signatures, setSignatures] = useState([])
+    const [deletedItems, setDeletedItems] = useState([])
     const { fetchSelectionSignatures, uploadSelectedSignatures } = fetchSignatures()
     const section_format = 'bg-white2 shadow-[rgba(0,0,0,0.22)_0px_3px_8px] w-full rounded-sm h-1/2 px-4 py-2 overflow-hidden dark:bg-darkBD2'
+
     const headerClass = "px-6 py-3 text-center text-xs font-semibold text-gray-500 uppercase tracking-wider"
-    const bodyClass = "border text-center px-2 whitespace-nowrap border-x-2 border-gray-200"
+    const bodyClass = "m-2 border text-center px-2 whitespace-nowrap border-x-2 border-gray-200"
 
     useEffect(() => {
         if (signatures.length < 1) {
@@ -21,11 +23,9 @@ const SelectionPage = () => {
                 setSignatures(data)
             })
         }
-        else {
-            setSignatures([])
-        }
 
-    }, [])
+
+    }, [signatures])
 
     const handleSignature = (index) => {
         const data = [...signatures]
@@ -114,7 +114,7 @@ const SelectionPage = () => {
                                             <td className={bodyClass}>{dato?.cupos}</td>
                                             <td className={bodyClass}>{dato?.horario}</td>
                                             <td className={bodyClass}>{dato?.aula}</td>
-                                            <td className={bodyClass}><input type="radio" checked={dato?.checked} onChange={() => handleSignature(index)}></input></td>
+                                            <td className={bodyClass}><input type="radio" checked={dato?.check} onChange={() => handleSignature(index)}></input></td>
 
                                         </tr>
                                     ))}
