@@ -57,35 +57,48 @@ export function fetchSignatures() {
 
     };
 
-    const uploadSelectedSignatures = async (rows) => {
+    const uploadSelectedSignatures = async (data) => {
         try {
 
+            const rows = data.filter((item) => item.check).map((item) => ({
+                id_estudiante: profile?.id_Persona,
+                id_asignatura: item.id_asignatura,
+                id_seccion: item.id_seccion,
+                id_periodo: item.id_periodo,
+                calificacion: 100,
+                estado: "seleccion",
+            }));
+
+            console.log(rows)
+
             let { data: signatures } = await supabase
-                .from('Selecciones')
-                .select('*')
-                .eq('id_estudiante', profile?.id_Persona)
-                .eq('estado', 'seleccion');
-    
-            const signaturesIds = new Set(signatures.map((signature) => `${signature.id_asignatura}-${signature.id_periodo}-${signature.id_seccion}`));
-    
-            const filteredRows = rows.filter((row) => !signaturesIds.has(`${row.id_asignatura}-${row.id_periodo}-${row.id_seccion}`));
-    
-            const { data: insertedData, error } = await supabase
-                .from("Selecciones")
-                .insert(filteredRows);
-    
-            console.log(insertedData);
-            console.log(error);
-    
-        } catch (error) {
-            alert(error.message);
-        }
+            .from('Selecciones')
+            .select('*')
+            .eq('id_estudiante', profile?.id_Persona)
+            .eq('estado', 'seleccion');
+
+        const signaturesIds = new Set(signatures.map((signature) => `${signature.id_asignatura}-${signature.id_periodo}-${signature.id_seccion}`));
+        const filteredRows = rows.filter((row) => !signaturesIds.has(`${row.id_asignatura}-${row.id_periodo}-${row.id_seccion}`));
+
+        console.log("filteredRows")
+        console.log(filteredRows)
+
+
+        const { data: insertedData, error } = await supabase
+            .from("Selecciones")
+            .insert(filteredRows);
+
+        console.log(insertedData);
+        console.log(error);
+
+    } catch (error) {
+        alert(error.message);
     }
-    
+}
 
 
 
-    return { fetchSelectionSignatures }
+    return { fetchSelectionSignatures, uploadSelectedSignatures }
 
 }
 

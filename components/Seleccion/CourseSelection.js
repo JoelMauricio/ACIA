@@ -10,7 +10,7 @@ import Edit_icon from '@/public/edit_icon.svg'
 
 const SelectionPage = () => {
     const [signatures, setSignatures] = useState([])
-    const { fetchSelectionSignatures } = fetchSignatures()
+    const { fetchSelectionSignatures, uploadSelectedSignatures } = fetchSignatures()
     const section_format = 'bg-white2 shadow-[rgba(0,0,0,0.22)_0px_3px_8px] w-full rounded-sm h-1/2 px-4 py-2 overflow-hidden dark:bg-darkBD2'
     const headerClass = "px-6 py-3 text-center text-xs font-semibold text-gray-500 uppercase tracking-wider"
     const bodyClass = "border text-center px-2 whitespace-nowrap border-x-2 border-gray-200"
@@ -43,12 +43,12 @@ const SelectionPage = () => {
                 <div className={section_format}>
                     <div className="rounded-md grid grid-flow-col justify-between h-15 w-full content-center py-1">
                         <span className="font-semibold text-[18px] self-center">Mi seleccion:</span>
-                        <button className="bg-purBlue text-boneWhite px-3 rounded-md w-[15rem] h-full min-h-[45px]">Guardar Selección</button>
+                        <button className="bg-purBlue text-boneWhite px-3 rounded-md w-[15rem] h-full min-h-[45px]" onClick={()=>uploadSelectedSignatures(signatures)}>Guardar Selección</button>
                     </div>
                     <div className="h-full overflow-hidden overflow-y-auto px-2 mt-2">
                         <div className="flex  flex-col w-full h-full bg-grid overflow-y-auto dark:bg-darkGrid">
                             <table className="table-auto w-full">
-                                <thead className="bg-gray-50">
+                                  <thead className="bg-neutral-800 text-white" >
                                     <tr>
                                         <th className={headerClass}>Codigo de Asignatura</th>
                                         <th className={headerClass}>Número de créditos</th>
@@ -92,7 +92,7 @@ const SelectionPage = () => {
 
 
                             <table className="table-auto w-full">
-                                <thead className="bg-gray-50">
+                            <thead className="bg-neutral-800 text-white" >
                                     <tr>
                                         <th className={headerClass}>Codigo de Asignatura</th>
                                         <th className={headerClass}>Número de créditos</th>
