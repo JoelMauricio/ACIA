@@ -3,7 +3,7 @@ import CourseCard from './Course_Card';
 import { useState, useEffect } from "react";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import Popup from 'reactjs-popup';
-import 'reactjs-popup/dist/index.css';
+// import 'reactjs-popup/dist/index.css';
 
 const CourseList = ({ }) => {
     const [courses, setCourses] = useState([]);
@@ -31,9 +31,9 @@ const CourseList = ({ }) => {
         if (keyword !== '') {
             const normalizedKeyword = keyword.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
             const results = courses.filter((data) => {
-                const r1 = data.nombre.toLowerCase().includes(keyword.toLowerCase()) 
-                const r2 = data.codigo_asignatura.toLowerCase().startsWith(keyword.toLowerCase()) 
-                if (r1 || r2){return true;}
+                const r1 = data.nombre.toLowerCase().includes(keyword.toLowerCase())
+                const r2 = data.codigo_asignatura.toLowerCase().startsWith(keyword.toLowerCase())
+                if (r1 || r2) { return true; }
             });
             setFilteredCourses(results);
         } else {
@@ -48,11 +48,10 @@ const CourseList = ({ }) => {
             <div>
                 <h2 className="px-1 text-italics text-sm font-bold ">Buscar asignatura</h2>
                 <input className="input mr-8 shadow appearance-none border-2 border-mainBlack rounded-md w-[20rem] py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="search" value={search} onChange={FilterData} placeholder="Nombre o código de asignatura..." />
-                <Popup trigger={<button className="bg-purBlue text-white font-bold py-2 px-4 rounded ">Crear Asignatura</button>} closeOnDocumentClick={false} modal>
+                <Popup trigger={<button className="bg-purBlue text-white font-bold py-2 px-4 rounded ">Crear Asignatura</button>} closeOnDocumentClick={false} modal contentStyle={{ background: 'transparent', border: 'none' }} >
                     {close => (
-                        <div className="modal">
-                            <AddCourse/>
-                            <button className="bg-red text-white font-bold px-4 mx-1 mb-2 rounded" onClick={close}>&times;</button>
+                        <div className="modal h-full w-full bg-white2 dark:bg-darkBD2 p-4 rounded-lg">
+                            <AddCourse close={close} />
                         </div>
                     )}
                 </Popup>

@@ -31,13 +31,13 @@ export function fetchAll() {
     const fetchStudentPeriod = async (period) => {
         try {
             if (period) {
-                
+
                 const { data: users, error } = await supabase
                     .from('Selecciones')
                     .select('*')
                     .eq('id_estudiante', profile?.id_Persona)
                     .eq('id_periodo', period);
-                    return users;
+                return users;
 
 
             }
@@ -55,7 +55,7 @@ export function fetchAll() {
                     .eq('id_estudiante', profile?.id_Persona)
                     .eq('id_seleccion', data[0]?.id_seleccion);
 
-                    return users;
+                return users;
 
             }
 
@@ -91,7 +91,20 @@ export function fetchAll() {
         }
     }
 
-    return { fetchGeneralIndex, fetchStudentPeriod, getPeriods, fetchReport }
+    const fetchStudentData = async () => {
+        try {
+            let { data } = await supabase
+                .from('Persona')
+                .select('*, Programa(nombre, Area_Academica(nombre))')
+                .eq('id_Persona', profile?.id_Persona)
+            return data;
+        }
+        catch (error) {
+            alert(error.message);
+        }
+    }
+
+    return { fetchGeneralIndex, fetchStudentPeriod, getPeriods, fetchReport, fetchStudentData }
 
 }
 
