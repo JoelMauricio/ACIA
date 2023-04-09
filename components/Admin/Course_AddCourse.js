@@ -5,7 +5,7 @@ import * as yup from 'yup';
 const AddCourse = ({ coursesData, close }) => {
   const supabase = useSupabaseClient()
   const label_format = "block tracking-wide text-gray-700 text-sm font-bold mb-2 "
-  const field_format = "appearance-none block w-full bg-white2 dark:bg-darkGrid text-mainBlack border dark:text-gray-700 border-gray-200 rounded py-3 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 max-h-[75px] "
+  const field_format = "appearance-none block w-full bg-white2 dark:bg-darkGrid text-mainBlack border dark:text-grid border-gray-200 dark:border-grid rounded py-3 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 max-h-[75px] "
   const error_format = "mt-0.5 font-semibold text-xs text-red"
   const section_format = "flex flex-wrap w-full lg:w-1/2 mb-2 px-2"
 
