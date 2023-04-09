@@ -1,39 +1,28 @@
 import AddCourse from './Course_AddCourse';
 import { useState, useEffect } from "react";
-import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import EditCourse from './Course_EditCourse';
 import Edit_iconv2 from '../../public/edit_iconv2.svg'
+import { fetchAll } from "../hooks/fetchFile";
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
-
-// import 'reactjs-popup/dist/index.css';
 
 const CourseList = ({ }) => {
     const [courses, setCourses] = useState([]);
     const [filteredCourses, setFilteredCourses] = useState([]);
+    const [areas, setAreas] = useState([]);
     const [search, setSearch] = useState('');
-    const supabase = useSupabaseClient();
-    useEffect(() => { fetchCourses(); }, []);
+    const {fetchCourses, fetchAreas } = fetchAll();
 
-    const extractedAreas = courses.map(item => ({ id_area: item.id_area, nombre_area: item.Area_Academica.nombre, })) //Extraer, eliminar duplicados y ordenar las opciones
-        .filter((item, index, self) => index === self.findIndex(t => t.id_area === item.id_area))
-        .sort((a, b) => (a.nombre_area < b.nombre_area) ? -1 : 1);
+    useEffect(() => { 
+        fetchCourses().then((data) => {
+            setCourses(data)
+            setFilteredCourses(data)
+        })
 
-    const fetchCourses = async () => { //GET Asignaturas
-        try {
-            const { data, error } = await supabase
-                .from('Asignatura')
-                .select('id_asignatura, nombre, codigo_asignatura, creditos, id_area, Area_Academica(nombre)').order('codigo_asignatura');
-            if (error) { throw error; }
-            else {
-                setCourses(data);
-                setFilteredCourses(data);
-            }
-        }
-        catch (error) {
-            alert(error.message);
-        }
-    };
+        fetchAreas().then((data) => {
+            setAreas(data)
+        })
+    }, [])
 
     const FilterData = (e) => { //Filtrar por nombre o codigo de asignatura 
         const keyword = e.target.value.trimStart();
@@ -60,7 +49,7 @@ const CourseList = ({ }) => {
                 <Popup trigger={<button className="bg-purBlue text-white font-bold py-2 px-4 rounded ">Crear Asignatura</button>} closeOnDocumentClick={false} modal contentStyle={{ background: 'transparent', border: 'none' }} >
                     {close => (
                         <div className="modal h-full w-full bg-white2 dark:bg-darkBD2 p-4 rounded-lg">
-                            <AddCourse optionsData={extractedAreas} close={close} />
+                            <AddCourse areaOptions={areas} close={close} />
                         </div>
                     )}
                 </Popup>
@@ -82,7 +71,7 @@ const CourseList = ({ }) => {
                                 <Popup trigger={<button className="w-[30px] h-[30px]"> <Edit_iconv2 className="h-full w-full fill-red fill-" /></button>} closeOnDocumentClick={false} modal contentStyle={{ background: 'transparent', border: 'none' }}>
                                     {close => (
                                         <div className="modal h-full w-full bg-white2 dark:bg-darkBD2 p-4 rounded-lg">
-                                            <EditCourse key={course.id_asignatura} course_id={course.id_asignatura} name={course.nombre} area_id={course.id_area} code={course.codigo_asignatura} credits={course.creditos} optionsData={extractedAreas} close={close} />
+                                            <EditCourse key={course.id_asignatura} course_id={course.id_asignatura} name={course.nombre} area_id={course.id_area} code={course.codigo_asignatura} credits={course.creditos} areaOptions={areas} close={close} />
                                         </div>
                                     )}
                                 </Popup>

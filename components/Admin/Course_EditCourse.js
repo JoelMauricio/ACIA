@@ -2,15 +2,12 @@ import { Formik, Field, Form } from 'formik';
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import * as yup from 'yup';
 
-const EditCourse = ({ course_id, name, code, credits, area_id, optionsData, close }) => {
+const EditCourse = ({ course_id, name, code, credits, area_id, areaOptions, close }) => {
   const supabase = useSupabaseClient()
   const label_format = "block tracking-wide text-gray-700 text-sm font-bold mb-2 h-20px w-full"
   const field_format = "appearance-none block w-full bg-white2 dark:bg-darkGrid text-mainBlack border dark:text-grid border-gray-200 dark:border-grid rounded py-3 px-3 leading-tight focus:outline-none focus:bg-white h-[46px] focus:border-gray-500 max-h-[75px] "
-  const error_format = "mt-0.5 font-semibold text-xs text-red"
+  const error_format = "mt-0.5 text-xs text-red"
   const section_format = "flex flex-wrap w-full lg:w-1/2 mb-2 px-2"
-  console.log("Card Data");
-  console.log(optionsData);
-
 
   return (
     <Formik
@@ -22,18 +19,23 @@ const EditCourse = ({ course_id, name, code, credits, area_id, optionsData, clos
       }}
       validationSchema={validateSchema} //Esquema de validación
       onSubmit={async (values) => {
-        if (confirm('¿Desea guardar los cambios?')) //UPDATE en la base de datos
+        if (confirm('¿Desea guardar los cambios?'))
         {
-          try {
+          try {                         //Actualizar datos de la asignatura en la base de datos
             const { error } = await supabase
               .from('Asignatura')
-              .update({ nombre: values.courseName, codigo_asignatura: values.courseCode.toUpperCase(), creditos: values.courseCredits, id_area: values.courseArea })
+              .update(
+                { 
+                  nombre: values.courseName, 
+                  codigo_asignatura: values.courseCode.toUpperCase(), 
+                  creditos: values.courseCredits, 
+                  id_area: values.courseArea 
+                })
               .eq('id_asignatura', course_id)
 
             if (error) throw error;
-            window.location.reload(false);
             alert("Asignatura modificada exitosamente.");
-            console.log(JSON.stringify(values, null, 2));
+            window.location.reload(false);
           }
           catch (error) {
             alert(error.message);
@@ -64,7 +66,7 @@ const EditCourse = ({ course_id, name, code, credits, area_id, optionsData, clos
             <div className={section_format}>
               <label className={label_format} htmlFor="courseCredits">No. Créditos</label>
               <Field className={field_format} id="courseCredits" name="courseCredits" as="select">
-                <option value=""></option>
+                <option value="">Seleccione...</option>
                 <option value="0">0</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -79,8 +81,8 @@ const EditCourse = ({ course_id, name, code, credits, area_id, optionsData, clos
             <div className={section_format}>
               <label className={label_format} htmlFor="courseArea">Area Académica</label>
               <Field className={field_format} id="courseArea" name="courseArea" as="select">
-                <option value=""></option>
-                {optionsData.map((area) => <option value={area.id_area}>{area.nombre_area}</option>)} {/*Crear un elemento para cada opción*/}
+                <option value="">Seleccione...</option>
+                {areaOptions.map((area) => <option value={area.id_area}>{area.nombre}</option>)} {/*Crear un elemento para cada opción*/}
               </Field>
               {errors.courseArea && touched.courseArea ? (<p className={error_format}> {errors.courseArea} </p>) : <p className='w-full h-[18px]'></p>}
             </div>
