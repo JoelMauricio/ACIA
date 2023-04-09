@@ -14,13 +14,12 @@ const UserCard = ({ name, email }) => {
             <div className="flex w-fit gap-4 text-[18px] items-center px-4">
                 <div className="w-[2px] h-[30px] bg-slate-300" />
 
-                <Popup trigger={<button className="w-[30px] h-[30px]"> <Edit_iconv2 className="h-full w-full fill-red" /></button>} closeOnDocumentClick={false} modal>
-                {close => (
-                    <div className="modal">
-                        <button className="bg-red text-white font-bold px-4 mx-1 mb-2 rounded" onClick={close}>&times;</button>
-                        {/*<EditCourse course_id = {course_id} name={name} area={area_id} code={code} credits={credits}/>*/}
-                    </div>
-                )}
+                <Popup trigger={<button className="w-[30px] h-[30px]"> <Edit_iconv2 className="h-full w-full fill-red" /></button>} closeOnDocumentClick={false} modal contentStyle={{ background: 'transparent', border: 'none' }}>
+                    {close => (
+                        <div className="modal h-full w-full bg-white2 dark:bg-darkBD2 p-4 rounded-lg">
+                            <EditUser close={close} />
+                        </div>
+                    )}
                 </Popup>
             </div>
         </div>
