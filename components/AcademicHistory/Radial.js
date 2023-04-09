@@ -1,11 +1,11 @@
 
 import { CircularProgressbarWithChildren, buildStyles } from 'react-circular-progressbar';
 
-const Radial = ({ current, texto }) => {
+const Radial = ({ max, current, texto }) => {
     return <>
         <div className=" rounded-md grid justify-center shadow-md h-[250px] content-center gap-6 sm:w-1/2 md:w-1/3 lg:w-1/4 dark:bg-darkBD2">
             <div className='w-full max-w-[110px]'>
-                <CircularProgressbarWithChildren maxValue={4} value={current}
+                <CircularProgressbarWithChildren maxValue={max} value={current}
                     styles={buildStyles({
                         rotation: 1,
                         strokeLinecap: 'round',
