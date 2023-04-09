@@ -2,15 +2,12 @@ import { Formik, Field, Form} from 'formik';
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import * as yup from 'yup';
 
-const AddCourse = ({coursesData}) => {
+const AddCourse = ({optionsData}) => {
   const supabase = useSupabaseClient()
   const label_format = "block tracking-wide text-gray-700 text-sm font-bold mb-2"
   const field_format = "appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
   const error_format = "mt-0.5 font-semibold text-xs text-red"
   const section_format = "flex flex-wrap md:w-1/2 mb-2 px-2"
-
-  let areas = coursesData.filter((course, index, self) => index === self.findIndex((s) => (s.id_area === course.id_area))); //Eliminar opciones duplicadas
-  let areaSort = areas.sort((a,b) => (a.Area_Academica.nombre < b.Area_Academica.nombre)? -1 : 1); //Ordenar opciones de forma ascendente
 
   return(
     <Formik
@@ -20,16 +17,21 @@ const AddCourse = ({coursesData}) => {
         courseCredits: '',
         courseArea: '',
       }}
+
       validationSchema ={validateSchema} //Esquema de validación
+
       onSubmit={async (values) => {
-      if(confirm('¿Desea guardar los cambios?')) //UPSERT en la base de
+      if(confirm('¿Desea guardar los cambios?'))  //Guardar cambios en la base de datos
       { 
         try
         {
          const {error} = await supabase
          .from('Asignatura')
          .insert([
-         {nombre: values.courseName, codigo_asignatura: values.courseCode.toUpperCase(), creditos: values.courseCredits, id_area: values.courseArea }])
+         {nombre: values.courseName,
+          codigo_asignatura: values.courseCode.toUpperCase(), 
+          creditos: values.courseCredits, 
+          id_area: values.courseArea }])
        
          if (error) throw error;
          window.location.reload(false);
@@ -81,7 +83,7 @@ const AddCourse = ({coursesData}) => {
             <label className={label_format} htmlFor="courseArea">Area Académica</label>
               <Field className={field_format} id="courseArea" name="courseArea"as="select">
                 <option value=""></option>
-                {areaSort.map((area) => <option value={area.id_area}>{area.Area_Academica.nombre}</option>)}
+                {optionsData.map((area) => <option value={area.id_area}>{area.nombre_area}</option>)} {/*Crear un elemento para cada opción*/}
               </Field>
               {errors.courseArea && touched.courseArea ? (<p className={error_format}> {errors.courseArea} </p>) : null}
           </div>
@@ -92,7 +94,7 @@ const AddCourse = ({coursesData}) => {
   )
 };
 
-//Validacion de entradas
+//Validación de entradas
 const validateSchema = yup.object().shape({
   courseName: yup.string().trim().matches(/^[A-Za-zÁÉÍÓÚáéíóúüñÑ()\- ]+$/, 'Introduzca un nombre utilizando letras y guiones (-).').required('¡Campo requerido!'),
   courseCode : yup.string().length(6,'¡Introduzca un codigo de seis digitos!').matches(/^[a-zA-Z]{3}[0-9]{3}$/, '¡Codigo incorrecto!').required('¡Campo requerido!'),

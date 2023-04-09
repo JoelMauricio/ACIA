@@ -2,12 +2,15 @@ import { Formik, Field, Form} from 'formik';
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import * as yup from 'yup';
 
-const EditCourse = ({course_id, name, code, credits, area}) => {
+const EditCourse = ({course_id, name, code, credits, area_id, optionsData}) => {
   const supabase = useSupabaseClient()
   const label_format = "block tracking-wide text-gray-700 text-sm font-bold mb-2"
   const field_format = "appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
   const error_format = "mt-0.5 font-semibold text-xs text-red"
   const section_format = "flex flex-wrap md:w-1/2 mb-2 px-2"
+  console.log("Card Data");
+  console.log(optionsData);
+
 
   return(
     <Formik
@@ -15,7 +18,7 @@ const EditCourse = ({course_id, name, code, credits, area}) => {
         courseName: name,
         courseCode: code,
         courseCredits: credits,
-        courseArea: area,
+        courseArea: area_id,
       }}
       validationSchema ={validateSchema} //Esquema de validación
       onSubmit={async (values) => {
@@ -50,7 +53,7 @@ const EditCourse = ({course_id, name, code, credits, area}) => {
           <div className={section_format}>
             <label className={label_format} htmlFor="courseName">Nombre </label>
             <Field className= {field_format} id="courseName" name="courseName" placeholder="Asignatura..." />
-            {errors.courseName && touched.courseName ? (<p className={error_format}> {errors.courseName} </p>) : null}
+            {errors.courseName && touched.courseName ? (<p className={error_format}> {errors.courseName} </p>) : null} {/*Presentar error en pantalla*/}
           </div>
     
           <div className={section_format}>
@@ -62,27 +65,23 @@ const EditCourse = ({course_id, name, code, credits, area}) => {
           <div className={section_format}>
             <label className={label_format} htmlFor="courseCredits">No. Créditos</label>
               <Field className={field_format} id="courseCredits" name ="courseCredits" as="select">
-              <option value=""></option>
-              <option value="0">0</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              </Field>
+                <option value=""></option>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                </Field>
               {errors.courseCredits && touched.courseCredits ? (<p className={error_format}> {errors.courseCredits} </p>) : null}
           </div>
     
           <div className={section_format}>
             <label className={label_format} htmlFor="courseArea">Area Académica</label>
               <Field className={field_format} id="courseArea" name="courseArea"as="select">
-              <option value=""></option>
-              <option value="1">Ingeniería</option>
-              <option value="2">Economía y Negocios</option>
-              <option value="3">Ciencias de la Salud</option>
-              <option value="4">Ciencias Basicas y Ambientales</option>
-              <option value="5">Ciencias Sociales y Humanidades</option>
+                <option value=""></option>
+                {optionsData.map((area) => <option value={area.id_area}>{area.nombre_area}</option>)} {/*Crear un elemento para cada opción*/}
               </Field>
               {errors.courseArea && touched.courseArea ? (<p className={error_format}> {errors.courseArea} </p>) : null}
           </div>
@@ -90,6 +89,7 @@ const EditCourse = ({course_id, name, code, credits, area}) => {
         </Form>
       )}
   </Formik>
+  
   )
 };
 
