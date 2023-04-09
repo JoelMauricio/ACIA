@@ -84,9 +84,9 @@ const AddCourse = ({ coursesData, close }) => {
               {errors.courseArea && touched.courseArea ? (<p className={error_format}> {errors.courseArea} </p>) : <p className='w-full h-[18px]'></p>}
             </div>
           </div>
-          <div className="flex items-center justify-between py-2">
-            <button className="bg-purBlue text-white font-bold py-2  rounded  min-h-[45px] min-w-[150px] max-w-[250px]" type="submit">Guardar</button>
-            <button className="bg-red text-white font-bold  py-2 rounded min-h-[45px] min-w-[150px] max-w-[250px]" onClick={close}>Cancelar</button>
+          <div className="flex items-center justify-between lg:justify-end lg:gap-4 py-2 px-2">
+            <button className="bg-purBlue text-white font-bold py-2  rounded  w-[12rem] min-h-[45px] min-w-[150px] max-w-[250px]" type="submit">Guardar</button>
+            <button className="bg-red text-white font-bold  py-2 rounded min-h-[45px] w-[12rem] min-w-[150px] max-w-[250px]" onClick={close}>Cancelar</button>
           </div>
         </Form>
       )

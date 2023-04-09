@@ -50,7 +50,7 @@ const CourseList = ({ }) => {
                 <input className="input mr-8 shadow appearance-none border-2 border-mainBlack rounded-md w-[20rem] py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="search" value={search} onChange={FilterData} placeholder="Nombre o código de asignatura..." />
                 <Popup trigger={<button className="bg-purBlue text-white font-bold py-2 px-4 rounded ">Crear Asignatura</button>} closeOnDocumentClick={false} modal contentStyle={{ background: 'transparent', border: 'none' }} >
                     {close => (
-                        <div className=" h-full w-full bg-white2 dark:bg-darkBD2 p-4 rounded-lg">
+                        <div className="modal h-full w-full bg-white2 dark:bg-darkBD2 p-4 rounded-lg">
                             <AddCourse close={close} />
                         </div>
                     )}
