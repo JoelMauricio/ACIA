@@ -104,7 +104,77 @@ export function fetchAll() {
         }
     }
 
-    return { fetchGeneralIndex, fetchStudentPeriod, getPeriods, fetchReport, fetchStudentData }
+    const fetchCourses = async () => { 
+        try {
+            let{ data, error } = await supabase
+                .from('Asignatura')
+                .select('id_asignatura, nombre, codigo_asignatura, creditos, id_area, Area_Academica(nombre)')
+                .order('codigo_asignatura');
+            if (error) throw error;
+            return data
+        }
+        catch (error) {
+            alert(error.message);
+        }
+    }
+
+    const fetchAreas = async () => { 
+        try {
+            let { data, error } = await supabase
+                .from('Area_Academica')
+                .select("*")
+                .order('nombre');
+            if (error) throw error;
+            return data
+        }
+        catch (error) {
+            alert(error.message);
+        }
+    }
+
+    const fetchUsers = async () => { 
+        try {
+            let { data, error } = await supabase
+                .from('Persona')
+                .select("id_Persona, nombre, correo, fecha_nac, id_ciudad, id_pais, id_rol, Ciudad(nombre), Pais(nombre)")
+                .order('nombre');
+            if (error) throw error;
+            return data
+        }
+        catch (error) {
+            alert(error.message);
+        }
+    }
+
+    const fetchCountries = async () => { 
+        try {
+            let { data, error } = await supabase
+                .from('Pais')
+                .select("*")
+                .order('nombre');
+            if (error) throw error;
+            return data
+        }
+        catch (error) {
+            alert(error.message);
+        }
+    }
+
+    const fetchCities = async () => { 
+        try {
+            let { data, error } = await supabase
+                .from('Ciudad')
+                .select("*")
+                .order('nombre');
+            if (error) throw error;
+            return data
+        }
+        catch (error) {
+            alert(error.message);
+        }
+    }
+
+    return { fetchGeneralIndex, fetchStudentPeriod, getPeriods, fetchReport, fetchStudentData, fetchCourses, fetchAreas, fetchUsers, fetchCities, fetchCountries }
 
 }
 
