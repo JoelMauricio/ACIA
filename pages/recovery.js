@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useSupabaseClient } from '@supabase/auth-helpers-react';
 import { useRouter } from 'next/router';
-import Logo from '../public/logo.svg'
-import { useAuth, useAuthState } from "../components/hooks/loginData";
+import Logo from '@/public/logo.svg'
+import { useAuth, useAuthState } from "@/components/hooks/loginData";
 import { useEffect } from 'react';
 
 export default function ChangePassword({ state }) {

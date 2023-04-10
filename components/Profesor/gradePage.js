@@ -1,11 +1,11 @@
-import Edit_icon from '../../public/edit_icon.svg';
-import Box_UserInfo from '../Admin/Box_UserInfo';
-import SearchBar from '../SearchBar';
-import UserCard from '../Admin/User_Card';
+import Edit_icon from '@/public/edit_icon.svg';
+import Box_UserInfo from '@/components/Admin/Box_UserInfo';
+import SearchBar from '@/components/SearchBar';
+import UserCard from '@/components/Admin/User_Card';
 import { useState } from "react";
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
-import Dropdown from '../General/Dropdown';
+import Dropdown from '@/components/General/Dropdown';
 
 
 //Agregar función para recuper la data del usuario.

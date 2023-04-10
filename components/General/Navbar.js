@@ -1,8 +1,8 @@
 import { useSupabaseClient, useSession } from '@supabase/auth-helpers-react';
-import { Logo, Icon_Home, Icon_light, Icon_dark, Icon_logout, Icon_history, Icon_selection, Icon_help } from '../../public/navbar_icons'
+import { Logo, Icon_Home, Icon_light, Icon_dark, Icon_logout, Icon_history, Icon_selection, Icon_help } from '@/public/navbar_icons'
 import { useEffect, useState } from "react";
 import { useRouter } from 'next/router';
-import { useAuth } from '../hooks/loginData';
+import { useAuth } from '@/components/hooks/loginData';
 import Router from 'next/router';
 import { useTheme } from 'next-themes';
 
@@ -28,6 +28,7 @@ const Navbar = () => {
     function logout() {
         supabase.auth.signOut().then(() => {
             router.push('/login')
+            localStorage.removeItem('profile')
         })
     }
 
@@ -71,13 +72,13 @@ const Navbar = () => {
     function DelimetedFuntionalities({ rol, bt_format, bt_ic_format, span_format, icn_format, txt_format }) {
         if (rol === 1) {
             return (<>
-                <Link href={'/administrarUsuarios'} className={bt_format}>
+                <Link href={'/admin/administrarUsuarios'} className={bt_format}>
                     <span className={bt_ic_format}>
                         <Icon_history className={icn_format} />
                         <p style={txt_format}>Administrar Usuarios</p>
                     </span>
                 </Link>
-                <Link href={'/administrarAsignaturas'} className={bt_format}>
+                <Link href={'/admin/administrarAsignaturas'} className={bt_format}>
                     <span className={bt_ic_format}>
                         <Icon_history className={icn_format} />
                         <p style={txt_format}>Administrar Asignatura</p>
@@ -93,7 +94,7 @@ const Navbar = () => {
         }
         else if (rol === 3) {
             return (<>
-                <Link href={'/'} className={bt_format}>
+                <Link href={'/profesor/gestionCalificaciones'} className={bt_format}>
                     <span className={bt_ic_format}>
                         <Icon_selection className={icn_format} />
                         <p style={txt_format}>Gestión de Calificaciones</p>
@@ -103,13 +104,13 @@ const Navbar = () => {
         }
         else if (rol === 2) {
             return (<>
-                <Link href={'/seleccion'} className={bt_format}>
+                <Link href={'/estudiante/seleccion'} className={bt_format}>
                     <span className={bt_ic_format}>
                         <Icon_selection className={icn_format} />
                         <p style={txt_format}>Seleccionar Asignatura</p>
                     </span>
                 </Link>
-                <Link href={'/historialAcademico'} className={bt_format}>
+                <Link href={'/estudiante/historialAcademico'} className={bt_format}>
                     <span className={bt_ic_format}>
                         <Icon_history className={icn_format} />
                         <p style={txt_format}>Historial Academico</p>

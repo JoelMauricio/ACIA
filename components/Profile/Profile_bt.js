@@ -1,8 +1,4 @@
-import { useSession, useSupabaseClient, Storage } from "@supabase/auth-helpers-react";
-import { useContext } from "react";
-import { UserContext } from "../../contexts/UserContext";
-import { useProfileData } from "../hooks/loginData";
-import { useAuth } from "../hooks/loginData";
+import { useAuth, useProfileData } from "@/components/hooks/loginData";
 import Link from "next/link";
 import Image from "next/image";
 

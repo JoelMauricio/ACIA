@@ -1,11 +1,9 @@
-import Event_Card from "../Main/EventCard";
 import { useSupabaseClient } from '@supabase/auth-helpers-react';
-import Avatar from "./ProfileAvatar";
-import CourseCard from "./Course_Card";
-import { useAuth } from "../hooks/loginData";
+import Avatar from "@/components/Profile/ProfileAvatar";
+import CourseCard from "@/components/Profile/Course_Card";
+import { useAuth } from "@/components/hooks/loginData";
 import { useState } from "react";
 import { useRouter } from 'next/router';
-import { useEffect } from "react";
 
 const MyProfile = () => {
     const section_format = 'bg-boneWhite last:shadow-lg w-full rounded-sm h-1/2 max-h-1/2 p-4 dark:bg-darkBD2 overflow-hidden'

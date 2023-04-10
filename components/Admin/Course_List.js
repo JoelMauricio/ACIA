@@ -1,8 +1,8 @@
-import AddCourse from './Course_AddCourse';
+import AddCourse from '@/components/Admin/Course_AddCourse';
 import { useState, useEffect } from "react";
-import EditCourse from './Course_EditCourse';
-import Edit_iconv2 from '../../public/edit_iconv2.svg'
-import { fetchAll } from "../hooks/fetchFile";
+import EditCourse from '@/components/Admin/Course_EditCourse';
+import Edit_iconv2 from '@/public/edit_iconv2.svg'
+import { fetchAll } from "@/components/hooks/fetchFile";
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 
@@ -11,9 +11,9 @@ const CourseList = ({ }) => {
     const [filteredCourses, setFilteredCourses] = useState([]);
     const [areas, setAreas] = useState([]);
     const [search, setSearch] = useState('');
-    const {fetchCourses, fetchAreas } = fetchAll();
+    const { fetchCourses, fetchAreas } = fetchAll();
 
-    useEffect(() => { 
+    useEffect(() => {
         fetchCourses().then((data) => {
             setCourses(data)
             setFilteredCourses(data)

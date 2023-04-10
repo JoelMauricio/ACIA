@@ -1,5 +1,5 @@
 import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
-import { useAuth } from "../hooks/loginData";
+import { useAuth } from "@/components/hooks/loginData";
 import Image from "next/image";
 
 const Avatar = ({ url }) => {
