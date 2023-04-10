@@ -116,7 +116,6 @@ const SelectionPage = () => {
                 <div className={section_format}>
                     <div className="grid grid-flow-col h-15 w-full justify-between content-center py-1">
                         <span className="font-semibold text-[18px] self-center">Asignaturas:</span>
-                        <SearchBar text={"Buscar Asignatura"} className='h-full' />
                     </div>
                     <div className="h-full overflow-hidden overflow-y-auto px-2 mt-2">
                         <div className="w-full h-full bg-grid dark:bg-darkGrid">
