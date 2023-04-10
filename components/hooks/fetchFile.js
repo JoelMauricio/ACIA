@@ -174,7 +174,79 @@ export function fetchAll() {
         }
     }
 
-    return { fetchGeneralIndex, fetchStudentPeriod, getPeriods, fetchReport, fetchStudentData, fetchCourses, fetchAreas, fetchUsers, fetchCities, fetchCountries }
+    const fetchSections = async () => { 
+        try {
+            let { data, error } = await supabase
+                .from('Seccion')
+                .select("*, Periodo(nombre), Persona(nombre), Asignatura(nombre, codigo_asignatura), Aula(nombre)")
+                .order('codigo_seccion');
+            if (error) throw error;
+            return data
+        }
+        catch (error) {
+            alert(error.message);
+        }
+    }
+
+    const fetchPeriods = async () => { 
+        try {
+            let { data, error } = await supabase
+                .from('Periodo')
+                .select("*")
+                .order('fecha_inicio', { ascending: false });
+            if (error) throw error;
+            return data
+        }
+        catch (error) {
+            alert(error.message);
+        }
+    }
+
+    const fetchProfessors = async () => { 
+        try {
+            let { data, error } = await supabase
+                .from('Persona')
+                .select("id_Persona, nombre")
+                .eq('id_rol', 3)
+                .order('nombre');
+            if (error) throw error;
+            return data
+        }
+        catch (error) {
+            alert(error.message);
+        }
+    }
+
+    const fetchClassrooms = async () => { 
+        try {
+            let { data, error } = await supabase
+                .from('Aula')
+                .select("id_aula, nombre")
+                .order('nombre');
+            if (error) throw error;
+            return data
+        }
+        catch (error) {
+            alert(error.message);
+        }
+    }
+
+    const fetchCoursesTrim = async () => { 
+        try {
+            let { data, error } = await supabase
+                .from('Asignatura')
+                .select("id_asignatura, nombre, codigo_asignatura")
+                .order('codigo_asignatura');
+            if (error) throw error;
+            return data
+        }
+        catch (error) {
+            alert(error.message);
+        }
+    }
+    
+
+    return { fetchGeneralIndex, fetchStudentPeriod, getPeriods, fetchReport, fetchStudentData, fetchCourses, fetchAreas, fetchUsers, fetchCities, fetchCountries, fetchSections, fetchPeriods, fetchProfessors, fetchClassrooms, fetchCoursesTrim }
 
 }
 
