@@ -9,6 +9,7 @@ import 'reactjs-popup/dist/index.css';
 const SectionList = () => {
     const [sections, setSections] = useState([]);
     const [filteredSections, setFilteredSections] = useState([]);
+    const [filteredSectionsBC, setFilteredSectionsBC] = useState([]);
     const [search, setSearch] = useState('');
     const [courses, setCourses] = useState([]);
     const [professors, setProfessors] = useState([]);
@@ -44,10 +45,11 @@ const SectionList = () => {
       };
 
     const FilterData = (e) => { //Filtrar por nombre o codigo de asignatura
+        setFilteredSectionsBC(filteredSections);
         const keyword = e.target.value.trimStart();
         if (keyword !== '') {
             const normalizedKeyword = keyword.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-            const results = sections.filter((data) => {
+            const results = filteredSections.filter((data) => {
                 const normalizedDataName = data.Asignatura.nombre.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
                 const normalizedDataCode = data.Asignatura.codigo_asignatura.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
                 return normalizedDataName.includes(normalizedKeyword.toLowerCase()) || normalizedDataCode.startsWith(normalizedKeyword.toLowerCase());
@@ -55,7 +57,7 @@ const SectionList = () => {
             setFilteredSections(results);
         }
         else {
-            setFilteredSections(sections);
+            setFilteredSections(filteredSectionsBC);
         }
         setSearch(keyword);
     };
