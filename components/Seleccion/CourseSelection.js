@@ -75,7 +75,7 @@ const SelectionPage = () => {
                 <div className={section_format}>
                     <div className="rounded-md grid grid-flow-col justify-between h-15 w-full content-center py-1">
                         <span className="font-semibold text-[18px] self-center">Mi seleccion:</span>
-                        <button className="bg-purBlue text-boneWhite px-3 rounded-md w-[15rem] h-full min-h-[45px]" onClick={()=>uploadSelectedSignatures(signatures, deletedItems)}>Guardar Selección</button>
+                        <button className="bg-purBlue text-boneWhite px-3 rounded-md w-[15rem] h-full min-h-[45px]" onClick={()=>{ uploadSelectedSignatures(signatures, deletedItems); window.alert("Selección guardada exitosamente.") }}>Guardar Selección</button>
                     </div>
                     <div className="h-full overflow-hidden overflow-y-auto px-2 mt-2">
                         <div className="flex  flex-col w-full h-full bg-grid overflow-y-auto dark:bg-darkGrid">
