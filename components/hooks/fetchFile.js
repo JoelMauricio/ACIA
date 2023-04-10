@@ -45,15 +45,15 @@ export function fetchAll() {
 
                 const { data } = await supabase
                     .from('Selecciones')
-                    .select('id_seleccion')
-                    .order('id_seleccion', { ascending: false })
+                    .select('id_periodo')
+                    .order('id_periodo', { ascending: false })
                     .limit(1);
 
                 const { data: users, error } = await supabase
                     .from('Selecciones')
                     .select('*')
                     .eq('id_estudiante', profile?.id_Persona)
-                    .eq('id_seleccion', data[0]?.id_seleccion);
+                    .eq('id_periodo', data[0]?.id_periodo);
 
                 return users;
 

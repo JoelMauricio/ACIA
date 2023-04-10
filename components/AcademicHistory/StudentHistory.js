@@ -69,11 +69,15 @@ const AcademicHistory = () => {
                             <h2 className="font-semibold">Reporte del Historial Académico</h2>
                             <select className="p-2 rounded-[8px] min-w-[200px] min-h-[45px] w-[20rem]" onChange={(e) => handleSelectedOption(e)}>
                                 <option value="">Seleccione un período</option>
-                                {options?.map((option, index) => (
-                                    <option key={index} className="text-[14px] font-light from-inherit text-mainBlack dark:text-boneWhite" value={option.Periodo.id_periodo} >
-                                        {option.Periodo.fecha_inicio + " |    | " + option.Periodo.fecha_fin}
-                                    </option>
-                                ))}
+                                {Array.from(new Set(options?.map(option => option.Periodo.id_periodo))).map((id_periodo, index) => {
+                                    const option = options.find(option => option.Periodo.id_periodo === id_periodo);
+                                    return (
+                                        <option key={index} className="text-[14px] font-light from-inherit text-mainBlack dark:text-boneWhite" value={id_periodo}>
+                                            {option.Periodo.fecha_inicio + " |    | " + option.Periodo.fecha_fin}
+                                        </option>
+                                    );
+                                })}
+
                             </select>
                             <button className="bg-blue text-boneWhite rounded-md  w-[20rem] h-min-[45px] h-10" onClick={(e) => handelReport(e)}>Generar Reporte</button>
                         </div>
