@@ -14,14 +14,11 @@ const SectionList = () => {
     const [professors, setProfessors] = useState([]);
     const [classrooms, setClassrooms] = useState([]);
     const [periods, setPeriods] = useState([]);
-
     const {fetchSections, fetchCoursesTrim, fetchProfessors, fetchClassrooms, fetchPeriods } = fetchAll();
-
 
     useEffect(() => { 
         fetchSections().then((data) => {
             setSections(data)
-            setFilteredSections(data)                                            
         })
 
         fetchCoursesTrim().then((data) => {
@@ -68,9 +65,9 @@ const SectionList = () => {
             <h1 className="text-[1.5rem] font-bold grow-0">Administrar Secciones</h1> 
             <div>  {/*Mostrar únicamente las secciones pertenecientes al periodo seleccionado*/ }
                 <label className="text-base font-bold" htmlFor="period-select">Seleccione un periodo </label>
-                <select className="mr-8 shadow border-2 border-mainBlack rounded-md w-[11rem] py-1 px-1 text-gray-700 leading-tight focus:outline-none focus:shadow-outlin" id="period-select" 
-                 onChange={ e => {handleChange(e)} }>
-                {periods.map((period) => <option value={period.id_periodo}>{period.nombre}</option>)}
+                <select className="mr-8 shadow border-2 border-mainBlack rounded-md w-[11rem] py-1 px-1 text-gray-700 leading-tight focus:outline-none focus:shadow-outlin" id="period-select" onChange={e => {handleChange(e)}}>
+                    <option value="">Seleccione...</option>
+                    {periods.map((period) => <option value={period.id_periodo}>{period.nombre}</option>)}
                 </select> 
             </div>
         
