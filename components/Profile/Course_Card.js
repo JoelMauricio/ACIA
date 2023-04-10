@@ -11,10 +11,10 @@ const CourseCard = ({ section, courseCode, courseName, grade }) => {
                 <span className="text-purBlue">{courseCode}-{section}</span>
                 <div className="w-[2px] h-[30px] bg-slate-300" />
                 <span>{courseName}</span>
-                
+
             </div>
             <div className="flex w-fit gap-4 text-[18px] items-center px-4">
-                <span>Calificación: {grade} </span>
+                {/* <span>Calificación: {grade} </span> */}
                 <div className="w-[2px] h-[30px] bg-slate-300" />
                 <Popup
                     trigger={<button className="w-[30px] h-[30px]"> <Edit_icon className="h-full w-full stroke-red" /></button>}
