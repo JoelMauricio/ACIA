@@ -28,6 +28,7 @@ const Navbar = () => {
     function logout() {
         supabase.auth.signOut().then(() => {
             router.push('/login')
+            localStorage.removeItem('profile')
         })
     }
 
