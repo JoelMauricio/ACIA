@@ -84,7 +84,7 @@ const Navbar = () => {
                         <p style={txt_format}>Administrar Asignatura</p>
                     </span>
                 </Link>
-                <Link href={'/administrarSecciones'} className={bt_format}>
+                <Link href={'/admin/administrarSecciones'} className={bt_format}>
                     <span className={bt_ic_format}>
                         <Icon_history className={icn_format} />
                         <p style={txt_format}>Administrar Secciones</p>
