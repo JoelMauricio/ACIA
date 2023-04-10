@@ -4,7 +4,7 @@ import CourseCard from "@/components/Profile/Course_Card";
 import { useAuth } from "@/components/hooks/loginData";
 import { useState, useEffect } from "react";
 import { useRouter } from 'next/router';
-import {fetchAll} from "../hooks/fetchFile";
+import { fetchAll } from "../hooks/fetchFile";
 
 const MyProfile = () => {
     const section_format = 'bg-boneWhite last:shadow-lg w-full rounded-sm h-1/2 max-h-1/2 p-4 dark:bg-darkBD2 overflow-hidden'
@@ -13,8 +13,8 @@ const MyProfile = () => {
     const router = useRouter()
     const [authState, setAuthState] = useState('');
     const [courses, setCourses] = useState([]);
-    const {fetchStudentSelections} = fetchAll();
-    const [period, setPeriod] = useState('') 
+    const { fetchStudentSelections } = fetchAll();
+    const [period, setPeriod] = useState('')
 
     async function handlePasswordRecovery() {
         try {

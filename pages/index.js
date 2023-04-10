@@ -12,9 +12,9 @@ const Home = ({ profile }) => {
   useProfile(session?.user.id)
   useCheckAuth();
 
-  useEffect(() => {
-    if (localStorage.getItem('profile') === null && session) { window.location.reload() }
-  }, [session])
+  // useEffect(() => {
+  //   if (localStorage.getItem('profile') === null && session) { window.location.reload() }
+  // }, [session])
 
   return (
     <div className='pl-[260px] flex w-screen h-screen bg-boneWhite dark:bg-darkBG'>

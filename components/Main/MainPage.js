@@ -38,7 +38,6 @@ const Main = () => {
     const { fetchGeneralIndex, fetchStudentPeriod, fetchStudentData } = fetchAll();
     const [generalIndex, setGeneralIndex] = useState(0)
     const [periodIndex, setPeriodIndex] = useState(0)
-    const [student_info, setStudentInfo] = useState({})
 
     useEffect(() => {
 
@@ -63,11 +62,7 @@ const Main = () => {
             setPeriodIndex(0)
         }
 
-        fetchStudentData().then((data) => {
-            setStudentInfo(data);
-        })
-
-    }, [generalIndex, periodIndex, student_info])
+    }, [generalIndex, periodIndex])
 
     const { useProfileData } = useAuth()
     const section_format = '"bg-boneWhite shadow-md w-full rounded-sm h-1/2 max-h-1/2 p-4 overflow-hidden first:h-fit dark:bg-darkBD2'
@@ -82,26 +77,18 @@ const Main = () => {
                 {profile?.id_rol === 2 ? (
                     <div className="flex flex-col w-full h-fit gap-4">
                         <div className="flex w-full md:max-h-[250px] gap-x-4 content-center ">
-                            <div className="grid h-full basis-1/2 shadow-md px-2 py-4 content-center justify-center gap-1 rounded-md dark:bg-darkBD2">
-                                <div className="flex flex-wrap text-mainBlack text-lg font-semibold w-full md:w-3/5 p-4 dark:text-boneWhite">
-                                    <div className="flex flex-col w-full md:w-1/2">
+                            {/* <div className="grid h-full w-full md:w-1/2 lg:w-1/3 shadow-md px-2 py-4 content-center justify-center gap-1 rounded-md dark:bg-darkBD2">
+                                <div className="flex flex-wrap text-mainBlack text-lg font-semibold w-full dark:text-boneWhite">
+                                    <div className="flex flex-col w-1/2">
                                         <span>Carrera</span>
-                                        <span className="text-purBlue">{student_info?.Programa ? (student_info?.Programa?.nombre) : ('Carrera')}</span>
+                                        <span className="text-purBlue">{profile?.Programa ? (profile?.Programa?.nombre) : ('Carrera')}</span>
                                     </div>
-                                    <div className="flex flex-col w-full md:w-1/2">
+                                    <div className="flex flex-col w-1/2">
                                         <span>Area Académica</span>
-                                        <span className="text-purBlue">{profile?.correo ? (profile?.correo) : ('Mail')}</span>
-                                    </div>
-                                    <div className="flex flex-col w-full md:w-1/2">
-                                        <span>País</span>
-                                        <span className="text-purBlue">{profile?.id_pais ? (profile?.Pais?.nombre) : ('País')}</span>
-                                    </div>
-                                    <div className="flex flex-col w-full md:w-1/2">
-                                        <span>Ciudad</span>
-                                        <span className="text-purBlue">{profile?.id_ciudad ? (profile?.Ciudad?.nombre) : ('Ciudad')}</span>
+                                        <span className="text-purBlue">{profile?.Programa?.Area_Academica ? (profile?.Programa?.Area_Academica?.nombre) : ('Area Académica')}</span>
                                     </div>
                                 </div>
-                            </div>
+                            </div> */}
                             <Radial current={4} texto={"Total Créditos"} />
                             <Radial current={4} texto={"Total Cursadas"} />
                             <Radial max={4} current={periodIndex} texto={"Indice Trimestral"} />
