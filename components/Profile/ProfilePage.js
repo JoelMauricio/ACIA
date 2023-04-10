@@ -2,8 +2,9 @@ import { useSupabaseClient } from '@supabase/auth-helpers-react';
 import Avatar from "@/components/Profile/ProfileAvatar";
 import CourseCard from "@/components/Profile/Course_Card";
 import { useAuth } from "@/components/hooks/loginData";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from 'next/router';
+import {fetchAll} from "../hooks/fetchFile";
 
 const MyProfile = () => {
     const section_format = 'bg-boneWhite last:shadow-lg w-full rounded-sm h-1/2 max-h-1/2 p-4 dark:bg-darkBD2 overflow-hidden'
@@ -11,13 +12,9 @@ const MyProfile = () => {
     const supabase = useSupabaseClient();
     const router = useRouter()
     const [authState, setAuthState] = useState('');
-
-    const [courses, setCourses] = useState([
-        {
-            "name": "",
-            "academic_area": "No Hay Cursos Asignados",
-        },
-    ]);
+    const [courses, setCourses] = useState([]);
+    const {fetchStudentSelections} = fetchAll();
+    const [period, setPeriod] = useState('') 
 
     async function handlePasswordRecovery() {
         try {
@@ -28,6 +25,13 @@ const MyProfile = () => {
             alert(error.error_description || "No se pudo enviar el correo para la recuperación de contraseña");
         }
     }
+
+    useEffect(() => {  //Obtener las secciones seleccioadas por el estudiante en el []
+        fetchStudentSelections().then((data) => {
+            setCourses(data)
+            setPeriod(data[0].Periodo.nombre)
+        })
+    }, [])
 
     return <>
         <div className='m-6 bg-transparent flex flex-col gap-1 overflow-hidden' >
@@ -67,10 +71,11 @@ const MyProfile = () => {
                 {profile?.id_rol === 2 ? (
                     <div className={section_format}>
                         <span className="font-semibold text-[18px] md:text-[24px]">Mis asignaturas</span>
+                        <span className="font-semibold text-[18px] md:text-[24px] text-purBlue ml-1"> {period}</span>
                         <div className="h-full overflow-hidden overflow-y-auto">
                             <div className="flex flex-wrap gap-2 p-2">
                                 {courses.map((course, index) => (
-                                    <CourseCard key={index} name={course.name} area={course.academic_area} />
+                                    <CourseCard key={index} section={course.Seccion.codigo_seccion} courseCode={course.Asignatura.codigo_asignatura} courseName={course.Asignatura.nombre} grade={course.calificacion} />
                                 ))}
                                 <div className="w-full h-[40px]" />
                             </div>

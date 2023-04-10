@@ -245,8 +245,28 @@ export function fetchAll() {
         }
     }
     
+    const fetchStudentSelections = async () => { 
+        try {
+            const { data: period } = await supabase
+            .from('Periodo')
+            .select('id_periodo')
+            .order('id_periodo', { ascending: false })
+            .limit(1);
 
-    return { fetchGeneralIndex, fetchStudentPeriod, getPeriods, fetchReport, fetchStudentData, fetchCourses, fetchAreas, fetchUsers, fetchCities, fetchCountries, fetchSections, fetchPeriods, fetchProfessors, fetchClassrooms, fetchCoursesTrim }
+            let { data, error } = await supabase
+                .from('Selecciones')
+                .select("id_seleccion, id_asignatura, id_seccion, id_periodo, Periodo(nombre), Asignatura(nombre, codigo_asignatura), Seccion(codigo_seccion), calificacion ")
+                .eq("id_estudiante", 2)
+                .eq('id_periodo', period[0].id_periodo)
+            if (error) throw error;
+            return data
+        }
+        catch (error) {
+            alert(error.message);
+        }
+    }
+
+    return { fetchGeneralIndex, fetchStudentPeriod, getPeriods, fetchReport, fetchStudentData, fetchCourses, fetchAreas, fetchUsers, fetchCities, fetchCountries, fetchSections, fetchPeriods, fetchProfessors, fetchClassrooms, fetchCoursesTrim, fetchStudentSelections }
 
 }
 
