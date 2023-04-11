@@ -1,5 +1,5 @@
 import { useSupabaseClient, useSession } from '@supabase/auth-helpers-react';
-import { Logo, Icon_Home, Icon_light, Icon_dark, Icon_logout, Icon_history, Icon_selection, Icon_help } from '@/public/navbar_icons'
+import { Logo, Icon_Home, Icon_light, Icon_dark, Icon_logout, Icon_history, Icon_selection, Icon_help } from '@/public/navbar_icons/index'
 import { useEffect, useState } from "react";
 import { useRouter } from 'next/router';
 import { useAuth } from '@/components/hooks/loginData';
