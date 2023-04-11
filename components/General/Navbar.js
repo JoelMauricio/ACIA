@@ -72,19 +72,19 @@ const Navbar = () => {
     function DelimetedFuntionalities({ rol, bt_format, bt_ic_format, span_format, icn_format, txt_format }) {
         if (rol === 1) {
             return (<>
-                <Link href={'/admin/administrarUsuarios'} className={bt_format}>
+                <Link href={'/admin/administrarUsuarios'} className={bt_format} id='bt_AdministrarUsuarios'>
                     <span className={bt_ic_format}>
                         <Icon_history className={icn_format} />
                         <p style={txt_format}>Administrar Usuarios</p>
                     </span>
                 </Link>
-                <Link href={'/admin/administrarAsignaturas'} className={bt_format}>
+                <Link href={'/admin/administrarAsignaturas'} className={bt_format} id='bt_AdministrarAsignaturas'>
                     <span className={bt_ic_format}>
                         <Icon_history className={icn_format} />
                         <p style={txt_format}>Administrar Asignaturas</p>
                     </span>
                 </Link>
-                <Link href={'/admin/administrarSecciones'} className={bt_format}>
+                <Link href={'/admin/administrarSecciones'} className={bt_format} id='bt_AdministrarSecciones'>
                     <span className={bt_ic_format}>
                         <Icon_history className={icn_format} />
                         <p style={txt_format}>Administrar Secciones</p>
@@ -94,7 +94,7 @@ const Navbar = () => {
         }
         else if (rol === 3) {
             return (<>
-                <Link href={'/profesor/gestionCalificaciones'} className={bt_format}>
+                <Link href={'/profesor/gestionCalificaciones'} className={bt_format} id='bt_GestionCalificaciones'>
                     <span className={bt_ic_format}>
                         <Icon_selection className={icn_format} />
                         <p style={txt_format}>Gestión de Calificaciones</p>
@@ -104,13 +104,13 @@ const Navbar = () => {
         }
         else if (rol === 2) {
             return (<>
-                <Link href={'/estudiante/seleccion'} className={bt_format}>
+                <Link href={'/estudiante/seleccion'} className={bt_format} id='bt_Seleccion'>
                     <span className={bt_ic_format}>
                         <Icon_selection className={icn_format} />
                         <p style={txt_format}>Seleccionar Asignatura</p>
                     </span>
                 </Link>
-                <Link href={'/estudiante/historialAcademico'} className={bt_format}>
+                <Link href={'/estudiante/historialAcademico'} className={bt_format} id='bt_HistorialAcademico'>
                     <span className={bt_ic_format}>
                         <Icon_history className={icn_format} />
                         <p style={txt_format}>Historial Academico</p>
@@ -121,19 +121,17 @@ const Navbar = () => {
     }
 
     return <div className="fixed top-0 left-0 grid grid-flow-row grid-rows content-between min-h-screen w-[260px] px-2 bg-mainBlack text-boneWhite text-md ">
-        <div className='flex flex-col w-fit'>
-            <button className='justify-center self-center' onClick={navbarHandleClick}>
-                <Logo className='my-4 w-3r h-3r'
-                />
-            </button>
-            <Link href={'/'} className={button_format}>
+        <div className='flex flex-col'>
+            <Logo className='my-4 w-3r h-3r self-center place-self-center'
+            />
+            <Link href={'/'} className={button_format} id='bt_Home'>
                 <span className={bt_icon_format}>
                     <Icon_Home className={icon_format} />
                     <p style={text_format}>Home</p>
                 </span>
             </Link>
             <DelimetedFuntionalities rol={userRol} bt_format={button_format} bt_ic_format={bt_icon_format} icn_format={icon_format} txt_format={text_format} />
-            <Link className={button_format} href={'/ayuda'}>
+            <Link className={button_format} href={'/ayuda'} id='bt_Ayuda'>
                 <span className={bt_icon_format}>
                     <Icon_help className={icon_format} />
                     <p style={text_format}>Ayuda</p>
@@ -141,10 +139,10 @@ const Navbar = () => {
             </Link>
         </div>
         <div className='flex flex-col'>
-            <button className={button_format} onClick={themeHandleClick}>
+            <button className={button_format} onClick={themeHandleClick} id='bt_Theme'>
                 <Icon_Theme state={themeState} format={icon_format} span_format={bt_icon_format} />
             </button>
-            <Link className={button_format} onClick={logout} href={'/login'}>
+            <Link className={button_format} onClick={logout} href={'/login'} id='bt_logout'>
                 <span className={bt_icon_format}>
                     <Icon_logout className={icon_format} span_format={bt_icon_format} />
                     <p style={text_format}>Salir</p>
