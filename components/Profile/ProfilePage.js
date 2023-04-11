@@ -18,7 +18,7 @@ const MyProfile = () => {
 
     async function handlePasswordRecovery() {
         try {
-            const { error } = await supabase.auth.resetPasswordForEmail(profile?.correo, { redirectTo: 'http://localhost:3000/recovery' })
+            const { error } = await supabase.auth.resetPasswordForEmail(profile?.correo)
             if (error) throw error;
             alert('Se ha enviado un correo para recuperar la contraseña');
         } catch (error) {
