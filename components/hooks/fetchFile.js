@@ -266,7 +266,53 @@ export function fetchAll() {
         }
     }
 
-    return { fetchGeneralIndex, fetchStudentPeriod, getPeriods, fetchReport, fetchStudentData, fetchCourses, fetchAreas, fetchUsers, fetchCities, fetchCountries, fetchSections, fetchPeriods, fetchProfessors, fetchClassrooms, fetchCoursesTrim, fetchStudentSelections }
+    const fetchProfessorSections = async () => { 
+        try {
+            const { data: period } = await supabase
+            .from('Periodo')
+            .select('id_periodo')
+            .order('id_periodo', { ascending: false })
+            .limit(1);
+
+            let { data, error } = await supabase
+                .from('Seccion')
+                .select("id_seccion, codigo_seccion, Periodo(nombre), id_profesor, Asignatura(nombre, codigo_asignatura)")
+                .eq("id_profesor", 8)
+                .eq('id_periodo', period[0].id_periodo)
+                .order('codigo_seccion');
+            if (error) throw error;
+            return data
+        }
+        catch (error) {
+            alert(error.message);
+        }
+    }
+
+    const fetchProfessorStudents = async () => { 
+        try {
+            const { data: period } = await supabase
+            .from('Periodo')
+            .select('id_periodo')
+            .order('id_periodo', { ascending: false })
+            .limit(1);
+
+            const { data, error } = await supabase
+                .from('Selecciones')
+                .select("id_seleccion, id_estudiante, id_seccion, calificacion, Persona(nombre,correo), Seccion(codigo_seccion), Asignatura(codigo_asignatura, nombre)")
+                .eq('id_periodo', period[0].id_periodo)
+                .order('id_estudiante')
+            
+            if (error) throw error;
+            return data
+        }
+        catch (error) {
+            alert(error.message);
+        }
+    }
+
+    return { fetchGeneralIndex, fetchStudentPeriod, getPeriods, fetchReport, fetchStudentData, 
+    fetchCourses, fetchAreas, fetchUsers, fetchCities, fetchCountries, fetchSections, fetchPeriods, 
+    fetchProfessors, fetchClassrooms, fetchCoursesTrim, fetchStudentSelections, fetchProfessorSections, fetchProfessorStudents }
 
 }
 
