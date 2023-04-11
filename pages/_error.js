@@ -29,7 +29,7 @@ function NotFoundPage() {
                     </div>
                 </div>
             </div>) : (<div className='h-screen w-screen grid content-center justify-center'>
-                <Image src={Loader} />
+                <Image src={Loader} alt='Profile Foto' />
             </div>)}
         </>
     );

@@ -19,17 +19,16 @@ const EditCourse = ({ course_id, name, code, credits, area_id, areaOptions, clos
       }}
       validationSchema={validateSchema} //Esquema de validación
       onSubmit={async (values) => {
-        if (confirm('¿Desea guardar los cambios?'))
-        {
+        if (confirm('¿Desea guardar los cambios?')) {
           try {                         //Actualizar datos de la asignatura en la base de datos
             const { error } = await supabase
               .from('Asignatura')
               .update(
-                { 
-                  nombre: values.courseName, 
-                  codigo_asignatura: values.courseCode.toUpperCase(), 
-                  creditos: values.courseCredits, 
-                  id_area: values.courseArea 
+                {
+                  nombre: values.courseName,
+                  codigo_asignatura: values.courseCode.toUpperCase(),
+                  creditos: values.courseCredits,
+                  id_area: values.courseArea
                 })
               .eq('id_asignatura', course_id)
 
@@ -82,7 +81,7 @@ const EditCourse = ({ course_id, name, code, credits, area_id, areaOptions, clos
               <label className={label_format} htmlFor="courseArea">Area Académica</label>
               <Field className={field_format} id="courseArea" name="courseArea" as="select">
                 <option value="">Seleccione...</option>
-                {areaOptions.map((area) => <option value={area.id_area}>{area.nombre}</option>)} {/*Crear un elemento para cada opción*/}
+                {areaOptions.map((area, index) => <option key={index} value={area.id_area}>{area.nombre}</option>)} {/*Crear un elemento para cada opción*/}
               </Field>
               {errors.courseArea && touched.courseArea ? (<p className={error_format}> {errors.courseArea} </p>) : <p className='w-full h-[18px]'></p>}
             </div>

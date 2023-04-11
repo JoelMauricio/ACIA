@@ -19,8 +19,7 @@ const AddCourse = ({ areaOptions, close }) => {
       }}
       validationSchema={validateSchema} //Esquema de validación
       onSubmit={async (values) => {
-        if (confirm('¿Desea guardar los cambios?'))  
-        {
+        if (confirm('¿Desea guardar los cambios?')) {
           try {                         //Insertar asignatura en la base de datos
             const { error } = await supabase
               .from('Asignatura')
@@ -81,7 +80,7 @@ const AddCourse = ({ areaOptions, close }) => {
               <label className={label_format} htmlFor="courseArea">Area Académica</label>
               <Field className={field_format} id="courseArea" name="courseArea" as="select">
                 <option value="">Seleccione...</option>
-                {areaOptions.map((area) => <option value={area.id_area}>{area.nombre}</option>)} {/*Crear un elemento para cada opción*/}
+                {areaOptions.map((area, index) => <option key={index} value={area.id_area}>{area.nombre}</option>)} {/*Crear un elemento para cada opción*/}
               </Field>
               {errors.courseArea && touched.courseArea ? (<p className={error_format}> {errors.courseArea} </p>) : <p className='w-full h-[18px]'></p>}
             </div>
