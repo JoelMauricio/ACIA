@@ -108,7 +108,7 @@ const AcademicHistory = () => {
                                             <td className={bodyClass}>{dato.Asignatura.codigo_asignatura}</td>
                                             <td className={bodyClass}>{dato.Asignatura.creditos}</td>
                                             <td className={bodyClass}>{dato.Asignatura.nombre}</td>
-                                            <td className={bodyClass}>{dato.calificacion}</td>
+                                            <td className={bodyClass}>{dato.calificacion >= 90 ? 'A' : dato.calificacion >= 80 ? 'B' : dato.calificacion >= 70 ? 'C' : dato.calificacion >= 60 ? 'D' : 'F'}</td>
                                             <td className={bodyClass}>{dato.estado}</td>
                                         </tr>
                                     ))}
