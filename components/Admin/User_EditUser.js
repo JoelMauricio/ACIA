@@ -35,21 +35,21 @@ const EditUser = ({ user_id, name, email, birthdate, city_id, country_id, role_i
       }}
       validationSchema={validateSchema} //Esquema de validación
       onSubmit={async (values) => {
-        if (confirm('¿Desea guardar los cambios?'))
-        {
+        if (confirm('¿Desea guardar los cambios?')) {
           try {
             const { error } = await supabase
               .from('Persona')
               .update(                //Actualizar usuario en la base de datos
-                { nombre: values.uName, 
-                  fecha_nac: values.uDate, 
-                  correo: values.uEmail, 
-                  fecha_nac : values.uDate,
-                  id_pais: values.uCountry, 
-                  id_ciudad: values.uCity, 
+                {
+                  nombre: values.uName,
+                  fecha_nac: values.uDate,
+                  correo: values.uEmail,
+                  fecha_nac: values.uDate,
+                  id_pais: values.uCountry,
+                  id_ciudad: values.uCity,
                   id_rol: values.uRole
                 })
-              .eq('id_Persona',user_id);
+              .eq('id_Persona', user_id);
 
             if (error) throw error;
             alert("Usuario modificado exitosamente.");
@@ -58,7 +58,7 @@ const EditUser = ({ user_id, name, email, birthdate, city_id, country_id, role_i
           catch (error) {
             alert(error.message);
           }
-          
+
         }
       }}
     >
@@ -90,9 +90,9 @@ const EditUser = ({ user_id, name, email, birthdate, city_id, country_id, role_i
 
             <div className={section_format}>
               <label className={label_format} htmlFor="uCountry">País</label>
-              <Field className={field_format} id="uCountry" name="uCountry" as="select" min="1900-01-01" onChange={ e => {handleCountry(e); setFieldValue("uCountry", e.target.value)} } >
+              <Field className={field_format} id="uCountry" name="uCountry" as="select" min="1900-01-01" onChange={e => { handleCountry(e); setFieldValue("uCountry", e.target.value) }} >
                 <option value="">Seleccione...</option>
-                {countryOptions.map((country) => <option value={country.id_pais}>{country.nombre}</option>)} {/*Crear un elemento para cada opción*/}
+                {countryOptions.map((country, index) => <option key={index} value={country.id_pais}>{country.nombre}</option>)} {/*Crear un elemento para cada opción*/}
               </Field>
               {errors.uCountry && touched.uCountry ? (<p className={error_format}> {errors.uCountry} </p>) : <p className='w-full h-[18px]'></p>}
             </div>
@@ -101,7 +101,7 @@ const EditUser = ({ user_id, name, email, birthdate, city_id, country_id, role_i
               <label className={label_format} htmlFor="uCity">Ciudad</label>
               <Field className={field_format} id="uCity" name="uCity" as="select">
                 <option value="">Seleccione...</option>
-                {filteredCities.map((city) => <option value={city.id_ciudad}>{city.nombre}</option>)} {/*Crear un elemento para cada opción*/}
+                {filteredCities.map((city, index) => <option key={index} value={city.id_ciudad}>{city.nombre}</option>)} {/*Crear un elemento para cada opción*/}
               </Field>
               {errors.uCity && touched.uCity ? (<p className={error_format}> {errors.uCity} </p>) : <p className='w-full h-[18px]'></p>}
             </div>
@@ -119,7 +119,7 @@ const EditUser = ({ user_id, name, email, birthdate, city_id, country_id, role_i
           </div>
           <div className="flex items-center justify-between lg:justify-end lg:gap-4 py-2 px-2">
             <button className="bg-purBlue text-white font-bold py-2  rounded  w-[12rem] min-h-[45px] min-w-[150px] max-w-[250px]" type="submit">Guardar</button>
-            <button className="bg-red text-white font-bold  py-2 rounded min-h-[45px] w-[12rem] min-w-[150px] max-w-[250px]" type = "button" onClick={close}>Cancelar</button>
+            <button className="bg-red text-white font-bold  py-2 rounded min-h-[45px] w-[12rem] min-w-[150px] max-w-[250px]" type="button" onClick={close}>Cancelar</button>
           </div>
         </Form>
       )}
@@ -131,7 +131,7 @@ const EditUser = ({ user_id, name, email, birthdate, city_id, country_id, role_i
 const validateSchema = yup.object().shape({
   uName: yup.string().trim().matches(/^[A-Za-zÁÉÍÓÚáéíóúüñÑ()\- ]+$/, 'Introduzca un nombre utilizando letras y guiones (-).').required('¡Campo requerido!'),
   uEmail: yup.string().email('Correo electrónico incorrecto').required('¡Campo requerido!'),
-  uDate : yup.date().required('¡Seleccione una fecha!'),
+  uDate: yup.date().required('¡Seleccione una fecha!'),
   uCity: yup.string().required('¡Seleccione una ciudad!'),
   uCountry: yup.string().required('¡Seleccione un país!'),
   uRole: yup.string().required('¡Seleccione un rol!'),
