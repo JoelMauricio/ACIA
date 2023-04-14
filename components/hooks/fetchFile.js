@@ -174,7 +174,7 @@ export function fetchAll() {
         }
     }
 
-    const fetchSections = async () => { 
+    const fetchSections = async () => {
         try {
             let { data, error } = await supabase
                 .from('Seccion')
@@ -188,7 +188,7 @@ export function fetchAll() {
         }
     }
 
-    const fetchPeriods = async () => { 
+    const fetchPeriods = async () => {
         try {
             let { data, error } = await supabase
                 .from('Periodo')
@@ -202,7 +202,7 @@ export function fetchAll() {
         }
     }
 
-    const fetchProfessors = async () => { 
+    const fetchProfessors = async () => {
         try {
             let { data, error } = await supabase
                 .from('Persona')
@@ -217,7 +217,7 @@ export function fetchAll() {
         }
     }
 
-    const fetchClassrooms = async () => { 
+    const fetchClassrooms = async () => {
         try {
             let { data, error } = await supabase
                 .from('Aula')
@@ -231,7 +231,7 @@ export function fetchAll() {
         }
     }
 
-    const fetchCoursesTrim = async () => { 
+    const fetchCoursesTrim = async () => {
         try {
             let { data, error } = await supabase
                 .from('Asignatura')
@@ -244,19 +244,20 @@ export function fetchAll() {
             alert(error.message);
         }
     }
-    
-    const fetchStudentSelections = async () => { 
+
+    const fetchStudentSelections = async () => {
+        let profile = JSON.parse(localStorage.getItem('profile'));
         try {
             const { data: period } = await supabase
-            .from('Periodo')
-            .select('id_periodo')
-            .order('id_periodo', { ascending: false })
-            .limit(1);
+                .from('Periodo')
+                .select('id_periodo')
+                .order('id_periodo', { ascending: false })
+                .limit(1);
 
             let { data, error } = await supabase
                 .from('Selecciones')
                 .select("id_seleccion, id_asignatura, id_seccion, id_periodo, Periodo(nombre), Asignatura(nombre, codigo_asignatura), Seccion(codigo_seccion), calificacion ")
-                .eq("id_estudiante", 2)
+                .eq("id_estudiante", profile?.id_Persona)
                 .eq('id_periodo', period[0].id_periodo)
             if (error) throw error;
             return data
@@ -266,18 +267,19 @@ export function fetchAll() {
         }
     }
 
-    const fetchProfessorSections = async () => { 
+    const fetchProfessorSections = async () => {
+        let profile = JSON.parse(localStorage.getItem('profile'));
         try {
             const { data: period } = await supabase
-            .from('Periodo')
-            .select('id_periodo')
-            .order('id_periodo', { ascending: false })
-            .limit(1);
+                .from('Periodo')
+                .select('id_periodo')
+                .order('id_periodo', { ascending: false })
+                .limit(1);
 
             let { data, error } = await supabase
                 .from('Seccion')
                 .select("id_seccion, codigo_seccion, Periodo(nombre), id_profesor, Asignatura(nombre, codigo_asignatura)")
-                .eq("id_profesor", 8)
+                .eq("id_profesor", profile?.id_Persona)
                 .eq('id_periodo', period[0].id_periodo)
                 .order('codigo_seccion');
             if (error) throw error;
@@ -288,20 +290,20 @@ export function fetchAll() {
         }
     }
 
-    const fetchProfessorStudents = async () => { 
+    const fetchProfessorStudents = async () => {
         try {
             const { data: period } = await supabase
-            .from('Periodo')
-            .select('id_periodo')
-            .order('id_periodo', { ascending: false })
-            .limit(1);
+                .from('Periodo')
+                .select('id_periodo')
+                .order('id_periodo', { ascending: false })
+                .limit(1);
 
             const { data, error } = await supabase
                 .from('Selecciones')
                 .select("id_seleccion, id_estudiante, id_seccion, calificacion, Persona(nombre,correo), Seccion(codigo_seccion), Asignatura(codigo_asignatura, nombre)")
                 .eq('id_periodo', period[0].id_periodo)
                 .order('id_estudiante')
-            
+
             if (error) throw error;
             return data
         }
@@ -310,9 +312,11 @@ export function fetchAll() {
         }
     }
 
-    return { fetchGeneralIndex, fetchStudentPeriod, getPeriods, fetchReport, fetchStudentData, 
-    fetchCourses, fetchAreas, fetchUsers, fetchCities, fetchCountries, fetchSections, fetchPeriods, 
-    fetchProfessors, fetchClassrooms, fetchCoursesTrim, fetchStudentSelections, fetchProfessorSections, fetchProfessorStudents }
+    return {
+        fetchGeneralIndex, fetchStudentPeriod, getPeriods, fetchReport, fetchStudentData,
+        fetchCourses, fetchAreas, fetchUsers, fetchCities, fetchCountries, fetchSections, fetchPeriods,
+        fetchProfessors, fetchClassrooms, fetchCoursesTrim, fetchStudentSelections, fetchProfessorSections, fetchProfessorStudents
+    }
 
 }
 

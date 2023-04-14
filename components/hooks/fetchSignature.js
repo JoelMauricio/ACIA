@@ -15,7 +15,7 @@ export function fetchSignatures() {
     const fetchSelectionSignatures = async () => { //GET Asignaturas
 
         try {
-
+            let profile = JSON.parse(localStorage.getItem('profile'));
             const { data } = await supabase
                 .from('Seccion')
                 .select('id_periodo')
@@ -30,7 +30,7 @@ export function fetchSignatures() {
             const { data: seleccion } = await supabase
                 .from('Selecciones')
                 .select('*')
-                .eq('id_estudiante', 2)
+                .eq('id_estudiante', profile?.id_Persona)
                 .eq('estado', 'seleccion')
 
 
