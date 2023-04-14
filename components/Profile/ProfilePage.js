@@ -27,14 +27,9 @@ const MyProfile = () => {
     }
 
     useEffect(() => {  //Obtener las secciones seleccioadas por el estudiante en el []
-        fetchStudentSelections(profile?.id_Persona).then((data) => {
-            if (data?.length > 0) {
-                setCourses(data)
-                setPeriod(data[0].Periodo.nombre)
-            }
-            else {
-                setPeriod({ 'Lo sentimos': 'No hay periodos disponibles' })
-            }
+        fetchStudentSelections().then((data) => {
+            setCourses(data)
+            setPeriod(data[0].Periodo.nombre)
         })
     }, [])
 
