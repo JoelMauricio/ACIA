@@ -5,6 +5,7 @@ import ProfileBT from '@/components/Profile/Profile_bt';
 import { useState } from 'react';
 import FaqItem from '@/components/Help/FaqItem';
 import Pregs from '@/public/Ayuda.json'
+import Image from 'next/image';
 
 const Ayuda = () => {
     const [faqs, setFaqs] = useState([
@@ -41,8 +42,7 @@ const Ayuda = () => {
 
     return (
         <>
-            <script className='bg-transparent dark:bg-transparent w-[100px] h-[100px]' style={{ background: 'transparent' }} id="respondio__widget" src="https://cdn.respond.io/webchat/widget/widget.js?cId=b372bc8534673525c6917a1bd692bf421769338e675836b955a08bc7f5a307c6"></script>
-
+            {/* <script id="webchat_widget" src="https://cdn.respond.io/webchat/widget/widget.js?cId=b372bc8534673525c6917a1bd692bf421769338e675836b955a08bc7f5a307c6"></script>*/}
             <div className='pl-[260px] flex w-full h-screen bg-boneWhite dark:bg-darkBG'>
                 <Navbar />
                 <ProfileBT />
@@ -51,21 +51,21 @@ const Ayuda = () => {
                     {Pregs.map((faq, index) => (
                         <FaqItem key={index} question={faq.question} answer={faq.answer} />
                     ))}
-                    {/*} <a className="flex items-center gap-4 my-4 bg-blue-500 text-white p-3 bg-purBlue rounded-[8px] self-start"
+                    {<a className="flex items-center gap-4 my-4 bg-blue-500 text-white p-3 bg-purBlue rounded-full self-start absolute bottom-8 right-8"
                         href="https://wa.link/09dlxa"
                         target="_blank">
                         <Image src={'whatsappLogo.svg'} width={30} height={40} />
-                        Contactar al servicio al cliente
-                    </a> */}
+
+                    </a>}
                 </div>
 
 
             </div>
-            <a href='#webchat_widget' className='absolute flex items-center justify-center bottom-8 right-8 w-14 h-14 bg-purBlue rounded-full'>
+            {/*<a href='#webchat_widget' className='absolute flex items-center justify-center bottom-8 right-8 w-14 h-14 bg-purBlue rounded-full z-[99]'>
                 <svg fill="#FFFFFF" height="30" width="30" viewBox="0 0 24 24">
                     <path fill="#FFFFFF" d="M4,2A2,2 0 0,0 2,4V17L6,13H15A2,2 0 0,0 17,11V4A2,2 0 0,0 15,2H4M4,4H15V11H6L4,13V4M19,6V8H20V18L18,16H8V15H6V16A2,2 0 0,0 8,18H18L22,22V8A2,2 0 0,0 20,6H19Z"></path>
                 </svg>
-            </a>
+                    </a>*/}
         </>
     )
 }
