@@ -31,41 +31,41 @@ const SelectionPage = () => {
         const data = [...signatures];
         data[index].check = true;
 
-        
+
         // Verificar si el objeto existe en la matriz "deletedItems"
         const itemIndex = deletedItems.findIndex(item => item.id_asignatura === data[index].id_asignatura);
         if (itemIndex !== -1) {
-          const newDeletedItems = [...deletedItems];
-          newDeletedItems.splice(itemIndex, 1);
-          setDeletedItems(newDeletedItems);
+            const newDeletedItems = [...deletedItems];
+            newDeletedItems.splice(itemIndex, 1);
+            setDeletedItems(newDeletedItems);
         }
-      
+
         setSignatures(data);
         console.log(signatures);
-      };
-      
+    };
 
-      const handleDelete = (id_asignatura) => {
+
+    const handleDelete = (id_asignatura) => {
         let itemsToDelete = [...signatures];
         let deletedItem = [...deletedItems];
         const index = itemsToDelete.findIndex(item => item.id_asignatura === id_asignatura);
-      
+
         // Actualizar propiedad "check" del objeto en la posición "index" de la matriz "itemsToDelete"
         itemsToDelete[index] = { ...itemsToDelete[index], check: false };
         // Verificar si el objeto ya existe en la matriz "deletedItem"
         const itemExists = deletedItem.some(item => item.id_asignatura === itemsToDelete[index].id_asignatura);
-        
+
         // Si el objeto no existe en la matriz "deletedItem", agregarlo
         if (!itemExists) {
-          deletedItem.push(itemsToDelete[index]);
+            deletedItem.push(itemsToDelete[index]);
         }
-        
+
         // Actualizar el estado de los componentes con los cambios realizados
         setSignatures(itemsToDelete);
         setDeletedItems(deletedItem);
-      };
-      
-      
+    };
+
+
 
 
     return <>
@@ -75,16 +75,16 @@ const SelectionPage = () => {
                 <div className={section_format}>
                     <div className="rounded-md grid grid-flow-col justify-between h-15 w-full content-center py-1">
                         <span className="font-semibold text-[18px] self-center">Mi seleccion:</span>
-                        <button className="bg-purBlue text-boneWhite px-3 rounded-md w-[15rem] h-full min-h-[45px]" onClick={()=>{ uploadSelectedSignatures(signatures, deletedItems); window.alert("Selección guardada exitosamente.") }}>Guardar Selección</button>
+                        <button className="bg-purBlue text-boneWhite px-3 rounded-md w-[15rem] h-full min-h-[45px]" onClick={() => { uploadSelectedSignatures(signatures, deletedItems); window.alert("Selección guardada exitosamente.") }}>Guardar Selección</button>
                     </div>
                     <div className="h-full overflow-hidden overflow-y-auto px-2 mt-2">
                         <div className="flex  flex-col w-full h-full bg-grid overflow-y-auto dark:bg-darkGrid">
                             <table className="table-auto w-full">
-                                  <thead className="bg-neutral-800 text-white" >
+                                <thead className="bg-neutral-800 text-white" >
                                     <tr>
                                         <th className={headerClass}>Codigo de Asignatura</th>
-                                        <th className={headerClass}>Número de créditos</th>
                                         <th className={headerClass}>Nombre</th>
+                                        <th className={headerClass}>Número de créditos</th>
                                         <th className={headerClass}>Maestro</th>
                                         <th className={headerClass}>Cupos</th>
                                         <th className={headerClass}>Horario</th>
@@ -96,13 +96,13 @@ const SelectionPage = () => {
                                     {signatures?.filter((dato) => dato.check).map((dato, index) => (
                                         <tr key={index}>
                                             <td className={bodyClass}>{dato?.codigo_asignatura}</td>
-                                            <td className={bodyClass}>{dato?.creditos}</td>
                                             <td className={bodyClass}>{dato?.nombre_asignatura}</td>
+                                            <td className={bodyClass}>{dato?.creditos}</td>
                                             <td className={bodyClass}>{dato?.profesor}</td>
                                             <td className={bodyClass}>{dato?.cupos}</td>
                                             <td className={bodyClass}>{dato?.horario}</td>
                                             <td className={bodyClass}>{dato?.aula}</td>
-                                            <td className={bodyClass}><button className="m-auto" onClick={()=>handleDelete(dato?.id_asignatura)}><Edit_icon className="w-[30px] h-[30px] stroke-red" /></button></td>
+                                            <td className={bodyClass}><button className="m-auto" onClick={() => handleDelete(dato?.id_asignatura)}><Edit_icon className="w-[30px] h-[30px] stroke-red" /></button></td>
                                         </tr>
                                     ))}
 
@@ -123,11 +123,11 @@ const SelectionPage = () => {
 
 
                             <table className="table-auto w-full">
-                            <thead className="bg-neutral-800 text-white" >
+                                <thead className="bg-neutral-800 text-white" >
                                     <tr>
                                         <th className={headerClass}>Codigo de Asignatura</th>
-                                        <th className={headerClass}>Número de créditos</th>
                                         <th className={headerClass}>Nombre</th>
+                                        <th className={headerClass}>Número de créditos</th>
                                         <th className={headerClass}>Maestro</th>
                                         <th className={headerClass}>Cupos</th>
                                         <th className={headerClass}>Horario</th>
@@ -139,8 +139,8 @@ const SelectionPage = () => {
                                     {signatures?.map((dato, index) => (
                                         <tr key={index}>
                                             <td className={bodyClass}>{dato?.codigo_asignatura}</td>
-                                            <td className={bodyClass}>{dato?.creditos}</td>
                                             <td className={bodyClass}>{dato?.nombre_asignatura}</td>
+                                            <td className={bodyClass}>{dato?.creditos}</td>
                                             <td className={bodyClass}>{dato?.profesor}</td>
                                             <td className={bodyClass}>{dato?.cupos}</td>
                                             <td className={bodyClass}>{dato?.horario}</td>
