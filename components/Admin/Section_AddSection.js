@@ -50,7 +50,7 @@ const AddSection = ({ periodOptions, courseOptions, profOptions, croomOptions, c
       }}
     >
       {({ errors, touched }) => (
-        <Form className="w-full" >
+        <Form className="w-full h-fit" >
           <div className=" mb-4 font-bold px-2 ">
             <h1 className="text-xl text-purBlue mb-3" >Crear Seccion</h1>
             <h2 className="text-base">Datos de la seccion</h2>

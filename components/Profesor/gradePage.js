@@ -72,7 +72,7 @@ const GradePage = () => {
                                 <div className="w-[2px] h-[30px] bg-slate-300" />
                                 <Popup trigger={<button className="w-[30px] h-[30px]"> <Edit_iconv2 className="h-full w-full fill-red" /> </button>} closeOnDocumentClick={false} modal contentStyle={{ background: 'transparent', border: 'none' }}>
                                     {close => (
-                                        <div className="modal h-full w-full bg-white2 dark:bg-darkBD2 p-4 rounded-lg">
+                                        <div className="modal h-screen overflow-scroll w-full bg-white2 dark:bg-darkBD2 p-4 rounded-lg">
                                             <EditGrade sel_id={student.id_seleccion} sec_code={student.Seccion.codigo_seccion} cCode={student.Asignatura.codigo_asignatura} cName={student.Asignatura.nombre} sName={student.Persona.nombre} sGrade={student.calificacion} close={close} />
                                         </div>
                                     )}

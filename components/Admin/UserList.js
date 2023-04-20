@@ -50,7 +50,7 @@ const UserList = ({ name, email }) => {
     const filteredUsers = filterUsers(search);
 
     return <>
-        <div className='m-6 bg-transparent flex flex-col gap-5 overflow-hidden'>
+        <div className='m-6 bg-transparent flex flex-col gap-5 h-screen overflow-scroll'>
             <h2 className="text-[1.5rem] font-bold grow-0">Administrar Usuarios</h2>
             <div className='flex flex-col gap-5'>
                 <div className='grid grid-flow-col justify-between w-full '>

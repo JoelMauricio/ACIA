@@ -63,7 +63,7 @@ const SectionList = () => {
     };
 
     return <>
-        <div className='m-6 bg-transparent flex flex-col gap-5 overflow-hidden '>
+        <div className='m-6 bg-transparent flex flex-col gap-5 '>
             <h1 className="text-[1.5rem] font-bold grow-0">Administrar Secciones</h1>
             <div>  {/*Mostrar únicamente las secciones pertenecientes al periodo seleccionado*/}
                 <label className="text-base font-bold" htmlFor="period-select">Seleccione un periodo </label>
@@ -73,12 +73,12 @@ const SectionList = () => {
                 </select>
             </div>
 
-            <div>
+            <div className="w-full h-fit">
                 <h2 className="px-1 text-italics text-sm font-bold ">Buscar Seccion</h2>
                 <input className="input mr-8 shadow appearance-none border-2 border-mainBlack rounded-md w-[20rem] py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="search" value={search} onChange={FilterData} placeholder="Nombre o código de asignatura..." />
                 <Popup trigger={<button className="bg-purBlue text-white font-bold py-2 px-4 rounded ">Crear Seccion</button>} closeOnDocumentClick={false} modal contentStyle={{ background: 'transparent', border: 'none' }}>
                     {close => (
-                        <div className="modal h-full w-full bg-white2 dark:bg-darkBD2 p-4 rounded-lg">
+                        <div className="modal h-screen  overflow-scroll w-full bg-white2 dark:bg-darkBD2 p-4 rounded-lg">
                             <AddSection periodOptions={periods} courseOptions={courses} profOptions={professors} croomOptions={classrooms} close={close} />
                         </div>
                     )}
@@ -102,7 +102,7 @@ const SectionList = () => {
 
                                 <Popup trigger={<button className="w-[30px] h-[30px]"> <Edit_iconv2 className="h-full w-full fill-red" /></button>} closeOnDocumentClick={false} modal contentStyle={{ background: 'transparent', border: 'none' }}>
                                     {close => (
-                                        <div className="modal h-full w-full bg-white2 dark:bg-darkBD2 p-4 rounded-lg">
+                                        <div className="modal h-screen  overflow-scroll w-full bg-white2 dark:bg-darkBD2 p-4 rounded-lg">
                                             {<EditSection key={section.id_seccion} sec_id={section.id_seccion} code={section.codigo_seccion} seats={section.cupos} time={section.horario}
                                                 cName={section.Asignatura.nombre} cCode={section.Asignatura.codigo_asignatura} prof_id={section.id_profesor} room_id={section.id_aula}
                                                 period={section.Periodo.nombre} profOptions={professors} croomOptions={classrooms} close={close} />}

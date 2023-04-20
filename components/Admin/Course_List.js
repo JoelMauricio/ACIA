@@ -48,7 +48,7 @@ const CourseList = ({ }) => {
                 <input className="input mr-8 shadow appearance-none border-2 border-mainBlack rounded-md w-[20rem] py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="search" value={search} onChange={FilterData} placeholder="Nombre o código de asignatura..." />
                 <Popup trigger={<button className="bg-purBlue text-white font-bold py-2 px-4 rounded ">Crear Asignatura</button>} closeOnDocumentClick={false} modal contentStyle={{ background: 'transparent', border: 'none' }} >
                     {close => (
-                        <div className="modal h-full w-full bg-white2 dark:bg-darkBD2 p-4 rounded-lg">
+                        <div className="modal h-screen  overflow-scroll w-full bg-white2 dark:bg-darkBD2 p-4 rounded-lg">
                             <AddCourse areaOptions={areas} close={close} />
                         </div>
                     )}
@@ -70,7 +70,7 @@ const CourseList = ({ }) => {
                                 <div className="w-[2px] h-[60%] bg-slate-300" />
                                 <Popup trigger={<button className="w-[30px] h-[30px]"> <Edit_iconv2 className="h-full w-full fill-red fill-" /></button>} closeOnDocumentClick={false} modal contentStyle={{ background: 'transparent', border: 'none' }}>
                                     {close => (
-                                        <div className="modal h-full w-full bg-white2 dark:bg-darkBD2 p-4 rounded-lg">
+                                        <div className="modal h-screen  overflow-scroll w-full bg-white2 dark:bg-darkBD2 p-4 rounded-lg">
                                             <EditCourse key={course.id_asignatura} course_id={course.id_asignatura} name={course.nombre} area_id={course.id_area} code={course.codigo_asignatura} credits={course.creditos} areaOptions={areas} close={close} />
                                         </div>
                                     )}

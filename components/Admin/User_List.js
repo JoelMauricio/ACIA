@@ -54,7 +54,7 @@ const UserList = () => {
                 <input className="input mr-8 shadow appearance-none border-2 border-mainBlack rounded-md w-[20rem] py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="search" value={search} onChange={FilterData} placeholder="Nombre de usuario..." />
                 <Popup trigger={<button className="bg-purBlue text-white font-bold py-2 px-4 rounded ">Crear Usuario</button>} closeOnDocumentClick={false} modal contentStyle={{ background: 'transparent', border: 'none' }}>
                     {close => (
-                        <div className="modal h-full w-full bg-white2 dark:bg-darkBD2 p-4 rounded-lg">
+                        <div className="modal h-screen  overflow-scroll w-full bg-white2 dark:bg-darkBD2 p-4 rounded-lg">
                             <AddUser close={close} cityOptions={cities} countryOptions={countries} />
                         </div>
                     )}
@@ -76,7 +76,7 @@ const UserList = () => {
 
                                 <Popup trigger={<button className="w-[30px] h-[30px]"> <Edit_iconv2 className="h-full w-full fill-red" /></button>} closeOnDocumentClick={false} modal contentStyle={{ background: 'transparent', border: 'none' }}>
                                     {close => (
-                                        <div className="modal h-full w-full bg-white2 dark:bg-darkBD2 p-4 rounded-lg">
+                                        <div className="modal h-screen overflow-scroll w-full bg-white2 dark:bg-darkBD2 p-4 rounded-lg">
                                             <EditUser key={user.id_Persona} user_id={user.id_Persona} name={user.nombre} email={user.correo} birthdate={user.fecha_nac} city_id={user.id_ciudad} country_id={user.id_pais} role_id={user.id_rol} countryOptions={countries} cityOptions={cities} close={close} />
                                         </div>
                                     )}
