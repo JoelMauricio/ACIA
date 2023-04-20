@@ -5,7 +5,7 @@ describe('Verificar el menu principal', () => {
         cy.wait(1000)
     })
 
-    it('TC06 - Ver Menú Principal - Rol: Profesor', () => {
+    it('TC011 - Ver Menú Principal - Rol: Profesor', () => {
         cy.get('#email').type('j.hormegon@gmail.com')
         cy.get('#password').type('123456')
         cy.get('.supabase-auth-ui_ui-button').click()
@@ -15,7 +15,7 @@ describe('Verificar el menu principal', () => {
 
     })
 
-    it('TC07 - Ver Menú Principal - Rol: Estudiante', () => {
+    it('TC12 - Ver Menú Principal - Rol: Estudiante', () => {
         cy.get('#email').type('test@gmail.com')
         cy.get('#password').type('123456test')
         cy.get('.supabase-auth-ui_ui-button').click()
@@ -27,7 +27,7 @@ describe('Verificar el menu principal', () => {
     })
 
 
-    it('TC08 - Ver Menú Principal - Rol: Administrador', () => {
+    it('TC13 - Ver Menú Principal - Rol: Administrador', () => {
         cy.get('#email').type('rusbelduarte@gmail.com')
         cy.get('#password').type('123456')
         cy.get('.supabase-auth-ui_ui-button').click()

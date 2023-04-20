@@ -4,7 +4,7 @@ describe('Recuperar contrasena', () => {
         cy.visit('/login')
     })
 
-    it('change password were the old and new password are correct', () => {
+    it('TC14 - change password were the old and new password are correct', () => {
         cy.get('[href="#auth-forgot-password"]').click
         cy.get('#email').type('test@gmail.com')
         cy.visit('/recovery')
@@ -17,7 +17,7 @@ describe('Recuperar contrasena', () => {
         cy.get('#password').should('exist')
     })
 
-    it('try to change password were the old and new password are not matching', () => {
+    it('TC15 - try to change password were the old and new password are not matching', () => {
         cy.get('[href="#auth-forgot-password"]').click
         cy.get('#email').type('test@gmail.com')
         cy.visit('/recovery')
