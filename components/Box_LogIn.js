@@ -14,6 +14,7 @@ const FormLogIn = () => {
   useEffect(() => {
     // Redirect to home page after login
     if (session) {
+
       router.push('/')
     }
   }, [session, router])

@@ -65,7 +65,7 @@ export default function ChangePassword({ state }) {
 
             if (data) {
                 alert("Password updated successfully!")
-                router.push('/profile')
+                router.push('/')
                 setRecovery(false)
             }
             if (error) {
