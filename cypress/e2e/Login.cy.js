@@ -1,18 +1,36 @@
-describe('basic flow test', () => {
-  it('fill login form', () => {
+describe('login flow', () => {
+  beforeEach(() => {
     cy.visit('/login')
-    cy.get('#email').type('  test@gmail.com')
+  })
+
+  it('should login successfully with valid credentials', () => {
+    cy.get('#email').type('   test@gmail.com')
     cy.get('#password').type('123456test')
     cy.get('.supabase-auth-ui_ui-button').click()
-    it('read FAQ', () => {
-      cy.visit('/ayuda')
-
-    })
+    cy.wait(2000)
+    cy.getCookie('supabase-auth-token').should('exist')
   })
 
-  it('visit profile', () => {
-    cy.get('#profile').click()
+  it('should not login with invalid email', () => {
+    cy.get('#email').type('invalid@email.com')
+    cy.get('#password').type('123456test')
+    cy.get('.supabase-auth-ui_ui-button').click()
+    cy.wait(2000)
+    cy.contains('Invalid login credentials').should('exist')
   })
 
+  it('should not login with invalid password', () => {
+    cy.get('#email').type('   test@gmail.com')
+    cy.get('#password').type('invalidpassword')
+    cy.get('.supabase-auth-ui_ui-button').click()
+    cy.contains('Invalid login credentials').should('exist')
+    cy.getCookie('supabase-auth-token').should('not.exist')
+  })
 
+  it('should not login with empty email and password', () => {
+    cy.get('.supabase-auth-ui_ui-button').click()
+    cy.wait(1000)
+    cy.contains('Invalid login credentials').should('exist')
+    cy.getCookie('supabase-auth-token').should('not.exist')
+  })
 })
