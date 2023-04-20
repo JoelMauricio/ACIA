@@ -27,10 +27,12 @@ const MyProfile = () => {
     }
 
     useEffect(() => {  //Obtener las secciones seleccioadas por el estudiante en el []
-        fetchStudentSelections().then((data) => {
-            setCourses(data)
-            setPeriod(data[0].Periodo.nombre)
-        })
+        if (profile?.id_rol === 2){
+            fetchStudentSelections().then((data) => {
+                setCourses(data)
+                setPeriod(data[0].Periodo.nombre)
+            })
+        } 
     }, [])
 
     return <>
