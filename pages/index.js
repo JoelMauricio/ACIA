@@ -10,14 +10,15 @@ const Home = () => {
   const { useProfile, useCheckAuth } = useAuth()
   const [profile, setProfile] = useState()
 
-  useProfile(session?.user.id)
   useCheckAuth();
 
-  useEffect(() => {
-    setProfile(localStorage.getItem("profile"))
-  }, [profile])
+  useProfile(session?.user.id)
 
-  console.log(profile)
+  useEffect(() => {
+
+    setProfile(localStorage.getItem("profile"))
+
+  }, [profile])
 
   return (
     <div className='pl-[260px] flex w-screen h-screen bg-boneWhite dark:bg-darkBG'>
