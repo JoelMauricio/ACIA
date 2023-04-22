@@ -17,6 +17,9 @@ const FormLogIn = () => {
 
       router.push('/')
     }
+    else {
+      localStorage.removeItem('profile')
+    }
   }, [session, router])
 
   return (
@@ -122,6 +125,7 @@ const FormLogIn = () => {
                 }
               }
             }}
+
           />
         ) : (<span className='text-mainBlack'>Redireccionando</span>
         )}
